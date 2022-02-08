@@ -1,0 +1,33 @@
+<form class="{{cssClass}} kult-sheet" autocomplete="off">
+  <header class="sheet-header">
+    <script src="systems/kult4e/scripts/delete.js"></script>
+    <script src="systems/kult4e/scripts/getAttribute.js"></script>
+    <img src="/systems/kult4e/assets/kultlogo.png" height="64" width="167">
+    <h1 class="character-name"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
+  </header>
+  <div class="flex-container-top npc-harm-taken">
+    <label>{{localize "kult4e.HarmTaken"}}:</label>
+    <span>
+      <input class="short-input" style="width: 80px" name="data.harm.value" value="{{data.harm.value}}" type="number" data-dtype="Number"/>
+      /
+      <input class="short-input" style="width: 80px"  name="data.harm.max" value="{{data.harm.max}}" type="number" data-dtype="Number"/>
+    </span>
+  </div>
+  <div class="flex-container-npc">
+    <div class="npc-moves">
+        <div class="section-label">{{localize "kult4e.Combat"}}:</div>
+        <div class="free-text">{{editor content=data.combatmoves target="data.combatmoves" button=true owner=owner editable=editable}}</div>
+    </div>
+      <div class="npc-moves">
+        <div class="section-label">{{localize "kult4e.Influence"}}:</div>
+        <div class="free-text">{{editor content=data.influencemoves target="data.influencemoves" button=true owner=owner editable=editable}}</div>
+    </div>
+      <div class="npc-moves">
+        <div class="section-label">{{localize "kult4e.Magic"}}:</div>
+        <div class="free-text">{{editor content=data.magicmoves target="data.magicmoves" button=true owner=owner editable=editable}}</div>
+    </div>
+    <div class="npc-moves">
+        <div class="section-label">{{localize "kult4e.Harm"}}:</div>
+        <div class="free-text">{{editor content=data.harmmoves target="data.harmmoves" button=true owner=owner editable=editable}}</div>
+    </div>
+</div>

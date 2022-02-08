@@ -1,0 +1,22 @@
+@import 'globals/typography';
+
+.vtt.game.system-kult4e {
+
+	--font-primary: Alverata;
+	--font-display: Infidel;
+	--font-longtext: "Caslon Antique";
+
+    .chat-message { @import 'overrides/chatMessages' }
+
+    .app.window-app {
+
+        &.sheet {
+
+            &.actor {
+                @import 'overrides/characterSheet';
+            }
+
+            &.item { @import 'overrides/itemSheet' }
+        }
+    }
+}
