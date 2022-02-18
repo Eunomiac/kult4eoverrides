@@ -39,13 +39,13 @@
         {{/select}}
         </select>
 			</div>
-			<div class="specs">				
+			<div class="specs">
         <div class="spec">
-					<label class="spec-label" style="margin-left: 50%;">Age:</label>
-					<input class="spec-input" name="data.attributes.age" type="text" value="{{data.attributes.age}}" placeholder="{{localize "kult4e.Age"}}">
-        </div>			
+					<label class="spec-label">{{localize "kult4e.Age"}}:</label>
+					<input class="spec-input" name="data.attributes.age" type="text" value="{{data.attributes.age}}" placeholder="~">
+        </div>
         <div class="spec">
-					<label class="spec-label">Forward:</label>
+					<label class="spec-label two-line">Persistent<br/>Modifier:</label>
 					<select class="spec-input" name="data.forward" value="{{data.forward}}">
 					{{#select data.forward}}
 						<option class="gold3" value="5">+5</option>
@@ -61,9 +61,9 @@
 						<option class="red4" value="-5">−5</option>
 					{{/select}}
         	</select>
-        </div>			
+        </div>
         <div class="spec">
-					<label class="spec-label">Modifier:</label>
+					<label class="spec-label two-line">Situation<br/>Modifier:</label>
 					<select class="spec-input" name="data.sitmod" value="{{data.sitmod}}">
 					{{#select data.sitmod}}
 						<option class="gold3" value="5">+5</option>
@@ -91,11 +91,12 @@
     <a class="tabButton" data-tab="Notes">Notes</a>
     <a class="tabButton" data-tab="Advancement">Advancement</a>
   </div>
-  <div id="Stats" class="stats-section {{actor._id}}-tab">
+  <div id="Front" class="stats-section {{actor.id}}-tab">
     <div class="middle-section">
       <div class="attribute-column">
+				<div class="section-label">Attributes</div>
         <table class="attribute-box" style="table-layout: fixed; width: 160px; height:400px;">
-          <tr style="background-color: black;">
+          <tr>
             <td></td>
             <td class="willpic">
               <select class="stat-value" name="data.attributes.willpower" value="{{data.attributes.willpower}}">
@@ -115,7 +116,7 @@
             </td>
             <td></td>
           </tr>
-          <tr style="background-color: black;">
+          <tr>
             <td class="fortpic">
               <select class="stat-value" name="data.attributes.fortitude" value="{{data.attributes.fortitude}}">
                 {{#select data.attributes.fortitude}}
@@ -132,7 +133,7 @@
                 {{/select}}
               </select>
             </td>
-            <td>{{localize "kult4e.Willpower"}}</td>
+            <td><span class="attribute-roll" data-attr-name="willpower" >{{localize "kult4e.Willpower"}}</span></td>
             <td class="refpic">
               <select class="stat-value" name="data.attributes.reflexes" value="{{data.attributes.reflexes}}">
               {{#select data.attributes.reflexes}}
@@ -151,9 +152,9 @@
             </td>
           </tr>
           <tr>
-            <td>{{localize "kult4e.Fortitude"}}</td>
+            <td><span class="attribute-roll" data-attr-name="fortitude">{{localize "kult4e.Fortitude"}}</span></td>
             <td></td>
-            <td>{{localize "kult4e.Reflexes"}}</td>
+            <td><span class="attribute-roll" data-attr-name="reflexes">{{localize "kult4e.Reflexes"}}</span></td>
           </tr>
           <tr>
             <td class="reasonpic">
@@ -191,7 +192,7 @@
             </td>
           </tr>
           <tr>
-            <td>{{localize "kult4e.Reason"}}</td>
+            <td><span class="attribute-roll" data-attr-name="reason">{{localize "kult4e.Reason"}}</span></td>
             <td class="percpic">
               <select class="stat-value" name="data.attributes.perception" value="{{data.attributes.perception}}">
               {{#select data.attributes.perception}}
@@ -208,9 +209,9 @@
               {{/select}}
               </select>
             </td>
-            <td>{{localize "kult4e.Intuition"}}</td>
+            <td><span class="attribute-roll" data-attr-name="intuition">{{localize "kult4e.Intuition"}}</span></td>
           </tr>
-          <tr style="background-color: black;">
+          <tr>
             <td class="coolpic">
               <select class="stat-value" name="data.attributes.coolness" value="{{data.attributes.coolness}}">
               {{#select data.attributes.coolness}}
@@ -227,7 +228,7 @@
               {{/select}}
               </select>
             </td>
-            <td>{{localize "kult4e.Perception"}}</td>
+            <td><span class="attribute-roll" data-attr-name="perception">{{localize "kult4e.Perception"}}</span></td>
             <td class="violpic">
               <select class="stat-value" name="data.attributes.violence" value="{{data.attributes.violence}}">
               {{#select data.attributes.violence}}
@@ -246,7 +247,7 @@
             </td>
           </tr>
           <tr>
-            <td>{{localize "kult4e.Coolness"}}</td>
+            <td><span class="attribute-roll" data-attr-name="coolness">{{localize "kult4e.Coolness"}}</span></td>
             <td class="chapic">
               <select class="stat-value" name="data.attributes.charisma" value="{{data.attributes.charisma}}">
               {{#select data.attributes.charisma}}
@@ -263,11 +264,11 @@
               {{/select}}
               </select>
             </td>
-            <td>{{localize "kult4e.Violence"}}</td>
+            <td><span class="attribute-roll" data-attr-name="violence">{{localize "kult4e.Violence"}}</span></td>
           </tr>
-          <tr style="background-color: black;">
+          <tr>
             <td></td>
-            <td>{{localize "kult4e.Charisma"}}</td>
+            <td><span class="attribute-roll" data-attr-name="charisma">{{localize "kult4e.Charisma"}}</span></td>
             <td></td>
           </tr>
           <tr>
@@ -290,40 +291,31 @@
             </td>
             <td></td>
           </tr>
-          <tr style="background-color: black;">
+          <tr>
             <td></td>
-            <td style="background-color: black;">{{localize "kult4e.Soul"}}</td>
+            <td><span class="attribute-roll" data-attr-name="soul">{{localize "kult4e.Soul"}}</span></td>
             <td></td>
           </tr>
         </table>
       </div>
-      <div class="advantage-box">
-        <div class="section-label">{{localize "kult4e.DarkSecrets"}}</div>
-        <div class=" item-list darksecret-list">
-          {{#each darksecrets as |darksecret id|}}
-          {{> "systems/kult4e/templates/partials/darksecret-card.hbs" darksecret}}
-          {{/each}}
-        </div>
-        <div class="section-label">{{localize "kult4e.Advantages"}}</div>
-        <div class="item-list advantage-list">
-          {{#each advantages as |advantage id|}}
-          {{> "systems/kult4e/templates/partials/advantage-card.hbs" advantage}}
-          {{/each}}
-        </div>
-        <div class="section-label">{{localize "kult4e.Disadvantages"}}</div>
-        <div class="item-list disadvantage-list">
-          {{#each disadvantages as |disadvantage id|}}
-          {{> "systems/kult4e/templates/partials/disadvantage-card.hbs" disadvantage}}
-          {{/each}}
-        </div>
-        <div class="section-label">{{localize "kult4e.Relationships"}}</div>
-        <div class="item-list relationship-list">
-          {{#each relationships as |relationship id|}}
-          {{> "systems/kult4e/templates/partials/relationship-card.hbs" relationship}}
-          {{/each}}
-        </div>
+			<div class="move-column">
+				<div class="section-label">Basic Moves</div>
+				<div class="item-list move-list">
+					{{#each moves as |move id|}}
+					{{#if (eq move.type "move")}}
+					{{> "modules/kult4eoverrides/html/partials/move-card.hbs" move}}
+					{{/if}}
+					{{/each}}
+				</div>
       </div>
       <div class="right-middle-column">
+				<div class="section-label">Dramatic Hooks</div>
+				<div class="dramatic-hook">
+					<textarea class="dramatic-hook"></textarea><input type="checkbox" />
+				</div>
+				<div class="dramatic-hook">
+					<textarea class="dramatic-hook"></textarea><input type="checkbox" />
+				</div>
         <div class="section-label">{{localize "kult4e.Wounds"}}</div>
         <div class="wound-entries">
           {{#each wounds}}
@@ -378,23 +370,39 @@
       </div>
     </div>
     <div class="bottom-section">
-      <div class="move-section">
-        <div class="section-label">{{localize "kult4e.Moves"}}</div>
-        <div class="item-list move-list">
-          {{#each moves as |move id|}}
-          {{#if (eq move.type "move")}}
-          {{> "systems/kult4e/templates/partials/move-card.hbs" move}}
-          {{/if}}
-          {{/each}}
-        </div>
-      </div>
+			<div class="advantage-box">
+				<div class="section-label">{{localize "kult4e.DarkSecrets"}}</div>
+				<div class=" item-list darksecret-list">
+					{{#each darksecrets as |darksecret id|}}
+					{{> "modules/kult4eoverrides/html/partials/darksecret-card.hbs" darksecret}}
+					{{/each}}
+				</div>
+				<div class="section-label">{{localize "kult4e.Advantages"}}</div>
+				<div class="item-list advantage-list">
+					{{#each advantages as |advantage id|}}
+					{{> "modules/kult4eoverrides/html/partials/advantage-card.hbs" advantage}}
+					{{/each}}
+				</div>
+				<div class="section-label">{{localize "kult4e.Disadvantages"}}</div>
+				<div class="item-list disadvantage-list">
+					{{#each disadvantages as |disadvantage id|}}
+					{{> "modules/kult4eoverrides/html/partials/disadvantage-card.hbs" disadvantage}}
+					{{/each}}
+				</div>
+				<div class="section-label">{{localize "kult4e.Relationships"}}</div>
+				<div class="item-list relationship-list">
+					{{#each relationships as |relationship id|}}
+					{{> "modules/kult4eoverrides/html/partials/relationship-card.hbs" relationship}}
+					{{/each}}
+				</div>
+			</div>
     </div>
     <div class="two-column">
       <div class="weapon-section">
         <div class="section-label">{{localize "kult4e.Weapons"}}</div>
         <div class=" item-list weapon-list">
           {{#each weapons as |weapon id|}}
-          {{> "systems/kult4e/templates/partials/weapon-card.hbs" weapon}}
+          {{> "modules/kult4eoverrides/html/partials/weapon-card.hbs" weapon}}
           {{/each}}
         </div>
       </div>
@@ -402,14 +410,26 @@
         <div class="section-label">{{localize "kult4e.Gear"}}</div>
         <div class=" item-list weapon-list">
           {{#each gear as |gear id|}}
-          {{> "systems/kult4e/templates/partials/gear-card.hbs" gear}}
+          {{> "modules/kult4eoverrides/html/partials/gear-card.hbs" gear}}
           {{/each}}
         </div>
       </div>
     </div>
   </div>
-  <div id="Background" class="background-section {{actor._id}}-tab">
+  <div id="Bio" class="background-section {{actor.id}}-tab">
     <div class="two-column">
+      <div>
+        <div class="section-label">Dramatic Hook</div>
+        <div class="free-text">
+          {{editor content=data.appearance target="data.appearance" button=true owner=owner editable=editable}}
+        </div>
+      </div>
+			<div>
+				<div class="section-label">Dramatic Hook</div>
+				<div class="free-text">
+					{{editor content=data.appearance target="data.appearance" button=true owner=owner editable=editable}}
+				</div>
+			</div>
       <div "background-box">
         <div class="section-label">{{localize "kult4e.Background"}}</div>
         <div class="free-text">
@@ -423,4 +443,69 @@
         </div>
       </div>
     </div>
+	</div>
+	<div id="Relationships" class="background-section {{actor.id}}-tab">
+		<div class="two-column">
+			<div "background-box">
+				<div class="section-label">{{localize "kult4e.Background"}}</div>
+				<div class="free-text">
+					{{editor content=data.biography target="data.biography" button=true owner=owner editable=editable}}
+				</div>
+			</div>
+			<div>
+				<div class="section-label">{{localize "kult4e.Appearance"}}</div>
+				<div class="free-text">
+					{{editor content=data.appearance target="data.appearance" button=true owner=owner editable=editable}}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="Assets" class="background-section {{actor.id}}-tab">
+		<div class="two-column">
+			<div "background-box">
+				<div class="section-label">{{localize "kult4e.Background"}}</div>
+				<div class="free-text">
+					{{editor content=data.biography target="data.biography" button=true owner=owner editable=editable}}
+				</div>
+			</div>
+			<div>
+				<div class="section-label">{{localize "kult4e.Appearance"}}</div>
+				<div class="free-text">
+					{{editor content=data.appearance target="data.appearance" button=true owner=owner editable=editable}}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="Notes" class="background-section {{actor.id}}-tab">
+		<div class="two-column">
+			<div "background-box">
+				<div class="section-label">{{localize "kult4e.Background"}}</div>
+				<div class="free-text">
+					{{editor content=data.biography target="data.biography" button=true owner=owner editable=editable}}
+				</div>
+			</div>
+			<div>
+				<div class="section-label">{{localize "kult4e.Appearance"}}</div>
+				<div class="free-text">
+					{{editor content=data.appearance target="data.appearance" button=true owner=owner editable=editable}}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="Advancement" class="background-section {{actor.id}}-tab">
+		<div class="two-column">
+			<div "background-box">
+				<div class="section-label">{{localize "kult4e.Background"}}</div>
+				<div class="free-text">
+					{{editor content=data.biography target="data.biography" button=true owner=owner editable=editable}}
+				</div>
+			</div>
+			<div>
+				<div class="section-label">{{localize "kult4e.Appearance"}}</div>
+				<div class="free-text">
+					{{editor content=data.appearance target="data.appearance" button=true owner=owner editable=editable}}
+				</div>
+			</div>
+		</div>
+	</div>
 </form>

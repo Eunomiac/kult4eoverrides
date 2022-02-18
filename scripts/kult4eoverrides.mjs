@@ -4,30 +4,22 @@ import {
 	kult4ePCsheet,
 	kult4eNPCsheet,
 	kult4eitemsheet,
-	// kult4eOverridesActor,
+	kult4eOverridesActor,
 	kult4eOverridesPCSheet,
 	kult4eOverridesNPCSheet,
 	kult4eOverridesItemSheet,
 	templates
 } from "./charMaster.mjs";
+import registerDebugger from "./debugger.mjs";
 // #endregion ▒▒▒▒[IMPORTS]▒▒▒▒
 
 // #region ████████ ON INIT: On-Initialization Hook ████████ ~
 Hooks.once("init", async () => {
-	console.log("██████ INITIALIZING KULT 4E OVERRIDES ... ██████");
-	loadTemplates(templates);
-	console.log("██████ OVERRIDES INITIALIZATION COMPLETE █████████");
+	registerDebugger();
 
-	Handlebars.registerHelper("select", function(value, options) {
-		const $el = $("<select />").html(options.fn(this));
-		$el.find(`[value="${value}"]`).attr({selected: "selected"});
-		return $el.html();
-	});
-});
-// #endregion ▄▄▄▄▄ ON INIT ▄▄▄▄▄
+	KO.display("██████ Initializing Kult 4E Overrides ██████");
+	CONFIG.Actor.documentClass = kult4eOverridesActor;
 
-Hooks.once("setup", () => {
-	console.log("██████ SETTING UP CHARACTER SHEET OVERRIDES ... ██████");
 	Actors.unregisterSheet("kult4e", kult4ePCsheet);
 	Actors.unregisterSheet("kult4e", kult4eNPCsheet);
 	Actors.registerSheet("kult4e", kult4eOverridesPCSheet, {
@@ -44,5 +36,13 @@ Hooks.once("setup", () => {
 		types: ["move", "weapon", "advantage", "disadvantage", "darksecret", "relationship", "gear"],
 		makeDefault: true
 	});
-	console.log("██████ CHARACTER SHEET OVERRIDING COMPLETE █████████");
+
+	Handlebars.registerHelper("select", function handlebarSelect(value, options) {
+		const $el = $("<select />").html(options.fn(this));
+		$el.find(`[value="${value}"]`).attr({selected: "selected"});
+		return $el.html();
+	});
+	loadTemplates(templates);
+	KO.display("██████ Kult 4E Override Complete █████████");
 });
+// #endregion ▄▄▄▄▄ ON INIT ▄▄▄▄▄

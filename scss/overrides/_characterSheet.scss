@@ -2,6 +2,7 @@ select,
 input,
 textarea {
 	font-family: var(--font-primary);
+	color: #968c6a;
 }
 
 option {
@@ -75,41 +76,43 @@ option {
 						}
 					}
 					.specs {
-						flex-shrink: 1;
-						flex-grow: 0.2;
-						flex-basis: 20%;
+						flex-shrink: 0;
+						flex-grow: 0;
+						flex-basis: 125px;
 
 						.spec {
-							display: flex;
-							flex-direction: row;
-							flex-wrap: nowrap;
-							justify-content: stretch;
-							align-items: center;
-							width: auto;
+							display: block;
+							width: 100%;
 							padding: 2.5px 0;
 
 							.spec-label {
 								display: inline-block;
-								flex-shrink: 0;
-								flex-grow: 0.2;
-								flex-basis: min-content;
+								width: 40%;
 								font-weight: bold;
+								text-align: right;
+								vertical-align: middle;
+
+								&.two-line {
+									font-size: 10px;
+								}
 							}
 							.spec-input {
-								flex-shrink: 1;
-								flex-grow: 1;
 								margin-left: 5px;
+								padding: 1px 3px;
+								width: calc(60% - 1px - (2 * 5px));
+								background: rgba(120, 46, 34, 0.38);
+								border: 1px solid rgb(122, 121, 113);
+								max-height: 26px;
+								font-size: 16px;
 							}
 							input.spec-input {
 								text-align: right;
-								background: transparent;
-								border: none;
 								font-weight: bold;
+								text-align: center;
 							}
 							select.spec-input {
-								font-size: 18px;
 								flex-grow: 0;
-								flex-shrink: 0; 
+								flex-shrink: 0;
 								text-align: right;
 
 								.gold3 { color: #b98600 }
@@ -119,10 +122,10 @@ option {
 								.red3 { color: #950a0f }
 								.red2 { color: #9b201f }
 								.red1 { color: #782e22 }
-							}   
+							}
 						}
 					}
-					
+
 				}
 				.character-name input {
 					margin: 0;
@@ -158,16 +161,39 @@ option {
 			}
 
 			.middle-section {
+				.section-label {
+					margin-bottom: 5px;
+					line-height: 25px;
+					max-height: 24px;
+				}
 				.attribute-column {
-					padding: 0;
+					padding: 5px;
 
 					.attribute-box {
+						margin: 0;
 
 						td {
 							vertical-align: top;
 							font-size: 10px;
 							font-style: normal;
 							padding: 0;
+
+							.attribute-roll {
+								display: block;
+								width: 135%;
+								margin-left: -17.5%;
+								position: relative;
+								border-radius: 100px;
+								cursor: pointer;
+								transition: all 0.25s;
+								color: #fff3b5;
+								&:hover {
+									color: #FFFFFF;
+									text-shadow: 0 0 5px red, 0 0 5px red, 0 0 5px red, 0 0 5px red, 0 0 5px red;
+									letter-spacing: 0.2em;
+									z-index: 20;
+								}
+							}
 						}
 						td:first-child { padding-right: 2px }
 
@@ -183,8 +209,60 @@ option {
 						}
 					}
 				}
+				.move-column {
+					flex-grow: 1;
+					padding: 5px;
+
+					.move-list {
+						columns: 250px;
+						padding: 0;
+					}
+				}
+				.right-middle-column {
+					padding: 5px;
+					overflow: visible;
+
+					.dramatic-hook {
+						display: block;
+						width: calc(100% + 32px);
+						position: relative;
+						z-index: 50;
+
+						input[type="checkbox"] {
+							display: inline-block;
+							width: 15px;
+							margin: -3px 0 0 1px;
+							vertical-align: top;
+							position: relative;
+							z-index: 100;
+						}
+						textarea {
+							resize: none;
+							background-color: rgba(120, 46, 34, 0.38);
+							border-radius: 5px;
+							border: 1px solid rgb(122, 121, 113);
+							display: inline-block;
+							width: calc(90% - 4px);
+							padding: 3px;
+							min-height: 60px;
+							text-align: justify;
+						}
+					}
+
+					.wound-entries {
+						div {
+							justify-content: space-between;
+
+							&.wound-name {
+								input[type="text"] {
+									color: #FF0000;
+								}
+							}
+						}
+					}
+				}
 			}
-			
+
 
         .actor-header {
             .header-fields {
@@ -199,7 +277,7 @@ option {
                     .gCol8-5 { grid-area: gCol8-5 }
                     .gCol10-5 { grid-area: gCol10-5 }
 
-                    
+
                     .maxboxsize {
                         color: var(--aliendarkergreen);
                     }
@@ -313,7 +391,7 @@ option {
     }
 }
 
-&.minimized { 
+&.minimized {
     --minimizedTextColor: #262000;
     --minimizedFontWeight: bold;
     --minimizedBGColor: #FFD900;
