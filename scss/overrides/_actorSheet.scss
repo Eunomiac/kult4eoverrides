@@ -327,6 +327,88 @@
 				}
 			}
 		}
+
+		.advancement-section {
+			padding: 5px;
+
+			.section-label {
+				margin-bottom: 5px;
+			}
+
+			.advancement-total {
+				color: white;
+				text-align: center;
+			}
+			.experience-total {
+				color: #999999;
+				text-align: center;
+				font-style: italic;
+				font-size: 12px;
+				margin-bottom: 10px;
+			}
+			.advancement-labels {
+				width: 100%;
+				margin: 0;
+			}
+			.advancement-boxes {
+				width: min-content;
+				white-space: nowrap;
+				text-align: right;
+				margin: 0 10px 0 0;
+			}
+			.advancement-line, .purchase-line {
+				color: #918459;
+				min-height: 20px;
+				line-height: 20px;
+
+				.fas.fa-check-square {
+					line-height: 1px;
+				}
+
+				&.header {
+					margin-top: 20px;
+					color: #999999;
+					margin-left: -80px;
+				}
+
+				&.greyed-out {
+					color: #555;
+				}
+			}
+			.purchases-column {
+				.section-label {
+					// margin-bottom: 40px;
+				}
+				.purchase-line {
+					margin: 3px 0;
+
+					.purchase-counter {
+						font-family: Infidel;
+						font-size: 20px;
+						display: inline-block;
+						vertical-align: bottom;
+						text-align: center;
+						width: 15px;
+						color: #AAA;
+						text-shadow: 0 0 5px red;
+						margin-right: 5px;
+					}
+
+					select {
+						margin-left: 10px;
+						margin-right: 0px;
+						color: #AAA;
+						text-shadow: 0 0 5px red;
+					}
+
+					.purchase-summary {
+						font-weight: bold;
+						color: #AAA;
+						text-shadow: 0 0 5px red;
+					}
+				}
+			}
+		}
 	}
 }
 

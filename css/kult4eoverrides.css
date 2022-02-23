@@ -478,6 +478,90 @@
   color: #FF0000;
 }
 
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .advancement-section {
+  padding: 5px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .advancement-section .section-label {
+  margin-bottom: 5px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .advancement-section .advancement-total {
+  color: white;
+  text-align: center;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .advancement-section .experience-total {
+  color: #999999;
+  text-align: center;
+  font-style: italic;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .advancement-section .advancement-labels {
+  width: 100%;
+  margin: 0;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .advancement-section .advancement-boxes {
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  white-space: nowrap;
+  text-align: right;
+  margin: 0 10px 0 0;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .advancement-section .advancement-line, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .advancement-section .purchase-line {
+  color: #918459;
+  min-height: 20px;
+  line-height: 20px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .advancement-section .advancement-line .fas.fa-check-square, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .advancement-section .purchase-line .fas.fa-check-square {
+  line-height: 1px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .advancement-section .advancement-line.header, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .advancement-section .purchase-line.header {
+  margin-top: 20px;
+  color: #999999;
+  margin-left: -80px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .advancement-section .advancement-line.greyed-out, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .advancement-section .purchase-line.greyed-out {
+  color: #555;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .advancement-section .purchases-column .purchase-line {
+  margin: 3px 0;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .advancement-section .purchases-column .purchase-line .purchase-counter {
+  font-family: Infidel;
+  font-size: 20px;
+  display: inline-block;
+  vertical-align: bottom;
+  text-align: center;
+  width: 15px;
+  color: #AAA;
+  text-shadow: 0 0 5px red;
+  margin-right: 5px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .advancement-section .purchases-column .purchase-line select {
+  margin-left: 10px;
+  margin-right: 0px;
+  color: #AAA;
+  text-shadow: 0 0 5px red;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .advancement-section .purchases-column .purchase-line .purchase-summary {
+  font-weight: bold;
+  color: #AAA;
+  text-shadow: 0 0 5px red;
+}
+
 .vtt.game.system-kult4e .app.window-app.sheet.actor.minimized {
   --minimizedTextColor: #262000;
   --minimizedFontWeight: bold;
