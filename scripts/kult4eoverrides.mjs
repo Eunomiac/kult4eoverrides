@@ -11,11 +11,13 @@ import {
 	templates
 } from "./charMaster.mjs";
 import registerDebugger from "./debugger.mjs";
+import registerSystemSettings from "./settings.mjs";
 // #endregion ▒▒▒▒[IMPORTS]▒▒▒▒
 
-// #region ████████ ON INIT: On-Initialization Hook ████████ ~
+// #region ████████ ON INIT: On-Initialization Hook ████████
 Hooks.once("init", async () => {
 	registerDebugger();
+	registerSystemSettings();
 
 	KO.display("██████ Initializing Kult 4E Overrides ██████");
 	CONFIG.Actor.documentClass = kult4eOverridesActor;

@@ -1,5 +1,10 @@
 {{log this}}
 <form class="{{cssClass}} kult-sheet kult-overrides-sheet" autocomplete="off">
+	<div class="sheet-lock-button">
+		<a class="sheet-lock" title="Lock/Unlock Sheet">
+			<i class="fas fa-lock{{#if isSheetOpen}}-open{{/if}}"></i>
+		</a>
+	</div>
   <header class="sheet-header">
     <script src="systems/kult4e/scripts/delete.js"></script>
     <script src="systems/kult4e/scripts/getAttribute.js"></script>
@@ -7,16 +12,17 @@
 			<img class="picture" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
 			<div class="title">
 				<input class="character-name" name="name" type="text" value="{{actor.name}}" placeholder="Name" />
-				<select class="character-archetype" name="data.appearance" value="{{data.appearance}}">
-				{{#select data.appearance}}
+				<select class="character-archetype" name="data.kult4eoverrides.archetype" value="{{data.kult4eoverrides.archetype}}">
+				{{#select data.kult4eoverrides.archetype}}
 					<option name="" value="" selected hidden disabled>Archetype</option>
+					<option class="aware-header" value="null" disabled>T H E&nbsp;&nbsp;&nbsp;A W A R E</option>
 					<option value="academic">the Academic</option>
 					<option value="agent">the Agent</option>
 					<option value="artist">the Artist</option>
 					<option value="avenger">the Avenger</option>
 					<option value="broken">the Broken</option>
 					<option value="careerist">the Careerist</option>
-					{{!-- <option value="criminal">the Criminal</option> --}}
+					<option value="criminal">the Criminal</option>
 					<option value="cursed">the Cursed</option>
 					<option value="deceiver">the Deceiver</option>
 					<option value="descendant">the Descendant</option>
@@ -31,34 +37,34 @@
 					<option value="seeker">the Seeker</option>
 					<option value="veteran">the Veteran</option>
 					<option value="sleeper">the Sleeper</option>
-					<option value="XX" disabled>-------------</option>
-					<option value="abomination">the Abomination</option>
-					<option value="deathMagician">the Death Magician</option>
-					<option value="disciple">the Disciple</option>
-					<option value="revenant">the Revenant</option>
+					<option class="enlightened-header" value="null" disabled>T H E&nbsp;&nbsp;&nbsp;E N L I G H T E N E D</option>
+					<option class="enlightened" value="abomination">the Abomination</option>
+					<option class="enlightened" value="deathMagician">the Death Magician</option>
+					<option class="enlightened" value="disciple">the Disciple</option>
+					<option class="enlightened" value="revenant">the Revenant</option>
         {{/select}}
         </select>
 			</div>
 			<div class="specs">
         <div class="spec">
-					<label class="spec-label">{{localize "kult4e.Age"}}:</label>
-					<input class="spec-input" name="data.attributes.age" type="text" value="{{data.attributes.age}}" placeholder="~">
+					<label class="spec-label">XP:</label>
+					<input class="spec-input" name="data.kult4eoverrides.xp" type="number" value="{{data.kult4eoverrides.xp}}" placeholder="0">
         </div>
         <div class="spec">
 					<label class="spec-label two-line">Persistent<br/>Modifier:</label>
 					<select class="spec-input" name="data.forward" value="{{data.forward}}">
 					{{#select data.forward}}
-						<option class="gold3" value="5">+5</option>
-						<option class="gold3" value="4">+4</option>
-						<option class="gold2" value="3">+3</option>
-						<option class="gold2" value="2">+2</option>
-						<option class="gold1" value="1">+1</option>
-						<option class="gold1" value="0">~</option>
-						<option class="red1" value="-1">−1</option>
-						<option class="red1" value="-2">−2</option>
-						<option class="red2" value="-3">−3</option>
-						<option class="red3" value="-4">−4</option>
-						<option class="red4" value="-5">−5</option>
+						<option value="5">+5</option>
+						<option value="4">+4</option>
+						<option value="3">+3</option>
+						<option value="2">+2</option>
+						<option value="1">+1</option>
+						<option value="0">~</option>
+						<option value="-1">−1</option>
+						<option value="-2">−2</option>
+						<option value="-3">−3</option>
+						<option value="-4">−4</option>
+						<option value="-5">−5</option>
 					{{/select}}
         	</select>
         </div>
@@ -66,17 +72,17 @@
 					<label class="spec-label two-line">Situation<br/>Modifier:</label>
 					<select class="spec-input" name="data.sitmod" value="{{data.sitmod}}">
 					{{#select data.sitmod}}
-						<option class="gold3" value="5">+5</option>
-						<option class="gold3" value="4">+4</option>
-						<option class="gold2" value="3">+3</option>
-						<option class="gold2" value="2">+2</option>
-						<option class="gold1" value="1">+1</option>
-						<option class="gold1" value="0">~</option>
-						<option class="red1" value="-1">−1</option>
-						<option class="red1" value="-2">−2</option>
-						<option class="red2" value="-3">−3</option>
-						<option class="red3" value="-4">−4</option>
-						<option class="red4" value="-5">−5</option>
+						<option value="5">+5</option>
+						<option value="4">+4</option>
+						<option value="3">+3</option>
+						<option value="2">+2</option>
+						<option value="1">+1</option>
+						<option value="0">~</option>
+						<option value="-1">−1</option>
+						<option value="-2">−2</option>
+						<option value="-3">−3</option>
+						<option value="-4">−4</option>
+						<option value="-5">−5</option>
 					{{/select}}
 					</select>
         </div>
@@ -92,6 +98,15 @@
     <a class="tabButton" data-tab="Advancement">Advancement</a>
   </div>
   <div id="Front" class="stats-section {{actor.id}}-tab">
+		<div class="top-section">
+			<div class="section-label">Dramatic Hooks</div>
+			<div class="dramatic-hook">
+				<input type="checkbox" name="data.kult4eoverrides.dramaticHookChecks.0" {{checked data.kult4eoverrides.dramaticHookChecks.[0]}} /><input type="text" class="dramatic-hook" name="data.kult4eoverrides.dramaticHooks.0" type="text" value="{{data.kult4eoverrides.dramaticHooks.[0]}}"></input>
+			</div>
+			<div class="dramatic-hook">
+				<input type="checkbox" name="data.kult4eoverrides.dramaticHookChecks.1" {{checked data.kult4eoverrides.dramaticHookChecks.[1]}} /><input type="text" class="dramatic-hook" name="data.kult4eoverrides.dramaticHooks.1" type="text" value="{{data.kult4eoverrides.dramaticHooks.[1]}}"></input>
+			</div>
+		</div>
     <div class="middle-section">
       <div class="attribute-column">
 				<div class="section-label">Attributes</div>
@@ -303,18 +318,15 @@
 				<div class="item-list move-list">
 					{{#each moves as |move id|}}
 					{{#if (eq move.type "move")}}
-					{{> "modules/kult4eoverrides/html/partials/move-card.hbs" move}}
+					{{> "modules/kult4eoverrides/html/partials/move-card.hbs" data=move isSheetOpen=../isSheetOpen}}
 					{{/if}}
 					{{/each}}
 				</div>
       </div>
       <div class="right-middle-column">
-				<div class="section-label">Dramatic Hooks</div>
-				<div class="dramatic-hook">
-					<textarea class="dramatic-hook"></textarea><input type="checkbox" />
-				</div>
-				<div class="dramatic-hook">
-					<textarea class="dramatic-hook"></textarea><input type="checkbox" />
+				<div class="section-label">Special Moves</div>
+				<div class="item-list move-list special-move-list">
+
 				</div>
         <div class="section-label">{{localize "kult4e.Wounds"}}</div>
         <div class="wound-entries">
@@ -416,7 +428,7 @@
       </div>
     </div>
   </div>
-  <div id="Bio" class="background-section {{actor.id}}-tab">
+  <div id="Bio" class="bio-section {{actor.id}}-tab">
     <div class="two-column">
       <div>
         <div class="section-label">Dramatic Hook</div>
@@ -444,7 +456,7 @@
       </div>
     </div>
 	</div>
-	<div id="Relationships" class="background-section {{actor.id}}-tab">
+	<div id="Relationships" class="relationships-section {{actor.id}}-tab">
 		<div class="two-column">
 			<div "background-box">
 				<div class="section-label">{{localize "kult4e.Background"}}</div>
@@ -460,7 +472,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="Assets" class="background-section {{actor.id}}-tab">
+	<div id="Assets" class="assets-section {{actor.id}}-tab">
 		<div class="two-column">
 			<div "background-box">
 				<div class="section-label">{{localize "kult4e.Background"}}</div>
@@ -476,34 +488,74 @@
 			</div>
 		</div>
 	</div>
-	<div id="Notes" class="background-section {{actor.id}}-tab">
-		<div class="two-column">
-			<div "background-box">
-				<div class="section-label">{{localize "kult4e.Background"}}</div>
-				<div class="free-text">
-					{{editor content=data.biography target="data.biography" button=true owner=owner editable=editable}}
-				</div>
+	<div id="Notes" class="notes-section {{actor.id}}-tab">
+		<div class="background-box">
+			<div class="section-label">Session Summary</div>
+			<div class="free-text">
+				{{editor content=data.kult4eoverrides.session-summary target="data.kult4eoverrides.session-summary" button=true owner=owner editable=editable}}
 			</div>
-			<div>
-				<div class="section-label">{{localize "kult4e.Appearance"}}</div>
-				<div class="free-text">
-					{{editor content=data.appearance target="data.appearance" button=true owner=owner editable=editable}}
-				</div>
+			<div class="section-label">Notes</div>
+			<div class="free-text">
+				{{editor content=data.kult4eoverrides.notes target="data.kult4eoverrides.notes" button=true owner=owner editable=editable}}
 			</div>
 		</div>
 	</div>
-	<div id="Advancement" class="background-section {{actor.id}}-tab">
+	<div id="Advancement" class="advancement-section {{actor.id}}-tab">
 		<div class="two-column">
-			<div "background-box">
-				<div class="section-label">{{localize "kult4e.Background"}}</div>
-				<div class="free-text">
-					{{editor content=data.biography target="data.biography" button=true owner=owner editable=editable}}
-				</div>
-			</div>
-			<div>
-				<div class="section-label">{{localize "kult4e.Appearance"}}</div>
-				<div class="free-text">
-					{{editor content=data.appearance target="data.appearance" button=true owner=owner editable=editable}}
+			<div class="advancement-column">
+					<div class="section-label">
+						Aware Advancements
+					</div>
+					<div class="section-label advancement-total">You have 2 Advancements to spend.</div>
+					<div class="section-label experience-total">(2 XP needed for next Advancement)</div>
+					<div class="advancement-line">
+						<a class="advancement-box"><i class="fas fa-check-square"></i></a>
+						<a class="advancement-box"><i class="far fa-square"></i></a>
+						<a class="advancement-box"><i class="far fa-square"></i></a>
+						<a class="advancement-box"><i class="far fa-square"></i></a>
+						<a class="advancement-box"><i class="far fa-square"></i></a>
+						<a class="advancement-box"><i class="far fa-square"></i></a>
+						<label class="advancement-label">+1 <u>active</u> Attribute (to max +3)</label>
+					</div>
+					<div class="advancement-line">
+						<a class="advancement-box"><i class="far fa-square"></i></a>
+						<a class="advancement-box"><i class="far fa-square"></i></a>
+						<label class="advancement-label">+1 <u>passive</u> Attribute (to max +3)</label>
+					</div>
+					<div class="advancement-line">
+						<a class="advancement-box"><i class="far fa-square"></i></a>
+						<label class="advancement-label">+1 <u>active</u> Attribute (to max <b>+4</b>)</label>
+					</div>
+					<div class="advancement-line">
+						<a class="advancement-box"><i class="far fa-square"></i></a>
+						<a class="advancement-box"><i class="far fa-square"></i></a>
+						<a class="advancement-box"><i class="far fa-square"></i></a>
+						<label class="advancement-label">Gain an Advantage from your Archetype</label>
+					</div>
+					<div class="advancement-line">After 5 Advancements:</div>
+					<div class="advancement-line">
+						<a class="advancement-box"><i class="far fa-square"></i></a>
+						<a class="advancement-box"><i class="far fa-square"></i></a>
+						<label class="advancement-label">+1 <u>any</u> Attribute (to max <b>+4</b>)</label>
+					</div>
+					<div class="advancement-line">
+						<a class="advancement-box"><i class="far fa-square"></i></a>
+						<a class="advancement-box"><i class="far fa-square"></i></a>
+						<label class="advancement-label">Gain an Advantage from <u>any</u> Aware Archetype</label>
+					</div>
+					<div class="advancement-line">
+						<a class="advancement-box"><i class="far fa-square"></i></a>
+						<label class="advancement-label">End your story arc and create a new character</label>
+					</div>
+					<div class="advancement-line">
+						<a class="advancement-box"><i class="far fa-square"></i></a>
+						<label class="advancement-label">Change your Archetype</label>
+					</div>
+					<div class="advancement-line">After 10 Advancements:</div>
+					<div class="advancement-line">
+						<a class="advancement-box"><i class="far fa-square"></i></a>
+						<label class="advancement-label">Advance to an Enlightened Archetype</label>
+					</div>
 				</div>
 			</div>
 		</div>

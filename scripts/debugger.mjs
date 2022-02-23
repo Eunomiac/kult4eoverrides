@@ -1,5 +1,5 @@
 const kultOverridesDebugger = (type, message, ...content) => {
-	if (game.settings.get("kult4e", "debug")) {
+	if (game.settings.get("kult4eoverrides", "debug")) {
 		const styleLine = Object.entries({
 			...STYLES.base,
 			...STYLES[type] ?? {}

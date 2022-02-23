@@ -5,6 +5,7 @@ import kult4eNPCsheet from "../../../systems/kult4e/modules/sheets/kult4eNPCshee
 import kult4eitemsheet from "../../../systems/kult4e/modules/sheets/kult4eitemsheet.js";
 import {attributeAsk} from "../../../systems/kult4e/scripts/attributeAsk.js";
 import U from "./helpers.mjs";
+import openTab from "./tabNavigation.mjs";
 // #endregion ▮▮▮▮[IMPORTS]▮▮▮▮
 
 // #region ████████ SHEET OVERRIDES: Overriding Actor Sheet with Subclass Extension ████████ ~
@@ -29,6 +30,8 @@ const TEMPLATES = {
 
 class kult4eOverridesActor extends kult4eActor {
 	get template() { return TEMPLATES.pc }
+
+	get koData() { return this.data.data.kult4eoverrides ?? {} }
 
 	async makeroll(moveName, mods, {success, partial, failure}) {
 		moveName = U.capitalize(moveName);
@@ -181,13 +184,54 @@ class kult4eOverridesPCSheet extends kult4ePCsheet {
 
 	get template() { return TEMPLATES.pc }
 
+	getData() {
+		const data = super.getData();
+		data.koData = this.actor.data.data.kult4eoverrides;
+		data.specialMoves = {
+			advantage: data.items.filter((item) => item.type === "advantage")
+		};
+		data.isSheetOpen = data.koData.isSheetOpen ?? false;
+
+		KO.log("PC Sheet GetData => ", data);
+		return data;
+	}
+
 	activateListeners(html) {
 		super.activateListeners(html);
+
+		html.find(".token-add-edge").click((event) => {
+			const li = $(event.currentTarget).parents(".item-name");
+			const item = this.actor.getEmbeddedDocument("Item", li.data("itemId"));
+			const newtokens = Number(item.data.data.tokens) + 1;
+			KO.log("Add Tokens => ", {currentTokens: item.data.data.tokens, newTokens: newtokens});
+			item.update({"data.tokens": newtokens});
+		});
+
+		html.find(".token-spend-edge").click((event) => {
+			const li = $(event.currentTarget).parents(".item-name");
+			const item = this.actor.getEmbeddedDocument("Item", li.data("itemId"));
+			const newtokens = Number(item.data.data.tokens) - 1;
+			item.update({"data.tokens": newtokens});
+		});
+
+		html.find(".sheet-lock").click((event) => {
+			this.actor.update({"data.kult4eoverrides.isSheetOpen": !this.actor.koData.isSheetOpen});
+		});
 
 		html.find(".attribute-roll").click((event) => {
 			const attrName = $(event.currentTarget).data("attrName");
 			KO.log(`Attribute name => ${attrName}`);
 			this.actor.moveroll(attrName);
+		});
+
+		html.find(".tabButton").click((event) => {
+			this.actor.update({"data.kult4eoverrides.curTab": $(event.currentTarget).attr("data-tab")});
+		});
+
+		const tabSections = document.getElementsByClassName(`${this.actor.id}-tab`);
+		const curTab = this.actor.koData.curTab || "Front";
+		Array.from(tabSections).forEach((tabSection) => {
+			tabSection.style.display = tabSection.id === curTab ? "block" : "none";
 		});
 	}
 }

@@ -1,74 +1,32 @@
 & {
-    .message-header .flavor-text { display: none }
+	font-size: 12px;
 
-    .message-content {
-        > h2,
-        > h4 { display: none }
+	.message-header { }
 
-        .crit-block,
-        .synth-crit-block,
-        .xeno-crit-block,
-        .xeno-attack-block {
-            display: block;
-            width: 100%;
+	.message-content {
+		p {
+			text-align: justify;
+			hyphens: auto;
+		}
 
-            .crit-name,
-            .xeno-attack-name {
-                display: block;
-                width: 100%;
-                line-height: 1em;
-                color: #FF0000;
-                text-align: center;
-                border: 0;
-            }
+		strong/* , em */ {
+			color: #bcb39a;
+		}
 
-            .crit-effect,
-            .xeno-attack-effect {
+		ul {
+			li {
+				list-style-type: square;
+				text-indent: -5px;
+				margin-left: 5px;
+			}
+		}
 
-            }
-
-            .crit-heal-time {
-                color: #00FFFF;
-            }
-
-            .crit-permanent {
-                color: #FF0000;
-            }
-
-            .crit-fatal-banner {
-                display: block;
-                width: 100%;
-                height: 25px;
-                line-height: 25px;
-                color: #FFFFFF;
-                text-align: center;
-                background-color: #FF0000;
-                border: 0;
-                box-shadow: 0 0 3px #FF0000, 0 0 3px #FF0000, 0 0 3px #FF0000;
-            }
-
-            .crit-hard-treatment {
-                margin-top: -5px;
-                font-size: 1.25em;
-                font-weight: bold;
-                line-height: 1.25em;
-                color: #FF0000;
-                text-align: center;
-                transform: scaleX(1.25);
-
-                span {
-                    font-size: 1.5em;
-                    transform: scaleX(0.2);
-                }
-            }
-        }
-
-        .synth-crit-block .crit-name { color: #FFFFFF; }
-
-        .table-draw {
-            .dice-roll,
-            .table-description,
-            .table-results .table-result .result-image { display: none }
-        }
-    }
+		.move-name:nth-child(2) {
+			background: linear-gradient(90deg, black, #9b201f 35%, #9b201f 65%, black);
+			line-height: 27px;
+			height: 24px;
+			color: black;
+			font-weight: bold;
+		}
+	}
 }

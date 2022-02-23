@@ -1,0 +1,19 @@
+select,
+input,
+textarea {
+	font-family: var(--font-primary);
+	color: #968c6a;
+}
+
+option {
+	background: black;
+}
+
+.sheet-lock-button {
+	position: relative;
+	height: 20px;
+	color: #968c6a;
+	top: -10px;
+	margin-bottom: -20px;
+	left: -5px;
+}

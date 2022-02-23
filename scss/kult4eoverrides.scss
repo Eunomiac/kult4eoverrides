@@ -12,8 +12,10 @@
 
         &.sheet {
 
+					@import 'overrides/sheet';
+
             &.actor {
-                @import 'overrides/characterSheet';
+                @import 'overrides/actorSheet';
             }
 
             &.item { @import 'overrides/itemSheet' }

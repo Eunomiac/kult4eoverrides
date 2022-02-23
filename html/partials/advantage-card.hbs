@@ -6,9 +6,9 @@
         <a class="item-control item-edit" title="{{localize "kult4e.EditItem"}}"><i class="fas fa-edit"></i></a>
         {{#if data.hasTokens}}
           {{#if (gte data.tokens 0)}}
-          <span class="advantage-column">{{localize "kult4e.Edge"}}: <a class="token-add" title="{{localize "kult4e.AddEdge"}}"><i class="far fa-plus-square"></i></a> {{data.tokens}}
+          <span class="advantage-column">{{localize "kult4e.Edge"}}: <a class="token-add-edge" title="{{localize "kult4e.AddEdge"}}"><i class="far fa-plus-square"></i></a> {{data.tokens}}
             {{#if (gte data.tokens 1)}}
-            <a class="token-spend" title="{{localize "kult4e.SpendEdge"}}"><i class="far fa-minus-square"></i></a>
+            <a class="token-spend-edge" title="{{localize "kult4e.SpendEdge"}}"><i class="far fa-minus-square"></i></a>
             {{/if}}
           </span>
           {{/if}}
