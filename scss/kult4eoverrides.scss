@@ -1,3 +1,4 @@
+@import 'globals/colors';
 @import 'globals/typography';
 
 .vtt.game.system-kult4e {
@@ -6,19 +7,70 @@
 	--font-display: Infidel;
 	--font-longtext: "Caslon Antique";
 
-    .chat-message { @import 'overrides/chatMessages' }
+	// Golds
+	$gold: rgb(155, 141, 104); // System
+	$gold-darkest: rgb(38, 32, 0);
+	$gold-dark: rgb(141, 118, 42); // System
+	$gold-grey: rgb(122, 121, 113); // System
+	$gold-bright: rgb(255, 243, 181);
+	$gold-glow: rgb(255, 221, 0); // System
 
-    .app.window-app {
+	// Reds
+	$red: rgb(155, 32, 31); // System
+	$red-dark: rgb(109, 22, 22); // System
+	$red-bright: rgb(255, 32, 32);
+	$red-grey: rgb(120, 46, 34); // System
+	$red-grey50: rgba(120, 46, 34, 0.5);
 
-        &.sheet {
+	// Other
+	$cyan: rgb(151, 223, 244); // System
 
-					@import 'overrides/sheet';
+	// Contrast
+	$darkest: rgb(0, 0, 0);
+	$dark: rgb(34, 34, 34);
+	$dim: rgb(68, 68, 68);
+	$grey: rgb(128, 128, 128);
+	$bright: rgb(170, 170, 170);
+	$brightest: rgb(255, 255, 255);
 
-            &.actor {
-                @import 'overrides/actorSheet';
-            }
+	--bg: #{$darkest};
 
-            &.item { @import 'overrides/itemSheet' }
-        }
-    }
+	--gold-fg: #{$gold};
+	--gold-bright: #{$gold-bright};
+	--gold-dim: #{$gold-dark};
+	--gold-dark: #{$gold-darkest};
+	--gold-fade: #{$gold-grey};
+	--gold-glow: #{$gold-glow};
+
+	--red-fg: #{$red};
+	--red-bright: #{$red-bright};
+	--red-dim: #{$red-dark};
+	--red-fade: #{$red-grey};
+	--red-fade50: #{$red-grey50};
+
+	--grey-fg: #{$grey};
+	--grey-bright: #{$bright};
+	--grey-brightest: #{$brightest};
+	--grey-dim: #{$dim};
+	--grey-dark: #{$dark};
+
+	--cyan-glow: #{$cyan};
+
+	.chat-message { @import 'overrides/chatMessages' }
+
+	.app.window-app {
+
+		@import 'overrides/app';
+
+		&.sheet {
+
+			@import 'overrides/sheet';
+
+			&.actor {
+					@import 'overrides/actorSheet';
+			}
+
+			&.item { @import 'overrides/itemSheet' }
+		}
+	}
 }

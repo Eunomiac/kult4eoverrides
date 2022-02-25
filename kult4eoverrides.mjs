@@ -1,17 +1,14 @@
 // #region ▒░▒░▒░▒[IMPORTS] Importing Modules ▒░▒░▒░▒ ~
-import {
-	kult4eActor,
-	kult4ePCsheet,
-	kult4eNPCsheet,
-	kult4eitemsheet,
-	kult4eOverridesActor,
-	kult4eOverridesPCSheet,
-	kult4eOverridesNPCSheet,
-	kult4eOverridesItemSheet,
-	templates
-} from "./charMaster.mjs";
-import registerDebugger from "./debugger.mjs";
-import registerSystemSettings from "./settings.mjs";
+import kult4eActor from "../../systems/kult4e/modules/sheets/kult4eActor.js";
+import kult4ePCsheet from "../../systems/kult4e/modules/sheets/kult4ePCsheet.js";
+import kult4eNPCsheet from "../../systems/kult4e/modules/sheets/kult4eNPCsheet.js";
+import kult4eitemsheet from "../../systems/kult4e/modules/sheets/kult4eitemsheet.js";
+import kult4eOverridesActor from "./modules/sheets/kult4eOverridesActor.mjs";
+import kult4eOverridesPCSheet from "./modules/sheets/kult4eOverridesPCSheet.mjs";
+import kult4eOverridesNPCSheet from "./modules/sheets/kult4eOverridesNPCSheet.mjs";
+import kult4eOverridesItemSheet from "./modules/sheets/kult4eOverridesItemSheet.mjs";
+import registerDebugger from "./modules/system/logger.mjs";
+import registerSystemSettings, {TEMPLATES} from "./modules/system/settings.mjs";
 // #endregion ▒▒▒▒[IMPORTS]▒▒▒▒
 
 // #region ████████ ON INIT: On-Initialization Hook ████████
@@ -44,7 +41,7 @@ Hooks.once("init", async () => {
 		$el.find(`[value="${value}"]`).attr({selected: "selected"});
 		return $el.html();
 	});
-	loadTemplates(templates);
+	await loadTemplates(Object.values(TEMPLATES));
 	KO.display("██████ Kult 4E Override Complete █████████");
 });
 // #endregion ▄▄▄▄▄ ON INIT ▄▄▄▄▄

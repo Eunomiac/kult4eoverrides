@@ -1,0 +1,7 @@
+<div class="advancement-line {{#if (eq template "header")}}header{{/if}} {{#unless isActive}}greyed-out{{/unless}}" data-type="{{type}}" data-index="{{index}}">
+{{#if boxes}}
+{{#each boxes as |box|}}
+	<a class="advancement-box"><i class="{{~#if box}}fas{{else}}far{{/if}} fa-{{~#if box}}check-{{/if~}}square"></i></a>
+{{/each}}
+{{/if}}
+</div>

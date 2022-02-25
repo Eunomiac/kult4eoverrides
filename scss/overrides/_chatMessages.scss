@@ -10,7 +10,7 @@
 		}
 
 		strong/* , em */ {
-			color: #bcb39a;
+			color: var(--gold-bright); // bcb39a;
 		}
 
 		ul {
@@ -22,10 +22,10 @@
 		}
 
 		.move-name:nth-child(2) {
-			background: linear-gradient(90deg, black, #9b201f 35%, #9b201f 65%, black);
+			background: linear-gradient(90deg, var(--bg), var(--red-fg) 35%, var(--red-fg) 65%, var(--bg));
 			line-height: 27px;
 			height: 24px;
-			color: black;
+			color: var(--bg);
 			font-weight: bold;
 		}
 	}

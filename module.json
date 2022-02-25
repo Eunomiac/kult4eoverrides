@@ -2,15 +2,21 @@
   "name": "kult4eoverrides",
   "title": "Kult 4E RPG System Overrides",
   "description": "A custom set of tweaks to the existing adaptation of the Kult 4th Edition RPG to Foundry by Tom LaPorta.",
-  "version": "0.3",
+  "version": "0.1",
   "minimumCoreVersion": "0.8.1",
   "compatibleCoreVersion": "0.8.9",
   "author": "Eunomiac",
-  "esmodules": ["scripts/kult4eoverrides.mjs"],
-  "styles": ["css/kult4eoverrides.css"],
+  "esmodules": ["kult4eoverrides.mjs"],
+  "styles": ["styles/kult4eoverrides.css"],
   "scripts": [],
   "packs": [],
-  "languages": [],
+	"languages": [
+		{
+			"lang": "en",
+			"name": "English",
+			"path": "lang/en.json"
+		}
+	],
   "socket": true,
   "url": "",
   "manifest": "",

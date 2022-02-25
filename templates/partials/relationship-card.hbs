@@ -1,7 +1,9 @@
 <div class="move-card">
-  <div class="move-info item-name" data-item-id="{{_id}}">
-    <span class="move-roll"> {{data.target}} ({{name}}): {{data.strength}}</span>
+  <div class="move-info item-name" data-item-id="{{data._id}}">
+    <span class="move-roll"> {{data.data.target}} ({{data.name}}): {{data.data.strength}}</span>
+		{{#if isSheetOpen}}
     <a class="item-control item-delete" title="{{localize "kult4e.DeleteItem"}}"><i class="fas fa-trash"></i></a>
     <a class="item-control item-edit" title="{{localize "kult4e.EditItem"}}"><i class="fas fa-edit"></i></a>
+		{{/if}}
   </div>
 </div>

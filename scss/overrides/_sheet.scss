@@ -1,19 +1,71 @@
-select,
-input,
-textarea {
-	font-family: var(--font-primary);
-	color: #968c6a;
-}
+	select,
+	input,
+	textarea {
+		font-family: var(--font-primary);
+		color: var(--gold-fg);
+	}
 
-option {
-	background: black;
-}
+	select:focus, select:focus-within {
+		box-shadow: none;
+	}
 
-.sheet-lock-button {
-	position: relative;
-	height: 20px;
-	color: #968c6a;
-	top: -10px;
-	margin-bottom: -20px;
-	left: -5px;
-}
+	option {
+		background: var(--bg);
+	}
+
+	.editor-content {
+		text-align: justify;
+	}
+
+	.window-header {
+		border-color: var(--gold-fg);
+		background-color: var(--bg);
+
+	}
+
+	.window-content {
+		overflow-y: scroll;
+
+		.sheet-lock-button {
+			position: relative;
+			height: 20px;
+			color: var(--gold-fg);
+			top: -5px;
+			margin-bottom: -20px;
+			left: -3px;
+		}
+
+		a.item-control {
+			margin: 1px;
+			transform: scale(1.15);
+			color: var(--grey-fg);
+			padding: 1px;
+			filter: blur(0.5px);
+			opacity: 0.5;
+
+			&.item-show {
+				margin: 3px 3px 1px 1px;
+				color: var(--grey-brightest);
+				filter: none;
+			}
+			&:hover {
+				color: var(--grey-brightest);
+				filter: none;
+				opacity: 1;
+			}
+		}
+
+		.two-column {
+			> *:last-child {
+				margin-right: 0;
+			}
+			.col66 {
+				width: 66%;
+			}
+			.col33 {
+				width: 33%;
+			}
+		}
+	}
+
+

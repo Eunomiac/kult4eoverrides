@@ -1,6 +1,6 @@
 {
 	"name": "kult4eoverrides",
-	"version": "0.3",
+	"version": "0.1",
 	"description": "A custom set of tweaks to the existing adaptation of the Kult 4th Edition RPG to Foundry.",
 	"scripts": {
 		"build all": "gulp"

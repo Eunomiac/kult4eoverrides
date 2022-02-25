@@ -1,0 +1,629 @@
+/* ▌██░░ kult4eoverrides v0.1 (2022) ║ MIT License ║ https://github.com/Eunomiac/kult4eoverrides ░░██▐ */
+@font-face {
+  font-family: Infidel;
+  src: url("../assets/fonts/infidel.ttf");
+}
+
+@font-face {
+  font-family: Alverata;
+  src: url("../assets/fonts/alverata.ttf");
+}
+
+@font-face {
+  font-family: 'Caslon Antique';
+  src: url("../assets/fonts/caslon-antique.ttf");
+}
+
+.vtt.game.system-kult4e {
+  --font-primary: Alverata;
+  --font-display: Infidel;
+  --font-longtext: "Caslon Antique";
+  --bg: black;
+  --gold-fg: #9b8d68;
+  --gold-bright: #fff3b5;
+  --gold-dim: #8d762a;
+  --gold-dark: #262000;
+  --gold-fade: #7a7971;
+  --gold-glow: #ffdd00;
+  --red-fg: #9b201f;
+  --red-bright: #ff2020;
+  --red-dim: #6d1616;
+  --red-fade: #782e22;
+  --red-fade50: rgba(120, 46, 34, 0.5);
+  --grey-fg: gray;
+  --grey-bright: #aaaaaa;
+  --grey-brightest: white;
+  --grey-dim: #444444;
+  --grey-dark: #222222;
+  --cyan-glow: #97dff4;
+}
+
+.vtt.game.system-kult4e .chat-message {
+  font-size: 12px;
+}
+
+.vtt.game.system-kult4e .chat-message .message-content p {
+  text-align: justify;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+
+.vtt.game.system-kult4e .chat-message .message-content strong {
+  color: var(--gold-bright);
+}
+
+.vtt.game.system-kult4e .chat-message .message-content ul li {
+  list-style-type: square;
+  text-indent: -5px;
+  margin-left: 5px;
+}
+
+.vtt.game.system-kult4e .chat-message .message-content .move-name:nth-child(2) {
+  background: -webkit-gradient(linear, left top, right top, from(var(--bg)), color-stop(35%, var(--red-fg)), color-stop(65%, var(--red-fg)), to(var(--bg)));
+  background: -o-linear-gradient(left, var(--bg), var(--red-fg) 35%, var(--red-fg) 65%, var(--bg));
+  background: linear-gradient(90deg, var(--bg), var(--red-fg) 35%, var(--red-fg) 65%, var(--bg));
+  line-height: 27px;
+  height: 24px;
+  color: var(--bg);
+  font-weight: bold;
+}
+
+.vtt.game.system-kult4e .app.window-app {
+  color: var(--gold-fg);
+  -webkit-box-shadow: 0 0 0px var(--bg);
+  box-shadow: 0 0 0px var(--bg);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet select,
+.vtt.game.system-kult4e .app.window-app.sheet input,
+.vtt.game.system-kult4e .app.window-app.sheet textarea {
+  font-family: var(--font-primary);
+  color: var(--gold-fg);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet select:focus, .vtt.game.system-kult4e .app.window-app.sheet select:focus-within {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet option {
+  background: var(--bg);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet .editor-content {
+  text-align: justify;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet .window-header {
+  border-color: var(--gold-fg);
+  background-color: var(--bg);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet .window-content {
+  overflow-y: scroll;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet .window-content .sheet-lock-button {
+  position: relative;
+  height: 20px;
+  color: var(--gold-fg);
+  top: -5px;
+  margin-bottom: -20px;
+  left: -3px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet .window-content a.item-control {
+  margin: 1px;
+  -webkit-transform: scale(1.15);
+  -ms-transform: scale(1.15);
+  transform: scale(1.15);
+  color: var(--grey-fg);
+  padding: 1px;
+  -webkit-filter: blur(0.5px);
+  filter: blur(0.5px);
+  opacity: 0.5;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet .window-content a.item-control.item-show {
+  margin: 3px 3px 1px 1px;
+  color: var(--grey-brightest);
+  -webkit-filter: none;
+  filter: none;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet .window-content a.item-control:hover {
+  color: var(--grey-brightest);
+  -webkit-filter: none;
+  filter: none;
+  opacity: 1;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet .window-content .two-column > *:last-child {
+  margin-right: 0;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet .window-content .two-column .col66 {
+  width: 66%;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet .window-content .two-column .col33 {
+  width: 33%;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet {
+  padding: 5px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100px;
+  width: 100%;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: stretch;
+  -ms-flex-pack: stretch;
+  justify-content: stretch;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container > * {
+  display: inline-block;
+  height: 100%;
+  -ms-flex-preferred-size: auto;
+  flex-basis: auto;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container *:focus {
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .picture {
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-box-flex: 0;
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  -ms-flex-negative: 1;
+  flex-shrink: 1;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -ms-flex-preferred-size: 90%;
+  flex-basis: 90%;
+  margin: 0 10px 0 0;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .title .character-name {
+  display: block;
+  font-size: 50px;
+  height: 100%;
+  width: 100%;
+  border: 0;
+  font-family: var(--font-display);
+  background: transparent;
+  -webkit-transform: scaleY(1.5);
+  -ms-transform: scaleY(1.5);
+  transform: scaleY(1.5);
+  padding-top: 16px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .title .character-archetype {
+  display: block;
+  margin: -20px 0 0 0;
+  padding: 0;
+  border: 0;
+  height: 40px;
+  font-size: 22px;
+  text-align: right;
+  padding-right: 10px;
+  position: relative;
+  text-shadow: 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .title .character-archetype option {
+  font-size: 14px;
+  text-align: center;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .title .character-archetype option.enlightened {
+  color: var(--grey-fg);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .title .character-archetype option.aware-header, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .title .character-archetype option.enlightened-header {
+  background: var(--bg);
+  color: var(--gold-dim);
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .title .character-archetype option.enlightened-header {
+  color: var(--grey-fg);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .specs {
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-box-flex: 0;
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+  -ms-flex-preferred-size: 125px;
+  flex-basis: 125px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .specs .spec {
+  display: block;
+  width: 100%;
+  padding: 2.5px 0;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .specs .spec .spec-label {
+  display: inline-block;
+  width: 40%;
+  font-weight: bold;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .specs .spec .spec-label.two-line {
+  font-size: 10px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .specs .spec .spec-input {
+  margin-left: 5px;
+  padding: 1px 3px;
+  width: calc(60% - 1px - (2 * 5px));
+  background: rgba(120, 46, 34, 0.38);
+  border: 1px solid var(--gold-fade);
+  max-height: 26px;
+  font-size: 16px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .specs .spec input.spec-input {
+  text-align: right;
+  font-weight: bold;
+  text-align: center;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .specs .spec select.spec-input {
+  -webkit-box-flex: 0;
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .character-name input {
+  margin: 0;
+  width: 100%;
+  background: transparent;
+  font-family: var(--font-display);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .navigation-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly;
+  overflow: hidden;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .navigation-section .tabButton {
+  color: var(--gold-fg);
+  background-color: var(--bg);
+  line-height: 34px;
+  margin-bottom: -9px;
+  font-family: var(--font-display);
+  outline: 2px outset var(--gold-fg);
+  padding: 0 10px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .navigation-section .tabButton.active {
+  background-color: var(--gold-dark);
+  color: var(--gold-bright);
+  outline: 2px outset var(--gold-fade);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section {
+  margin: 0;
+  padding: 5px 5px 0px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section > div {
+  margin: 0;
+  padding: 0;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .top-section {
+  margin-bottom: 3px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .top-section .dramatic-hook {
+  display: block;
+  height: 14px;
+  position: relative;
+  z-index: 50;
+  padding-left: 20px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .top-section .dramatic-hook input[type="checkbox"] {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  margin: 0;
+  opacity: 0.75;
+  -webkit-filter: sepia(1);
+  filter: sepia(1);
+  vertical-align: middle;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .top-section .dramatic-hook > span {
+  color: var(--gold-bright);
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .top-section .dramatic-hook input[type="checkbox"]:checked + span {
+  font-style: italic;
+  color: var(--gold-fade);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .section-label {
+  margin-bottom: 5px;
+  line-height: 25px;
+  max-height: 24px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .attribute-column {
+  padding: 5px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .attribute-column .attribute-box {
+  margin: 0;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .attribute-column .attribute-box td {
+  vertical-align: top;
+  font-size: 10px;
+  font-style: normal;
+  padding: 0;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .attribute-column .attribute-box td .attribute-roll {
+  display: block;
+  width: 135%;
+  margin-left: -17.5%;
+  position: relative;
+  border-radius: 100px;
+  cursor: pointer;
+  -webkit-transition: all 0.25s;
+  -o-transition: all 0.25s;
+  transition: all 0.25s;
+  -webkit-transform-origin: center center;
+  -ms-transform-origin: center center;
+  transform-origin: center center;
+  color: var(--gold-bright);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .attribute-column .attribute-box td .attribute-roll:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+  text-shadow: 0 0 15px var(--red-bright), 0 0 5px var(--red-bright);
+  letter-spacing: 0.1em;
+  z-index: 20;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .attribute-column .attribute-box td:first-child {
+  padding-right: 2px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .attribute-column .attribute-box .stat-value {
+  font-size: 23px;
+  height: 45px;
+  text-align: center;
+  padding: 13px 2px 0 0;
+  font-family: var(--font-display);
+  color: var(--gold-bright);
+  letter-spacing: -2.3px;
+  width: 30px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .attribute-column .attribute-box .stat-value option {
+  font-size: 14px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .move-column {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  padding: 5px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .move-column .move-list {
+  -webkit-columns: 250px;
+  -moz-columns: 250px;
+  columns: 250px;
+  padding: 0;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .move-column .move-list .move-card {
+  padding: 0;
+  color: var(--gold-bright);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .move-column .move-list .move-card .move-info a.move-roll {
+  line-height: 20px;
+  padding: 0;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .move-column .move-list .move-card .move-info a.move-roll img {
+  vertical-align: text-bottom;
+  padding: 0;
+  border: 0;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-transform: scale(1.15);
+  -ms-transform: scale(1.15);
+  transform: scale(1.15);
+  -webkit-filter: sepia(1) hue-rotate(20deg) saturate(2);
+  filter: sepia(1) hue-rotate(20deg) saturate(2);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .right-middle-column {
+  padding: 5px;
+  overflow: visible;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .right-middle-column .wound-entries div {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .right-middle-column .wound-entries div.wound-name input[type="text"] {
+  color: var(--red-bright);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section {
+  padding: 5px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .dramatic-hook {
+  height: 20px;
+  margin: 5px 0;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .dramatic-hook input[type="text"] {
+  resize: none;
+  background-color: var(--red-fade50);
+  color: var(--gold-bright);
+  border-radius: 5px;
+  display: inline-block;
+  padding: 1px 0 0 0;
+  text-align: left;
+  text-indent: 5px;
+  width: 100%;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .advancement-total {
+  color: var(--grey-brightest);
+  text-align: center;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .experience-total {
+  color: var(--grey-fg);
+  text-align: center;
+  font-style: italic;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .advancement-labels {
+  width: 100%;
+  margin: 0;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .advancement-boxes {
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  white-space: nowrap;
+  text-align: right;
+  margin: 0 10px 0 0;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .advancement-line, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .purchase-line {
+  color: var(--gold-fg);
+  min-height: 20px;
+  line-height: 20px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .advancement-line .fas.fa-check-square, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .purchase-line .fas.fa-check-square {
+  line-height: 1px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .advancement-line.header, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .purchase-line.header {
+  margin-top: 20px;
+  color: var(--grey-fg);
+  margin-left: -80px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .advancement-line.greyed-out, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .purchase-line.greyed-out {
+  color: var(--grey-dim);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .purchases-column .purchase-line {
+  margin: 3px 0;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .purchases-column .purchase-line .purchase-counter {
+  font-family: Infidel;
+  font-size: 20px;
+  display: inline-block;
+  vertical-align: bottom;
+  text-align: center;
+  width: 15px;
+  color: var(--grey-bright);
+  text-shadow: 0 0 5px var(--red-bright);
+  margin-right: 5px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .purchases-column .purchase-line select {
+  margin-left: 10px;
+  margin-right: 0px;
+  color: var(--grey-bright);
+  text-shadow: 0 0 5px var(--red-bright);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .purchases-column .purchase-line .purchase-summary {
+  font-weight: bold;
+  color: var(--grey-bright);
+  text-shadow: 0 0 5px var(--red-bright);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor.minimized {
+  --minimizedTextColor: var(--gold-dark);
+  --minimizedFontWeight: bold;
+  --minimizedBGColor: var(--gold-glow);
+  --minimizedBorderColor: var(--gold-bright);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.item.minimized {
+  --minimizedTextColor: var(--grey-bright);
+  --minimizedFontWeight: bold;
+  --minimizedBGColor: var(--grey-dark);
+  --minimizedBorderColor: var(--grey-brightest);
+}
