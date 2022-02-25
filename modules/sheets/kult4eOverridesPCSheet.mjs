@@ -16,6 +16,7 @@ export default class kult4eOverridesPCSheet extends kult4ePCsheet {
 		const data = super.getData();
 		data.flags = this.actor.data.flags;
 		data.isSheetOpen = data.flags?.kult4eoverrides?.isSheetOpen ?? false;
+		/*DEVCODE*/
 		data.advancementLines = [
 			{template: "boxline", type: "aware", index: 0, isActive: true, boxes: [true, false, false, false, false, false], label: "+1 <u>active</u> Attribute <i>(+3 max)</i>"},
 			{template: "boxline", type: "aware", index: 1, isActive: true, boxes: [false, false], label: "+1 <u>passive</u> Attribute <i>(+3 max)</i>"},
@@ -29,7 +30,6 @@ export default class kult4eOverridesPCSheet extends kult4ePCsheet {
 			{template: "header", isActive: true, label: "After <u>SEVEN</u> more Advancements ..."},
 			{template: "boxline", type: "invalid", index: 8, boxes: [false], label: "Advance to an Enlightened Archetype"}
 		];
-
 
 		/* Filter for items with moves attached, create data.specialMoves schema
 			 for different categories of move */
@@ -50,6 +50,7 @@ export default class kult4eOverridesPCSheet extends kult4ePCsheet {
 				-
 
 		*/
+		/*!DEVCODE*/
 
 		KO.log("PC Sheet GetData => ", data);
 		return data;
@@ -87,18 +88,20 @@ export default class kult4eOverridesPCSheet extends kult4ePCsheet {
 			this.actor.setFlag("kult4eoverrides", "curTab", $(event.currentTarget).attr("data-tab"));
 		});
 
+		/*DEVCODE*/
 		html.find(".advancement-box").click((event) => {
 
 		});
+		/*!DEVCODE*/
 
 		const curTab = this.actor.koFlags.curTab || "Front";
 		html.find(`.tabButton[data-tab="${curTab}"`).addClass("active");
 		html.find(`.${this.actor.id}-tab`).each((_, elem) => {
 			elem.style.display = elem.id === curTab ? "block" : "none";
 		});
-		// const tabSections = document.getElementsByClassName(`${this.actor.id}-tab`);
-		// Array.from(tabSections).forEach((tabSection) => {
-		// 	tabSection.style.display = tabSection.id === curTab ? "block" : "none";
-		// });
+		//~ const tabSections = document.getElementsByClassName(`${this.actor.id}-tab`);
+		//~ Array.from(tabSections).forEach((tabSection) => {
+		//~ 	tabSection.style.display = tabSection.id === curTab ? "block" : "none";
+		//~ });
 	}
 }

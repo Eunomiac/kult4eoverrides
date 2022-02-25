@@ -16,7 +16,10 @@ Hooks.once("init", async () => {
 	registerDebugger();
 	registerSystemSettings();
 
+	/*DEVCODE*/
 	KO.display("██████ Initializing Kult 4E Overrides ██████");
+	/*!DEVCODE*/
+
 	CONFIG.Actor.documentClass = kult4eOverridesActor;
 
 	Actors.unregisterSheet("kult4e", kult4ePCsheet);
@@ -42,6 +45,9 @@ Hooks.once("init", async () => {
 		return $el.html();
 	});
 	await loadTemplates(Object.values(TEMPLATES));
+
+	/*DEVCODE*/
 	KO.display("██████ Kult 4E Override Complete █████████");
+	/*!DEVCODE*/
 });
 // #endregion ▄▄▄▄▄ ON INIT ▄▄▄▄▄
