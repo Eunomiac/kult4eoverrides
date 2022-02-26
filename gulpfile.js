@@ -24,7 +24,7 @@ const BUILDFILES = {
 		"./styles/": ["scss/**/*.scss"]
 	},
 	html: {
-		"./dist/kult4eoverrides/templates": ["templates/**/*.html"]
+		"./dist/kult4eoverrides/templates": ["templates/**/*.hbs"]
 	},
 	assets: {
 		"./dist/kult4eoverrides/assets": ["assets/**/*.*"],
