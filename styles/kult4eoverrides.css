@@ -1,23 +1,5 @@
 /* ▌██░░ kult4eoverrides v0.1 (2022) ║ MIT License ║ https://github.com/Eunomiac/kult4eoverrides ░░██▐ */
-@font-face {
-  font-family: Infidel;
-  src: url("../assets/fonts/infidel.ttf");
-}
-
-@font-face {
-  font-family: Alverata;
-  src: url("../assets/fonts/alverata.ttf");
-}
-
-@font-face {
-  font-family: 'Caslon Antique';
-  src: url("../assets/fonts/caslon-antique.ttf");
-}
-
-.vtt.game.system-kult4e {
-  --font-primary: Alverata;
-  --font-display: Infidel;
-  --font-longtext: "Caslon Antique";
+* {
   --bg: black;
   --gold-fg: #9b8d68;
   --gold-bright: #fff3b5;
@@ -35,28 +17,82 @@
   --grey-brightest: white;
   --grey-dim: #444444;
   --grey-dark: #222222;
+  --blue-fg: #60aeff;
   --cyan-glow: #97dff4;
 }
 
-.vtt.game.system-kult4e .chat-message {
-  font-size: 12px;
+@font-face {
+  font-family: Infidel;
+  src: url("../assets/fonts/infidel.ttf");
 }
 
-.vtt.game.system-kult4e .chat-message .message-content p {
+@font-face {
+  font-family: Alverata;
+  src: url("../assets/fonts/alverata.ttf");
+}
+
+@font-face {
+  font-family: 'Caslon Antique';
+  src: url("../assets/fonts/caslon-antique.ttf");
+}
+
+* {
+  --font-primary: Alverata;
+  --font-display: Infidel;
+  --font-longtext: "Caslon Antique";
+}
+
+.item-text {
   text-align: justify;
   -webkit-hyphens: auto;
   -ms-hyphens: auto;
   hyphens: auto;
 }
 
-.vtt.game.system-kult4e .chat-message .message-content strong {
-  color: var(--gold-bright);
+.item-text p {
+  text-align: justify;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
 }
 
-.vtt.game.system-kult4e .chat-message .message-content ul li {
+.item-text ul li {
   list-style-type: square;
   text-indent: -5px;
   margin-left: 5px;
+}
+
+.item-text .item-trigger {
+  font-style: italic;
+  color: var(--gold-bright);
+}
+
+.item-text .item-gm-phrase {
+  font-weight: bold;
+  color: var(--red-bright);
+}
+
+.item-text .roll-desc, .item-text .item-keyword {
+  font-weight: bold;
+  color: var(--blue-fg);
+}
+
+.item-text .item-move-name {
+  color: var(--blue-fg);
+  font-style: italic;
+}
+
+.item-text .source-name {
+  font-size: 12px;
+  text-align: right;
+  display: block;
+  font-variant: small-caps;
+  color: var(--gold-bright);
+  font-style: italic;
+}
+
+.vtt.game.system-kult4e .chat-message {
+  font-size: 12px;
 }
 
 .vtt.game.system-kult4e .chat-message .message-content .move-name:nth-child(2) {
@@ -93,6 +129,9 @@
 
 .vtt.game.system-kult4e .app.window-app.sheet .editor-content {
   text-align: justify;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
 }
 
 .vtt.game.system-kult4e .app.window-app.sheet .window-header {

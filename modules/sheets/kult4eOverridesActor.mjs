@@ -4,7 +4,7 @@ import U from "../../scripts/utilities.mjs";
 import {TEMPLATES} from "../system/settings.mjs";
 
 export default class kult4eOverridesActor extends kult4eActor {
-	get template() { return TEMPLATES.pc }
+	// get template() { return TEMPLATES.pc }
 
 	get koFlags() { return this.data.flags.kult4eoverrides ?? {} }
 

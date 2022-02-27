@@ -4,23 +4,6 @@
 	.message-header { }
 
 	.message-content {
-		p {
-			text-align: justify;
-			hyphens: auto;
-		}
-
-		strong/* , em */ {
-			color: var(--gold-bright); // bcb39a;
-		}
-
-		ul {
-			li {
-				list-style-type: square;
-				text-indent: -5px;
-				margin-left: 5px;
-			}
-		}
-
 		.move-name:nth-child(2) {
 			background: linear-gradient(90deg, var(--bg), var(--red-fg) 35%, var(--red-fg) 65%, var(--bg));
 			line-height: 27px;
