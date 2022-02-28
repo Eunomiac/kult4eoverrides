@@ -31,7 +31,7 @@ const SAMPLEDATA = {
 		hasTokens: true
 	},
 	weapon: {
-		description: "",
+		description: "", // not used: USE FOR CLASSIFICATION TAGS: 'firearm', 'firearm,scope', 'melee,bludgeoning','melee,sword'
 		harm: 3,
 		range: "arm",
 		ammo: {
@@ -64,7 +64,7 @@ const JSONDATA = [
 		name: "Academic Network",
 		itemType: "advantage",
 		type: "active",
-		moveName: "Consult an Academic",
+		moveName: "Tap Academic Network",
 		notes: null,
 		clock: null,
 		trigger: "When it would be useful to know someone at a university,",
@@ -105,7 +105,7 @@ const JSONDATA = [
 		name: "Access the Dark Net",
 		itemType: "advantage",
 		type: "active",
-		moveName: "Search Dark Net",
+		moveName: null,
 		notes: null,
 		clock: null,
 		trigger: "Whenever you search the Dark Net for forbidden information, rare items, or myths,",
@@ -720,7 +720,7 @@ const JSONDATA = [
 		name: "Burglar",
 		itemType: "advantage",
 		type: "active",
-		moveName: "Burglary",
+		moveName: "Burgle",
 		notes: null,
 		clock: null,
 		trigger: "Whenever you make use of your expertise in breaking and entering,",
@@ -2442,7 +2442,7 @@ const JSONDATA = [
 		name: "Gang Leader",
 		itemType: "advantage",
 		type: "active",
-		moveName: "Give Risky Orders",
+		moveName: "Give Orders",
 		notes: null,
 		clock: null,
 		trigger: "Whenever you give your gang orders that are risky and/ or may result in them paying a high price,",
@@ -3344,7 +3344,7 @@ const JSONDATA = [
 		name: "Lightning Fast",
 		itemType: "advantage",
 		type: "active",
-		moveName: "Move Fast",
+		moveName: null,
 		notes: null,
 		clock: null,
 		trigger: "Whenever you move unexpectedly fast in combat,",
@@ -3385,7 +3385,7 @@ const JSONDATA = [
 		name: "Magical Intuition",
 		itemType: "advantage",
 		type: "active",
-		moveName: "Magically Intuit",
+		moveName: null,
 		notes: null,
 		clock: null,
 		trigger: "Whenever you utilize your magical intuition,",
@@ -3754,7 +3754,7 @@ const JSONDATA = [
 		name: "Occult Library",
 		itemType: "advantage",
 		type: "active",
-		moveName: "Library Research",
+		moveName: "Do Library Research",
 		notes: null,
 		clock: null,
 		trigger: "Whenever you are in your library researching the supernatural,",
@@ -3877,7 +3877,7 @@ const JSONDATA = [
 		name: "Opportunist",
 		itemType: "advantage",
 		type: "passive",
-		moveName: "Sacrifice Other",
+		moveName: null,
 		notes: null,
 		clock: null,
 		trigger: "Whenever you sacrifice someone else to further your own goals,",
@@ -3918,7 +3918,7 @@ const JSONDATA = [
 		name: "Parkour",
 		itemType: "advantage",
 		type: "active",
-		moveName: "Acrobatics",
+		moveName: "Execute Acrobatic Maneuver",
 		notes: null,
 		clock: null,
 		trigger: "Whenever you execute acrobatic maneuvers,",
@@ -4082,7 +4082,7 @@ const JSONDATA = [
 		name: "Quick Thinker",
 		itemType: "advantage",
 		type: "active",
-		moveName: "Commence Dangerous Mission",
+		moveName: "Start Dangerous Mission",
 		notes: null,
 		clock: null,
 		trigger: "Whenever you commence a dangerous mission,",
@@ -4164,7 +4164,7 @@ const JSONDATA = [
 		name: "Read a Crowd",
 		itemType: "advantage",
 		type: "active",
-		moveName: "Mingle & Listen",
+		moveName: "Mingle",
 		notes: null,
 		clock: null,
 		trigger: "Whenever you move through a small crowd to gather information,",
@@ -4369,7 +4369,7 @@ const JSONDATA = [
 		name: "Shadow",
 		itemType: "advantage",
 		type: "active",
-		moveName: "Shadow Another",
+		moveName: "Follow",
 		notes: null,
 		clock: null,
 		trigger: "When shadowing someone,",
@@ -4579,7 +4579,7 @@ const JSONDATA = [
 		clock: null,
 		trigger: "Whenever you need to know something and check in with your contacts,",
 		lists: {
-			questions: "|What do you know about the [building/person/organization/ event]?|What rumors are circulating on the street at the moment?|How can I get into [location]?|Who in this city would know more about this supernatural thing?",
+			questions: "|What do you know about the [building / person / organization / event]?|What rumors are circulating on the street at the moment?|How can I get into [location]?|Who in this city would know more about this supernatural thing?",
 			options: null,
 			edges: null
 		},
@@ -4592,15 +4592,15 @@ const JSONDATA = [
 		results: {
 			success: {
 				text: "Ask up to three questions.",
-				list: "|What do you know about the [building/person/organization/ event]?|What rumors are circulating on the street at the moment?|How can I get into [location]?|Who in this city would know more about this supernatural thing?"
+				list: "|What do you know about the [building / person / organization / event]?|What rumors are circulating on the street at the moment?|How can I get into [location]?|Who in this city would know more about this supernatural thing?"
 			},
 			partial: {
 				text: "Ask one question.",
-				list: "|What do you know about the [building/person/organization/ event]?|What rumors are circulating on the street at the moment?|How can I get into [location]?|Who in this city would know more about this supernatural thing?"
+				list: "|What do you know about the [building / person / organization / event]?|What rumors are circulating on the street at the moment?|How can I get into [location]?|Who in this city would know more about this supernatural thing?"
 			},
 			fail: {
 				text: "Ask one question, but someone becomes suspicious or aggressive. The GM makes a Move.",
-				list: "|What do you know about the [building/person/organization/ event]?|What rumors are circulating on the street at the moment?|How can I get into [location]?|Who in this city would know more about this supernatural thing?"
+				list: "|What do you know about the [building / person / organization / event]?|What rumors are circulating on the street at the moment?|How can I get into [location]?|Who in this city would know more about this supernatural thing?"
 			}
 		},
 		suffix: {
@@ -7319,7 +7319,7 @@ const JSONDATA = [
 	},
 	{
 		name: "Sealed Fate B",
-		itemType: "Sealed Fate",
+		itemType: "+Sealed Fate",
 		type: "passive",
 		moveName: "Defy Death",
 		notes: null,
@@ -7360,7 +7360,7 @@ const JSONDATA = [
 	},
 	{
 		name: "Explosives Expert B",
-		itemType: "Explosives Expert",
+		itemType: "+Explosives Expert",
 		type: "active",
 		moveName: "Disarm Explosive",
 		notes: null,
@@ -7401,7 +7401,7 @@ const JSONDATA = [
 	},
 	{
 		name: "Shadow B",
-		itemType: "Shadow",
+		itemType: "+Shadow",
 		type: "active",
 		moveName: "Evade a Shadow",
 		notes: null,

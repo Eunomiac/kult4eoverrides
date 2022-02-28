@@ -43,6 +43,7 @@
       <label>{{localize "kult4e.Effect"}}:</label>
       <div>{{editor content=data.effect target="data.effect" button=true owner=owner editable=editable}}</div>
     </div>
+		{{#if (eq data.type "active")}}
     <div>
       <label>{{localize "kult4e.Results"}}:</label>
       <div class="results-input">
@@ -60,5 +61,6 @@
         </div>
       </div>
     </div>
+		{{/if}}
   </div>
 </form>

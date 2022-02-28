@@ -11,6 +11,7 @@ import kult4eOverridesItemSheet from "./modules/sheets/kult4eOverridesItemSheet.
 import registerDebugger from "./modules/system/logger.mjs";
 import registerSystemSettings, {TEMPLATES} from "./modules/system/settings.mjs";
 /*DEVCODE*/
+import U from "./scripts/utilities.mjs";
 import JSONDATA from "./scripts/jsonImport.mjs";
 /*!DEVCODE*/
 // #endregion ▒▒▒▒[IMPORTS]▒▒▒▒
@@ -76,13 +77,35 @@ const parsedData = JSONDATA.map((itemData) => {
 	return itemData;
 });
 
-const wrapItemDiv = (lines) => `<div class="item-text">${
-	lines.filter((line) => Boolean(line)).join("\n")
-}</div>`;
-const stripHTML = (str) => {
-	do {
-		str = str.replace(/<[^>]+>(.*)<\/[^>]+>/g, "$1");
-	} while (/<[^>]+>(.*)<\/[^>]+>/.test(str));
+const tagWrap = (tag, lines, classes, delim = "", isResolvingList = false) => {
+	lines = [lines].flat().filter((line) => Boolean(line));
+	if (lines.length) {
+		lines = lines.join(delim);
+		if (/\$(OPTIONS|QUESTIONS)\$/.test(lines)) {
+			const listType = lines.match(/\$(OPTIONS|QUESTIONS)\$/)[1];
+			if (isResolvingList) {
+				const afterLines = lines.match(new RegExp(`\\$${listType}\\$(.*)$`))?.[1]?.trim() ?? "";
+				lines = lines.replace(new RegExp(`\\s*\\$${listType}\\$.*$`), "");
+				return [
+					`<${tag}${classes ? ` class="${classes}"` : ""}>${lines}</${tag}>`,
+					`@@@${listType}@@@`,
+					afterLines.length > 0 ? `<${tag}${classes ? ` class="${classes}"` : ""}>${afterLines}</${tag}>` : ""
+				].join("");
+			}
+			lines = lines.replace(new RegExp(`\\s*\\$${listType}\\$`), "").trim();
+			return `<${tag}${classes ? ` class="${classes}"` : ""}>${lines}</${tag}>$${listType}$`;
+		}
+		return `<${tag}${classes ? ` class="${classes}"` : ""}>${lines}</${tag}>`;
+	}
+	return "";
+};
+
+const tagStrip = (str) => {
+	if (str) {
+		do {
+			str = `${str}`.replace(/<[^>]+>(.*)<\/[^>]+>/g, "$1");
+		} while (/<[^>]+>(.*)<\/[^>]+>/.test(str));
+	}
 	return str;
 };
 
@@ -100,24 +123,27 @@ const subMoveCheck = (data) => {
 	return "";
 };
 const centerCheck = (resultData) => {
-	if (!resultData.list && stripHTML(resultData.text).length <= 60) {
+	if (!resultData || !resultData.text) { return "" }
+	if (!resultData.list && tagStrip(resultData.text).length <= 60) {
 		return `<p><center>${resultData.text}</center></p>`;
 	}
 	return `<p>${resultData.text}</p>`;
 };
-const listCheck = (resultData) => {
-	if (resultData.list) {
-		return `<ul>${resultData.list.map((line) => `<li>${line}</li>`).join("\n")}</ul>`;
+const listCheck = (listLines) => {
+	listLines = [listLines].flat().filter((line) => Boolean(line));
+	if (listLines.length) {
+		return `<ul>${listLines.map((line) => `<li>${line}</li>`).join("\n")}</ul>`;
 	}
 	return "";
 };
 const suffixCheck = (resultData, suffixData) => {
 	if (/Hold/.test(`${resultData.text}${resultData.list?.join("")}`) && /Hold/.test(suffixData.text)) {
-		return `<p>${suffixData.text}</p>${listCheck(suffixData)}`;
+		return `<p>${suffixData.text}</p>${listCheck(suffixData.list)}`;
 	}
 	return "";
 };
 const imgCheck = async (itemData) => {
+	// return `modules/kult4eoverrides/assets/icons/${itemData.itemType}/${itemData.itemType}-default.svg`;
 	let imgSrc, imgExists;
 	if (itemData.moveName) {
 		imgSrc = `modules/kult4eoverrides/assets/icons/move/${itemData.moveName.replace(/\s/g, "-").replace(/[:]/g, "").toLowerCase()}.svg`;
@@ -140,6 +166,37 @@ const imgCheck = async (itemData) => {
 	}
 	return imgSrc;
 };
+const descriptionCheck = (itemData, isDescribingMove) => tagWrap("div", [
+	isDescribingMove ? subMoveCheck(itemData) : "",
+	tagWrap("p", [
+		itemData.description.intro,
+		tagWrap("span", itemData.trigger, "item-trigger"),
+		itemData.description.static,
+		itemData.rollPhrase
+	], null, " ", true),
+	...itemData.hasEdges
+		? [
+				centerCheck({text: `This ${isDescribingMove ? "Move" : U.capitalize(itemData.itemType)} grants <span class="item-keyword">Edges</span>.`}),
+				"Spend <span class=\"item-keyword\">Edges</span> to:",
+				listCheck(itemData.lists.edges)
+			]
+		: [],
+	tagWrap("p", [
+		itemData.suffix.text,
+		listCheck(itemData.suffix.list)
+	], null, "", true)
+], "item-text", "\n")
+	.replace(/@@@OPTIONS@@@/, listCheck(itemData.lists.options))
+	.replace(/@@@QUESTIONS@@@/, listCheck(itemData.lists.questions));
+const resultCheck = (result, data, isCheckingSubMove = true) => {
+	if (!result) { return result }
+	return tagWrap("div", [
+		isCheckingSubMove ? subMoveCheck(data) : "",
+		tagWrap("p", result.list ? result.text : centerCheck(result)),
+		listCheck(result.list),
+		suffixCheck(result, data.suffix)
+	], "item-text");
+};
 
 // SECOND PASS: Construct item data in accordance with kult4e template.json
 const PARSERS = {
@@ -147,43 +204,109 @@ const PARSERS = {
 		"name": data.moveName ?? data.name,
 		"type": "move",
 		"img": await imgCheck(data),
-		"data.attributemod": data.attributemod === "choose" ? "none" : data.attributemod ?? "none",
-		"data.completesuccess": wrapItemDiv([
-			subMoveCheck(data),
-			centerCheck(data.results.success),
-			listCheck(data.results.success),
-			suffixCheck(data.results.success, data.suffix)
-		]),
-		"data.partialsuccess": wrapItemDiv([
-			subMoveCheck(data),
-			centerCheck(data.results.partial),
-			listCheck(data.results.partial),
-			suffixCheck(data.results.partial, data.suffix)
-		]),
-		"data.failure": wrapItemDiv([
-			subMoveCheck(data),
-			centerCheck(data.results.fail),
-			listCheck(data.results.fail),
-			suffixCheck(data.results.fail, data.suffix)
-		]),
-		"data.trigger": wrapItemDiv([
-			subMoveCheck(data),
-			`<p><span class="item-trigger">${data.trigger}</span> ${data.rollPhrase}</p>`
-		]),
+		"data.attributemod": data.attributemod ?? "none",
+		"data.completesuccess": resultCheck(data.results.success, data),
+		"data.partialsuccess": resultCheck(data.results.partial, data),
+		"data.failure": resultCheck(data.results.fail, data),
+		"data.trigger": descriptionCheck(data, true),
 		"data.specialflag": {
 			"keep it together": 1,
 			"see through the illusion": 2,
 			"endure injury": 3
-		}[data.name.toLowerCase()] ?? 0
+		}[data.name.toLowerCase()] ?? 0,
+		"flags.kult4eoverrides.dataJSON": JSON.stringify(data)
+	}),
+	advantage: async (data) => ({
+		"name": data.name,
+		"type": "advantage",
+		"img": await imgCheck(data),
+		"data.attributemod": data.attributemod ?? "none",
+		"data.type": data.type,
+		"data.effect": descriptionCheck(data),
+		"data.completesuccess": resultCheck(data.results.success, data, false),
+		"data.partialsuccess": resultCheck(data.results.partial, data, false),
+		"data.failure": resultCheck(data.results.fail, data, false),
+		"data.tokens": data.hasTokens ? 0 : "",
+		"data.hasTokens": data.hasTokens,
+		"flags.kult4eoverrides.moveName": data.type === "active"
+			? data.moveName ?? data.name
+			: null,
+		"flags.kult4eoverrides.dataJSON": JSON.stringify(data)
+	}),
+	disadvantage: async (data) => ({
+		"name": data.name,
+		"type": "disadvantage",
+		"img": await imgCheck(data),
+		"data.effect": descriptionCheck(data),
+		"data.attributemod": data.attributemod ?? "none",
+		"data.type": data.type,
+		"data.completesuccess": resultCheck(data.results.success, data, false),
+		"data.partialsuccess": resultCheck(data.results.partial, data, false),
+		"data.failure": resultCheck(data.results.fail, data, false),
+		"data.tokens": data.hasTokens ? 0 : "",
+		"data.hasTokens": data.hasTokens,
+		"flags.kult4eoverrides.moveName": data.type === "active"
+			? data.moveName ?? data.name
+			: null,
+		"flags.kult4eoverrides.dataJSON": JSON.stringify(data)
 	})
 };
 
-const parseItemData = () => Promise.all(parsedData
-	.filter((data) => data.itemType === "move" || (["advantage", "disadvantage"].includes(data.itemType) && data.type === "active"))
-	.map((itemData) => PARSERS.move(itemData)));
+const awaitApply = async (itemPromise, assignData = {}) => {
+	const item = await itemPromise;
+	return {
+		...item,
+		...assignData
+	};
+};
+
+const parseItemData = async () => {
+	const altMoveList = await Promise.all(parsedData
+		.filter((data) => data.itemType.startsWith("+"))
+		.map((data) => {
+			data.name = data.itemType.slice(1);
+			const {itemType} = data;
+			data.itemType = "move";
+			return awaitApply(PARSERS.move(data), {
+				"flags.kult4eoverrides.linkType": "advantage",
+				"flags.kult4eoverrides.linkName": data.name
+			});
+		}));
+
+	console.log(altMoveList);
+
+	const altMoves = {};
+	altMoveList.forEach((move) => {
+		const parentName = move["flags.kult4eoverrides.linkName"];
+		altMoves[parentName] = altMoves[parentName] ?? [];
+		altMoves[parentName].push(move);
+	});
+
+	console.log(altMoves);
+	console.log("Explosives Expert" in altMoves);
+
+	const returnData = await Promise.all(parsedData
+		.filter((data) => ["move", "advantage", "disadvantage"].includes(data.itemType))
+		.map(async (itemData) => {
+			const data = await PARSERS[itemData.itemType](itemData);
+			if (data.name in altMoves) {
+				data["flags.kult4eoverrides.altMove"] = JSON.stringify(altMoves[data.name]);
+				KO.log(JSON.stringify(data, null, 2));
+			}
+			return data;
+		}));
+
+	const testRecord = returnData.find((datum) => datum.name === "Explosives Expert");
+	KO.log("Explosives Expert: ", testRecord);
+
+	return returnData;
+};
+
 /*!DEVCODE*/
 
 // #region ████████ ON INIT: On-Initialization Hook ████████
+kult4eOverridesItem.RegisterHooks();
+
 Hooks.once("init", async () => {
 	registerDebugger();
 	registerSystemSettings();
@@ -219,7 +342,7 @@ Hooks.once("init", async () => {
 
 	/*DEVCODE*/
 	const ITEMDATA = await parseItemData();
-	KO.log(JSON.stringify(ITEMDATA, null, 2));
+	// KO.log(JSON.stringify(ITEMDATA, null, 2));
 	window.createItems = () => {
 		Item.createDocuments(ITEMDATA);
 	};
