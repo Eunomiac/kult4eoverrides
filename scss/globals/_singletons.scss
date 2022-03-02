@@ -1,3 +1,37 @@
+		.center-text {
+		text-align: center !important;
+	}
+
+	.item-trigger {
+		font-style: italic;
+		color: var(--gold-bright);
+	}
+	.item-gm-phrase {
+		font-weight: bold;
+		color: var(--red-bright);
+	}
+	.item-roll-desc, .item-keyword {
+		font-weight: bold;
+		color: var(--blue-fg);
+	}
+	.item-move-name {
+		color: var(--blue-fg);
+		font-style: italic;
+		font-weight: normal !important;
+
+		* {
+			font-weight: normal !important;
+		}
+	}
+	.source-name {
+		font-size: 12px;
+		text-align: right;
+		display: block;
+		font-variant: small-caps;
+		color: var(--gold-bright);
+		font-style: italic;
+	}
+
 	.item-text {
 		text-align: justify;
 		hyphens: auto;
@@ -13,30 +47,5 @@
 				text-indent: -5px;
 				margin-left: 5px;
 			}
-		}
-
-		.item-trigger {
-			font-style: italic;
-			color: var(--gold-bright);
-		}
-		.item-gm-phrase {
-			font-weight: bold;
-			color: var(--red-bright);
-		}
-		.roll-desc, .item-keyword {
-			font-weight: bold;
-			color: var(--blue-fg);
-		}
-		.item-move-name {
-			color: var(--blue-fg);
-			font-style: italic;
-		}
-		.source-name {
-			font-size: 12px;
-			text-align: right;
-			display: block;
-			font-variant: small-caps;
-			color: var(--gold-bright);
-			font-style: italic;
 		}
 	}

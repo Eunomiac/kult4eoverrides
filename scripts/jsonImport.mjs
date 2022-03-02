@@ -1,3 +1,5 @@
+import U from "./utilities.mjs";
+
 const SAMPLEDATA = {
 	move: {
 		description: "",
@@ -59,6 +61,7 @@ const SAMPLEDATA = {
 	}
 };
 
+// Initial import of JSONDATA after Google Sheet .csv conversion at http://...
 const JSONDATA = [
 	{
 		name: "Academic Network",
@@ -78,7 +81,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "charisma",
-		rollPhrase: "provide the person’s name, field of study, and how you got to know one another, then <span class='roll-desc'>roll +Charisma</span>:",
+		rollPhrase: "provide the person’s name, field of study, and how you got to know one another, then roll to [[[Tap Academic Network]]] (+Charisma).",
 		results: {
 			success: {
 				text: "The person is a friend (Relation +1).",
@@ -119,7 +122,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "perception",
-		rollPhrase: "<span class='roll-desc'>roll +Perception</span>:",
+		rollPhrase: "roll to [[[Access the Dark Net]]] (+Perception).",
 		results: {
 			success: {
 				text: "You discover what you’re looking for, and may also choose one option:",
@@ -160,7 +163,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "coolness",
-		rollPhrase: "<span class='roll-desc'>roll +Coolness</span>:",
+		rollPhrase: "roll to [[[Pull an Ace]]] (+Coolness).",
 		results: {
 			success: {
 				text: "Get 2 Edges. You may spend them any time during the scene.",
@@ -188,7 +191,7 @@ const JSONDATA = [
 		itemType: "advantage",
 		type: "passive",
 		moveName: null,
-		notes: null,
+		notes: ">AppendList:move/Investigate,questions",
 		clock: null,
 		trigger: "Whenever you Investigate something,",
 		lists: {
@@ -242,7 +245,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "intuition",
-		rollPhrase: "<span class='roll-desc'>roll +Intuition</span>:",
+		rollPhrase: "roll to [[[Control Animal]]] (+Intuition).",
 		results: {
 			success: {
 				text: "Choose three options. You may save up to two for later.",
@@ -324,7 +327,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "soul",
-		rollPhrase: "<span class='roll-desc'>roll +Soul</span>:",
+		rollPhrase: "roll to [[[Activate Artifact]]] (+Soul).",
 		results: {
 			success: {
 				text: "Choose one option (the GM determines what happens).",
@@ -365,7 +368,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "charisma",
-		rollPhrase: "<span class='roll-desc'>roll +Charisma</span> to influence your audience at any time during the scene:",
+		rollPhrase: "roll to [[[Perform]]] (+Charisma) to influence your audience at any time during the scene.",
 		results: {
 			success: {
 				text: "Choose up to two options any time during the scene.",
@@ -447,7 +450,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "charisma",
-		rollPhrase: "<span class='roll-desc'>roll +Charisma</span>:",
+		rollPhrase: "roll to [[[Check: Authority]]] (+Charisma).",
 		results: {
 			success: {
 				text: "During this game session, choose up to three options.",
@@ -488,7 +491,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "charisma",
-		rollPhrase: "<span class='roll-desc'>roll +Charisma</span>:",
+		rollPhrase: "roll to [[[Take Charge]]] (+Charisma).",
 		results: {
 			success: {
 				text: "People around you accept you as their leader and listen to you. Take +1 ongoing against people in this scene.",
@@ -529,7 +532,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "coolness",
-		rollPhrase: "<span class='roll-desc'>roll +Coolness</span>:",
+		rollPhrase: "roll to [[[Backstab]]] (+Coolness).",
 		results: {
 			success: {
 				text: "Choose two options.",
@@ -570,7 +573,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "reason",
-		rollPhrase: "<span class='roll-desc'>roll +Reason</span>:",
+		rollPhrase: "roll to [[[Stabilize Injury]]] (+Reason).",
 		results: {
 			success: {
 				text: "Choose two options.",
@@ -611,7 +614,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "perception",
-		rollPhrase: "<span class='roll-desc'>roll +Perception</span>:",
+		rollPhrase: "roll to [[[Perform Feat of Agility]]] (+Perception).",
 		results: {
 			success: {
 				text: "Choose one option.",
@@ -652,7 +655,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "coolness",
-		rollPhrase: "<span class='roll-desc'>roll +Coolness</span>:",
+		rollPhrase: "roll to [[[Deploy Henchmen]]] (+Coolness).",
 		results: {
 			success: {
 				text: "They follow your orders and everything goes according to plan.",
@@ -693,7 +696,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "soul",
-		rollPhrase: "<span class='roll-desc'>roll +Soul</span>:",
+		rollPhrase: "roll to [[[Check: Bound]]] (+Soul).",
 		results: {
 			success: {
 				text: "You may choose up to three options at any time during the session.",
@@ -734,7 +737,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "coolness",
-		rollPhrase: "<span class='roll-desc'>roll +Coolness</span>:",
+		rollPhrase: "roll to [[[Burgle]]] (+Coolness).",
 		results: {
 			success: {
 				text: "Get three options. You may spend them any time during the scene.",
@@ -775,7 +778,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "intuition",
-		rollPhrase: "<span class='roll-desc'>roll +Intuition</span>:",
+		rollPhrase: "roll to [[[Alter Appearance]]] (+Intuition).",
 		results: {
 			success: {
 				text: "Your disguise is convincing, as long as you keep the act going.",
@@ -816,7 +819,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "intuition",
-		rollPhrase: "<span class='roll-desc'>roll +Intuition</span>:",
+		rollPhrase: "roll to [[[Blend In]]] (+Intuition).",
 		results: {
 			success: {
 				text: "Choose three options. You may save up to two for later.",
@@ -857,7 +860,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "soul",
-		rollPhrase: "<span class='roll-desc'>roll +Soul</span>:",
+		rollPhrase: "roll to [[[Radiate Charisma]]] (+Soul).",
 		results: {
 			success: {
 				text: "Choose two separate options.",
@@ -939,7 +942,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "reason",
-		rollPhrase: "<span class='roll-desc'>roll +Reason</span>:",
+		rollPhrase: "roll to [[[Seek Rare Item]]] (+Reason).",
 		results: {
 			success: {
 				text: "You know exactly where the item is, how to acquire it, and how to minimize hazards, obstacles, and/or costs.",
@@ -980,7 +983,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "soul",
-		rollPhrase: "<span class='roll-desc'>roll +Soul</span>:",
+		rollPhrase: "roll to [[[Spread Madness]]] (+Soul).",
 		results: {
 			success: {
 				text: "Choose two options.",
@@ -1021,7 +1024,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "intuition",
-		rollPhrase: "<span class='roll-desc'>roll +Intuition</span>:",
+		rollPhrase: "roll to [[[Pull a Long Con]]] (+Intuition).",
 		results: {
 			success: {
 				text: "Choose up to two options. You may save one until later during this scene.",
@@ -1062,7 +1065,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "reason",
-		rollPhrase: "<span class='roll-desc'>roll +Reason</span>:",
+		rollPhrase: "roll to [[[Investigate Crime Scene]]] (+Reason).",
 		results: {
 			success: {
 				text: "Ask two questions.",
@@ -1089,7 +1092,7 @@ const JSONDATA = [
 		name: "Cult Leader",
 		itemType: "advantage",
 		type: "active",
-		moveName: "Lead Ritual",
+		moveName: "Lead a Ritual",
 		notes: null,
 		clock: null,
 		trigger: "Whenever you and your followers perform a ritual,",
@@ -1103,7 +1106,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "soul",
-		rollPhrase: "<span class='roll-desc'>roll +Soul</span>:",
+		rollPhrase: "roll to [[[Lead a Ritual]]] (+Soul).",
 		results: {
 			success: {
 				text: "Choose to receive up to three visions from the list below.",
@@ -1130,7 +1133,7 @@ const JSONDATA = [
 		name: "Dabbler in the Occult",
 		itemType: "advantage",
 		type: "active",
-		moveName: "Perform Ritual",
+		moveName: "Perform a Ritual",
 		notes: null,
 		clock: null,
 		trigger: "Whenever you attempt to perform a magical ritual from a set of instructions,",
@@ -1144,7 +1147,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "soul",
-		rollPhrase: "<span class='roll-desc'>roll +Soul</span>:",
+		rollPhrase: "roll to [[[Perform a Ritual]]] (+Soul).",
 		results: {
 			success: {
 				text: "You perform every step correctly; the ritual works as intended.",
@@ -1171,7 +1174,7 @@ const JSONDATA = [
 		name: "Daredevil",
 		itemType: "advantage",
 		type: "active",
-		moveName: "Enter Danger",
+		moveName: "Live Dangerously",
 		notes: null,
 		clock: null,
 		trigger: "Whenever you’re entering a dangerous situation,",
@@ -1185,7 +1188,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "perception",
-		rollPhrase: "<span class='roll-desc'>roll +Perception</span>:",
+		rollPhrase: "roll to [[[Live Dangerously]]] (+Perception).",
 		results: {
 			success: {
 				text: "Choose three Edges. You may spend them anytime during the scene.",
@@ -1226,7 +1229,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "reason",
-		rollPhrase: "<span class='roll-desc'>roll +Reason</span>. In response to the inquiries you make, the GM will tell you what you uncover, in as much detail as can be expected from the source you have utilized:",
+		rollPhrase: "roll to [[[Perform Research]]] (+Reason). In response to the inquiries you make, the GM will tell you what you uncover, in as much detail as can be expected from the source you have utilized.",
 		results: {
 			success: {
 				text: "Ask three questions.",
@@ -1254,7 +1257,7 @@ const JSONDATA = [
 		itemType: "advantage",
 		type: "passive",
 		moveName: null,
-		notes: null,
+		notes: ">ModValue:weapon/firearm,harm,1",
 		clock: null,
 		trigger: null,
 		lists: {
@@ -1308,7 +1311,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "violence",
-		rollPhrase: "<span class='roll-desc'>roll +Violence</span>:",
+		rollPhrase: "roll to [[[Death Stare]]] (+Violence).",
 		results: {
 			success: {
 				text: "You make eye contact with an NPC, causing them to freeze up and be unable to take any actions until you break eye contact. You also get +2 ongoing against your target.",
@@ -1349,7 +1352,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "violence",
-		rollPhrase: "<span class='roll-desc'>roll +Violence</span>:",
+		rollPhrase: "roll to [[[Fight Recklessly]]] (+Violence).",
 		results: {
 			success: {
 				text: "Get 3 Edges. You may spend them any time during the scene.",
@@ -1472,7 +1475,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "soul",
-		rollPhrase: "<span class='roll-desc'>roll +Soul</span>:",
+		rollPhrase: "roll to [[[Sway Monster]]] (+Soul).",
 		results: {
 			success: {
 				text: "The creature mistakes you for a god. Choose up to three options, useable any time during this scene.",
@@ -1499,7 +1502,7 @@ const JSONDATA = [
 		name: "Dreamer",
 		itemType: "advantage",
 		type: "active",
-		moveName: "Lucid Dream",
+		moveName: "Navigate the Dream",
 		notes: null,
 		clock: null,
 		trigger: "Whenever you want to meet someone or find out the truth about something in the Dream,",
@@ -1513,7 +1516,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "soul",
-		rollPhrase: "<span class='roll-desc'>roll +Soul</span>:",
+		rollPhrase: "roll to [[[Navigate the Dream]]] (+Soul).",
 		results: {
 			success: {
 				text: "You meet the intended person or arrive at the specific place in the Dream.",
@@ -1554,7 +1557,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "coolness",
-		rollPhrase: "<span class='roll-desc'>roll +Coolness</span>:",
+		rollPhrase: "roll to [[[Drive Dangerously]]] (+Coolness).",
 		results: {
 			success: {
 				text: "Gain 3 Edges. You may spend them anytime during the scene.",
@@ -1595,7 +1598,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "charisma",
-		rollPhrase: "<span class='roll-desc'>roll +Charisma</span>:",
+		rollPhrase: "roll to [[[Request a Favor]]] (+Charisma).",
 		results: {
 			success: {
 				text: "Choose up to three options.",
@@ -1705,7 +1708,7 @@ const JSONDATA = [
 		itemType: "advantage",
 		type: "passive",
 		moveName: null,
-		notes: null,
+		notes: ">AppendList:weapon/sword,attacks",
 		clock: null,
 		trigger: "When using swords,",
 		lists: {
@@ -1800,7 +1803,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "violence",
-		rollPhrase: "<span class='roll-desc'>roll +Violence</span>:",
+		rollPhrase: "roll to [[[Threaten Other]]] (+Violence).",
 		results: {
 			success: {
 				text: "They must decide to either do what you want or defy you with the knowledge that you can execute your threat.",
@@ -1841,7 +1844,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "soul",
-		rollPhrase: "<span class='roll-desc'>roll +Soul</span>. (15+) You can discern clear details regarding the location, and may be able to speak to entities tied to it. (10–14) You get some basic impressions regarding the location. (–9) The Illusion tears. The veil is lifted temporarily, revealing an alternate dimension – the GM determines which one. The PC could be sucked into it or something may cross over into our reality. The GM makes a Move.:",
+		rollPhrase: "roll to [[[Focus on the Illusion]]] (+Soul).",
 		results: {
 			success: {
 				text: "You can discern clear details regarding the location, and may be able to speak to entities tied to it.",
@@ -1882,7 +1885,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "charisma",
-		rollPhrase: "<span class='roll-desc'>roll +Charisma</span>:",
+		rollPhrase: "roll to [[[Incite Desire]]] (+Charisma).",
 		results: {
 			success: {
 				text: "Choose up to three options any time during this scene.",
@@ -1923,7 +1926,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "coolness",
-		rollPhrase: "outline your plan and <span class='roll-desc'>roll +Coolness</span>:",
+		rollPhrase: "outline your plan and roll to [[[Escape]]] (+Coolness).",
 		results: {
 			success: {
 				text: "You escape without complications.",
@@ -1950,7 +1953,7 @@ const JSONDATA = [
 		name: "Exit Strategy",
 		itemType: "advantage",
 		type: "active",
-		moveName: "Covert Exit",
+		moveName: "Make a Clean Exit",
 		notes: null,
 		clock: null,
 		trigger: "Whenever you have killed someone covertly and leave the scene of the murder,",
@@ -1964,7 +1967,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "perception",
-		rollPhrase: "<span class='roll-desc'>roll +Perception</span>:",
+		rollPhrase: "roll to [[[Make a Clean Exit]]] (+Perception).",
 		results: {
 			success: {
 				text: "You get all three options below.",
@@ -2005,7 +2008,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "soul",
-		rollPhrase: "explain what the ritual looks like and <span class='roll-desc'>roll +Soul</span>:",
+		rollPhrase: "explain what the ritual looks like and roll to [[[Perform Exorcism]]] (+Soul).",
 		results: {
 			success: {
 				text: "The creature is banished. Choose two options.",
@@ -2033,7 +2036,7 @@ const JSONDATA = [
 		itemType: "advantage",
 		type: "passive",
 		moveName: null,
-		notes: null,
+		notes: "GET: ReplaceList (Investigate, Questions)",
 		clock: null,
 		trigger: "Whenever you Investigate something associated with one of your chosen fields,",
 		lists: {
@@ -2087,7 +2090,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "reason",
-		rollPhrase: "<span class='roll-desc'>roll +Reason</span>:",
+		rollPhrase: "roll to [[[Build Explosive]]] (+Reason).",
 		results: {
 			success: {
 				text: "You construct a functional bomb.",
@@ -2115,7 +2118,7 @@ const JSONDATA = [
 		itemType: "advantage",
 		type: "passive",
 		moveName: null,
-		notes: null,
+		notes: ">AppendList:move/Read a Person,questions",
 		clock: null,
 		trigger: "Whenever you Read a Person,",
 		lists: {
@@ -2210,7 +2213,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "perception",
-		rollPhrase: "<span class='roll-desc'>roll +Perception</span>:",
+		rollPhrase: "roll to [[[Study Other]]] (+Perception).",
 		results: {
 			success: {
 				text: "Ask three questions from the list below.",
@@ -2251,7 +2254,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "charisma",
-		rollPhrase: "<span class='roll-desc'>roll +Charisma</span>:",
+		rollPhrase: "roll to [[[Artful Seduction]]] (+Charisma).",
 		results: {
 			success: {
 				text: "Choose one option.",
@@ -2292,7 +2295,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "coolness",
-		rollPhrase: "<span class='roll-desc'>roll +Coolness</span>:",
+		rollPhrase: "roll to [[[Fast Talk]]] (+Coolness).",
 		results: {
 			success: {
 				text: "Choose two options.",
@@ -2333,7 +2336,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "violence",
-		rollPhrase: "<span class='roll-desc'>roll +Violence</span>:",
+		rollPhrase: "roll to [[[Enter Combat]]] (+Violence).",
 		results: {
 			success: {
 				text: "Get 3 Edges. You may spend them any time during the scene.",
@@ -2374,7 +2377,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "soul",
-		rollPhrase: "<span class='roll-desc'>roll +Soul</span>:",
+		rollPhrase: "roll to [[[Seek Inspiration]]] (+Soul).",
 		results: {
 			success: {
 				text: "Choose two options.",
@@ -2415,7 +2418,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "charisma",
-		rollPhrase: "<span class='roll-desc'>roll +Charisma</span>:",
+		rollPhrase: "roll to [[[Manipulate Other]]] (+Charisma).",
 		results: {
 			success: {
 				text: "Choose one option:",
@@ -2456,7 +2459,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "violence",
-		rollPhrase: "<span class='roll-desc'>roll +Violence</span>:",
+		rollPhrase: "roll to [[[Give Orders]]] (+Violence).",
 		results: {
 			success: {
 				text: "They enact your orders without question.",
@@ -2497,7 +2500,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "soul",
-		rollPhrase: "<span class='roll-desc'>roll +Soul</span> to see if you can discover a way out:",
+		rollPhrase: "roll to [[[Think Fast]]] (+Soul) to see if you can discover a way out.",
 		results: {
 			success: {
 				text: "Choose up to three Edges, useable any time in the scene, while you’re still in danger.",
@@ -2661,7 +2664,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "reason",
-		rollPhrase: "<span class='roll-desc'>roll +Reason</span>:",
+		rollPhrase: "roll to [[[Hack]]] (+Reason).",
 		results: {
 			success: {
 				text: "You accomplish your task without a problem.",
@@ -2689,7 +2692,7 @@ const JSONDATA = [
 		itemType: "advantage",
 		type: "passive",
 		moveName: null,
-		notes: null,
+		notes: ">BuffRoll:Endure Injury,1",
 		clock: null,
 		trigger: "Whenever you Endure Injury,",
 		lists: {
@@ -2743,7 +2746,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "perception",
-		rollPhrase: "<span class='roll-desc'>roll +Perception</span>:",
+		rollPhrase: "roll to [[[Hunt Other]]] (+Perception).",
 		results: {
 			success: {
 				text: "Get three options. You may spend them anytime during this scene.",
@@ -2784,7 +2787,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "coolness",
-		rollPhrase: "<span class='roll-desc'>roll +Coolness</span>:",
+		rollPhrase: "roll to [[[Keep Cool]]] (+Coolness).",
 		results: {
 			success: {
 				text: "Get 3 Edges. You may spend them any time during the scene.",
@@ -2825,7 +2828,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "soul",
-		rollPhrase: "you may implant an order into them. <span class='roll-desc'>Roll +Soul</span>:",
+		rollPhrase: "you may implant an order into them. Roll +Soul.",
 		results: {
 			success: {
 				text: "You hold 2 Power over them. For as long as you retain Power over them, they take 1 Serious Wound should they refuse or attempt to go against your order, but this loosens your grip over them by 1 Power. If they fulfill your order, all your remaining Power over them is removed.",
@@ -2866,7 +2869,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "charisma",
-		rollPhrase: "describe who they are and <span class='roll-desc'>roll +Charisma</span>:",
+		rollPhrase: "describe who they are and roll to [[[Exploit Rube]]] (+Charisma).",
 		results: {
 			success: {
 				text: "They can provide you with whatever you require.",
@@ -2907,7 +2910,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "coolness",
-		rollPhrase: "<span class='roll-desc'>roll +Coolness</span>:",
+		rollPhrase: "roll to [[[Wing It]]] (+Coolness).",
 		results: {
 			success: {
 				text: "Choose two options.",
@@ -2948,7 +2951,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "charisma",
-		rollPhrase: "<span class='roll-desc'>roll +Charisma</span>:",
+		rollPhrase: "roll to [[[Pull Strings]]] (+Charisma).",
 		results: {
 			success: {
 				text: "Your friends can arrange for what you want.",
@@ -2989,7 +2992,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "soul",
-		rollPhrase: "<span class='roll-desc'>roll +Soul</span>:",
+		rollPhrase: "roll to [[[Release Power]]] (+Soul).",
 		results: {
 			success: {
 				text: "The power attacks all opponents in your vicinity, causing 2 Harm.",
@@ -3112,7 +3115,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "violence",
-		rollPhrase: "<span class='roll-desc'>roll +Violence</span>:",
+		rollPhrase: "roll to [[[Intimidate Other]]] (+Violence).",
 		results: {
 			success: {
 				text: "They succumb to fear and give in to your demands.",
@@ -3194,7 +3197,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "reason",
-		rollPhrase: "explain what you are about to do. The GM will tell you what you need to succeed, and once you have collected these materials, you may <span class='roll-desc'>roll +Reason</span>:",
+		rollPhrase: "explain what you are about to do. The GM will tell you what you need to succeed, and once you have collected these materials, you may roll to [[[Create or Repair]]] (+Reason).",
 		results: {
 			success: {
 				text: "The construction is successful and you may pick two options from below.",
@@ -3263,7 +3266,7 @@ const JSONDATA = [
 		itemType: "advantage",
 		type: "passive",
 		moveName: null,
-		notes: null,
+		notes: ">AppendList:move/Observe a Situation,questions",
 		clock: null,
 		trigger: "Whenever you Observe a Situation,",
 		lists: {
@@ -3317,7 +3320,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "soul",
-		rollPhrase: "<span class='roll-desc'>roll +Soul</span>:",
+		rollPhrase: "roll to [[[Heal]]] (+Soul).",
 		results: {
 			success: {
 				text: "You fully heal the injured person, channeling the Wound onto yourself or a selected target.",
@@ -3358,7 +3361,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "violence",
-		rollPhrase: "<span class='roll-desc'>roll +Violence</span>:",
+		rollPhrase: "roll to [[[Lightning Fast]]] (+Violence).",
 		results: {
 			success: {
 				text: "Get 3 Edges. You may spend them any time during the scene.",
@@ -3399,7 +3402,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "soul",
-		rollPhrase: "<span class='roll-desc'>roll +Soul</span>:",
+		rollPhrase: "roll to [[[Magical Intuition]]] (+Soul).",
 		results: {
 			success: {
 				text: "Choose up to three options. Up to two may be saved until later this scene.",
@@ -3440,7 +3443,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "soul",
-		rollPhrase: "<span class='roll-desc'>roll +Soul</span>:",
+		rollPhrase: "roll to [[[Attract Attention]]] (+Soul).",
 		results: {
 			success: {
 				text: "Choose up to three options. You may save up to two until later in the scene.",
@@ -3481,7 +3484,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "reason",
-		rollPhrase: "<span class='roll-desc'>roll +Reason</span>:",
+		rollPhrase: "roll to [[[Investigate Person]]] (+Reason).",
 		results: {
 			success: {
 				text: "Ask the GM three questions from the list below.",
@@ -3563,7 +3566,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "violence",
-		rollPhrase: "<span class='roll-desc'>roll +Violence</span>:",
+		rollPhrase: "roll to [[[Engage in Melee]]] (+Violence).",
 		results: {
 			success: {
 				text: "Get 2 Edges. You may spend them any time during the scene.",
@@ -3604,7 +3607,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "charisma",
-		rollPhrase: "explain what group or organization the mole belongs to, name them, and then <span class='roll-desc'>roll +Charisma</span>:",
+		rollPhrase: "explain what group or organization the mole belongs to, name them, and then roll to [[[Contact Mole]]] (+Charisma).",
 		results: {
 			success: {
 				text: "You receive both options below.",
@@ -3645,7 +3648,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "charisma",
-		rollPhrase: "<span class='roll-desc'>roll +Charisma</span>:",
+		rollPhrase: "roll to [[[Ask About Someone]]] (+Charisma).",
 		results: {
 			success: {
 				text: "You may ask three questions from the list below.",
@@ -3686,7 +3689,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "charisma",
-		rollPhrase: "<span class='roll-desc'>roll +Charisma</span>:",
+		rollPhrase: "roll to [[[Check: Notorious]]] (+Charisma).",
 		results: {
 			success: {
 				text: "They know of your reputation; you can decide what they have heard. The GM will have them act accordingly. You take +2 to your next roll to Influence them.",
@@ -3768,7 +3771,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "reason",
-		rollPhrase: "<span class='roll-desc'>roll +Reason</span>:",
+		rollPhrase: "roll to [[[Do Library Research]]] (+Reason).",
 		results: {
 			success: {
 				text: "Ask the GM two questions from the list below.",
@@ -3809,7 +3812,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "reason",
-		rollPhrase: "<span class='roll-desc'>roll +Reason</span>:",
+		rollPhrase: "roll to [[[Encounter the Occult]]] (+Reason).",
 		results: {
 			success: {
 				text: "Take both options below.",
@@ -3850,7 +3853,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "violence",
-		rollPhrase: "<span class='roll-desc'>roll +Violence</span>:",
+		rollPhrase: "roll to [[[Fight Beside Ally]]] (+Violence).",
 		results: {
 			success: {
 				text: "Get 3 Edges. You may spend them any time during the scene.",
@@ -3932,7 +3935,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "coolness",
-		rollPhrase: "<span class='roll-desc'>roll +Coolness</span>:",
+		rollPhrase: "roll to [[[Execute Acrobatic Maneuver]]] (+Coolness).",
 		results: {
 			success: {
 				text: "Choose two options. You may save one until later.",
@@ -3973,7 +3976,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "charisma",
-		rollPhrase: "<span class='roll-desc'>roll +Charisma</span>:",
+		rollPhrase: "roll to [[[Appear Helpless]]] (+Charisma).",
 		results: {
 			success: {
 				text: "Choose three options. You may save up to two options for use later during the scene.",
@@ -4014,7 +4017,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "reason",
-		rollPhrase: "<span class='roll-desc'>roll +Reason</span>:",
+		rollPhrase: "roll to [[[Investigate Location]]] (+Reason).",
 		results: {
 			success: {
 				text: "Choose three options.",
@@ -4055,7 +4058,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "reason",
-		rollPhrase: "<span class='roll-desc'>roll +Reason</span>:",
+		rollPhrase: "roll to [[[Play Your Pawns]]] (+Reason).",
 		results: {
 			success: {
 				text: "Everyone involved takes +1 ongoing to carry out the plan, and you get one Experience if the plan is successful.",
@@ -4096,7 +4099,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "reason",
-		rollPhrase: "<span class='roll-desc'>roll +Reason</span>:",
+		rollPhrase: "roll to [[[Start Dangerous Mission]]] (+Reason).",
 		results: {
 			success: {
 				text: "Choose up to three options, at any time during the mission.",
@@ -4178,7 +4181,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "perception",
-		rollPhrase: "<span class='roll-desc'>roll +Perception</span>. Examples of a ‘small crowd’ include a party, bar/restaurant, or an office. You decide what specific information you are looking for, as long as it makes sense for the crowd to possess such information:",
+		rollPhrase: "roll to [[[Mingle]]] (+Perception). Examples of a ‘small crowd’ include a party, bar/restaurant, or an office. You decide what specific information you are looking for, as long as it makes sense for the crowd to possess such information.",
 		results: {
 			success: {
 				text: "Ask three questions.",
@@ -4219,7 +4222,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "violence",
-		rollPhrase: "<span class='roll-desc'>roll +Violence</span>:",
+		rollPhrase: "roll to [[[Sacrifice Other]]] (+Violence).",
 		results: {
 			success: {
 				text: "Get 3 Edges. You may spend them any time during the scene.",
@@ -4257,7 +4260,7 @@ const JSONDATA = [
 		},
 		description: {
 			"intro": null,
-			"static": "you may choose from these following questions, in addition to those acquired through investigation:"
+			"static": "you may choose from these following questions, in addition to those acquired through investigation: $QUESTIONS$"
 		},
 		attributemod: null,
 		rollPhrase: null,
@@ -4342,7 +4345,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "charisma",
-		rollPhrase: "<span class='roll-desc'>roll +Charisma</span>:",
+		rollPhrase: "roll to [[[Seduce]]] (+Charisma).",
 		results: {
 			success: {
 				text: "Choose up to three options, useable any time in the story.",
@@ -4383,7 +4386,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "perception",
-		rollPhrase: "<span class='roll-desc'>roll +Perception</span>:",
+		rollPhrase: "roll to [[[Follow]]] (+Perception).",
 		results: {
 			success: {
 				text: "You avoid discovery, follow your target all the way to their final destination, and learn something about them you can use to your advantage later.",
@@ -4424,7 +4427,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "soul",
-		rollPhrase: "<span class='roll-desc'>roll +Soul</span>:",
+		rollPhrase: "roll to [[[Check: Sixth Sense]]] (+Soul).",
 		results: {
 			success: {
 				text: "Choose up to three options, useable any time during the session.",
@@ -4465,7 +4468,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "soul",
-		rollPhrase: "<span class='roll-desc'>roll +Soul</span> to awaken a desire within them:",
+		rollPhrase: "roll to [[[Charm]]] (+Soul) to awaken a desire within them.",
 		results: {
 			success: {
 				text: "Choose one option immediately, and you may choose up to two more any time in the future.",
@@ -4506,7 +4509,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "coolness",
-		rollPhrase: "<span class='roll-desc'>roll +Coolness</span>:",
+		rollPhrase: "roll to [[[Hide & Sneak]]] (+Coolness).",
 		results: {
 			success: {
 				text: "Get 2 options. You may spend them any time during the scene.",
@@ -4547,7 +4550,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "violence",
-		rollPhrase: "<span class='roll-desc'>roll +Violence</span>:",
+		rollPhrase: "roll to [[[Scoped Shot]]] (+Violence).",
 		results: {
 			success: {
 				text: "The shot finds its target. Choose two options.",
@@ -4588,7 +4591,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "charisma",
-		rollPhrase: "<span class='roll-desc'>roll +Charisma</span>:",
+		rollPhrase: "roll to [[[Canvas Street Contacts]]] (+Charisma).",
 		results: {
 			success: {
 				text: "Ask up to three questions.",
@@ -4629,7 +4632,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "violence",
-		rollPhrase: "<span class='roll-desc'>roll +Violence</span>:",
+		rollPhrase: "roll to [[[Engage in Melee]]] (+Violence).",
 		results: {
 			success: {
 				text: "Get 3 Edges. You may spend them any time during the scene.",
@@ -4670,7 +4673,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "charisma",
-		rollPhrase: "<span class='roll-desc'>roll +Charisma</span>:",
+		rollPhrase: "roll to [[[Shop the Black Market]]] (+Charisma).",
 		results: {
 			success: {
 				text: "No problem – you get what you’re after. Someone will fix you right up.",
@@ -4711,7 +4714,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "soul",
-		rollPhrase: "<span class='roll-desc'>roll +Soul</span>:",
+		rollPhrase: "roll to [[[Push Through]]] (+Soul).",
 		results: {
 			success: {
 				text: "Get 3 Edges. You may spend them any time during the scene.",
@@ -4752,7 +4755,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "violence",
-		rollPhrase: "<span class='roll-desc'>roll +Violence</span>. On a success, you may temporarily ignore the effects of the injuries, but you will need treatment to stabilize them as soon as the time limit expires:",
+		rollPhrase: "roll to [[[Refuse to Yield]]] (+Violence). On a success, you may temporarily ignore the effects of the injuries, but you will need treatment to stabilize them as soon as the time limit expires.",
 		results: {
 			success: {
 				text: "You ignore your injuries until the conflict is over, as well as choose one:",
@@ -4793,7 +4796,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "perception",
-		rollPhrase: "<span class='roll-desc'>roll +Perception</span>:",
+		rollPhrase: "roll to [[[Survivalist Skills]]] (+Perception).",
 		results: {
 			success: {
 				text: "Choose up to three options, useable while you remain in this situation.",
@@ -4916,7 +4919,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "reason",
-		rollPhrase: "<span class='roll-desc'>roll +Reason</span>:",
+		rollPhrase: "roll to [[[Execute Trace]]] (+Reason).",
 		results: {
 			success: {
 				text: "Ask up to three of the questions below.",
@@ -4998,7 +5001,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "soul",
-		rollPhrase: "<span class='roll-desc'>roll +Soul</span>:",
+		rollPhrase: "roll to [[[Mass Manipulation]]] (+Soul).",
 		results: {
 			success: {
 				text: "Choose up to three options, useable any time during this scene.",
@@ -5039,7 +5042,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "soul",
-		rollPhrase: "<span class='roll-desc'>roll +Soul</span> to gain insight from your pain:",
+		rollPhrase: "roll to [[[Suffer First Blood]]] (+Soul) to gain insight from your pain.",
 		results: {
 			success: {
 				text: "You get two options.",
@@ -5080,7 +5083,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "perception",
-		rollPhrase: "<span class='roll-desc'>roll +Perception</span>:",
+		rollPhrase: "roll to [[[Wander]]] (+Perception).",
 		results: {
 			success: {
 				text: "You have been here before. Choose two options any time during your visit.",
@@ -5162,7 +5165,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "soul",
-		rollPhrase: "<span class='roll-desc'>roll +Soul</span>:",
+		rollPhrase: "roll to [[[Mad Guidance]]] (+Soul).",
 		results: {
 			success: {
 				text: "You discover a shortcut through the alleys, which takes you to your destination within a few minutes, regardless of how far the distance actually is.",
@@ -5367,7 +5370,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span>:",
+		rollPhrase: "roll to [[[Check: Bad Reputation]]] (+0).",
 		results: {
 			success: {
 				text: "You blend in. Nobody is out to get you.",
@@ -5449,7 +5452,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span> to see if your competitor managed to damage your business:",
+		rollPhrase: "roll to [[[Check: Competitor]]] (+0) to see if your competitor managed to damage your business.",
 		results: {
 			success: {
 				text: "You are safe from your competitor, for the moment.",
@@ -5490,7 +5493,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span>:",
+		rollPhrase: "roll to [[[Check: Condemned]]] (+0).",
 		results: {
 			success: {
 				text: "You still have some time remaining.",
@@ -5531,7 +5534,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span> to see how strongly the curse influences you:",
+		rollPhrase: "roll to [[[Check: Cursed]]] (+0) to see how strongly the curse influences you.",
 		results: {
 			success: {
 				text: "You temporarily avoid the curse’s influence.",
@@ -5572,7 +5575,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span>:",
+		rollPhrase: "roll to [[[Check: Depression]]] (+0).",
 		results: {
 			success: {
 				text: "You remain in control.",
@@ -5613,7 +5616,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span>:",
+		rollPhrase: "roll to [[[Check: Drug Addict]]] (+0).",
 		results: {
 			success: {
 				text: "You are in control of the urge, for now.",
@@ -5654,7 +5657,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span>:",
+		rollPhrase: "roll to [[[Check: Experiment Gone Wrong]]] (+0).",
 		results: {
 			success: {
 				text: "Your experiment leaves you alone.",
@@ -5695,7 +5698,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span>:",
+		rollPhrase: "roll to [[[Check: Fanatic]]] (+0).",
 		results: {
 			success: {
 				text: "You can keep your emotions in check.",
@@ -5736,7 +5739,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span> to see if you are in control of your desire:",
+		rollPhrase: "roll to [[[Check: Greedy]]] (+0) to see if you are in control of your desire.",
 		results: {
 			success: {
 				text: "You keep your greed in check.",
@@ -5777,7 +5780,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span>:",
+		rollPhrase: "roll to [[[Check: Guilt]]] (+0).",
 		results: {
 			success: {
 				text: "Your guilt isn’t on your mind at the moment.",
@@ -5818,7 +5821,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span> to see if you’re harassed:",
+		rollPhrase: "roll to [[[Check: Harassed]]] (+0) to see if you’re harassed.",
 		results: {
 			success: {
 				text: "You’ve managed to keep clear of harassment.",
@@ -5859,7 +5862,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span> to see if the entity gains power over you:",
+		rollPhrase: "roll to [[[Check: Haunted]]] (+0) to see if the entity gains power over you.",
 		results: {
 			success: {
 				text: "The entity leaves you alone.",
@@ -5900,7 +5903,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span>:",
+		rollPhrase: "roll to [[[Check: Infirm]]] (+0).",
 		results: {
 			success: {
 				text: "Your condition is under control.",
@@ -5941,7 +5944,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span>:",
+		rollPhrase: "roll to [[[Check: Involuntary Medium]]] (+0).",
 		results: {
 			success: {
 				text: "You resist the possession.",
@@ -5982,7 +5985,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span> to see if you can keep your cool:",
+		rollPhrase: "roll to [[[Check: Jealousy]]] (+0) to see if you can keep your cool.",
 		results: {
 			success: {
 				text: "You maintain control over your jealousy.",
@@ -6023,7 +6026,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span> to see what trouble your lies have gotten you into this time:",
+		rollPhrase: "roll to [[[Check: Liar]]] (+0) to see what trouble your lies have gotten you into this time.",
 		results: {
 			success: {
 				text: "You have kept your lies tangle-free.",
@@ -6064,7 +6067,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span>:",
+		rollPhrase: "roll to [[[Check: Lost Identity]]] (+0).",
 		results: {
 			success: {
 				text: "You repress your true identity, remaining in the present.",
@@ -6105,7 +6108,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span>:",
+		rollPhrase: "roll to [[[Check: Marked]]] (+0).",
 		results: {
 			success: {
 				text: "You are still in control.",
@@ -6146,7 +6149,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span>:",
+		rollPhrase: "roll to [[[Check: Mental Compulsion]]] (+0).",
 		results: {
 			success: {
 				text: "You control your compulsions and can focus on other things.",
@@ -6187,7 +6190,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span> to see if your nemesis moves against you:",
+		rollPhrase: "roll to [[[Check: Nemesis]]] (+0) to see if your nemesis moves against you.",
 		results: {
 			success: {
 				text: "You are safe from your nemesis for the moment.",
@@ -6228,7 +6231,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span>:",
+		rollPhrase: "roll to [[[Check: Nightmares]]] (+0).",
 		results: {
 			success: {
 				text: "You sleep in peace.",
@@ -6269,7 +6272,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span>:",
+		rollPhrase: "roll to [[[Check: Oath of Revenge]]] (+0).",
 		results: {
 			success: {
 				text: "You remain in control of your vengeful nature and can act rationally.",
@@ -6310,7 +6313,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span>:",
+		rollPhrase: "roll to [[[Check: Object of Desire]]] (+0).",
 		results: {
 			success: {
 				text: "The desire is not awakened at this moment.",
@@ -6351,7 +6354,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span>:",
+		rollPhrase: "roll to [[[Check: Obsession]]] (+0).",
 		results: {
 			success: {
 				text: "You overcome your obsession for the moment.",
@@ -6392,7 +6395,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span>:",
+		rollPhrase: "roll to [[[Check: Owned]]] (+0).",
 		results: {
 			success: {
 				text: "For the moment, you are safe.",
@@ -6515,7 +6518,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span> to determine if the memories resurface:",
+		rollPhrase: "roll to [[[Check: Repressed Memories]]] (+0) to determine if the memories resurface.",
 		results: {
 			success: {
 				text: "You continue to suppress the memories.",
@@ -6556,7 +6559,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span>:",
+		rollPhrase: "roll to [[[Check: Rival]]] (+0).",
 		results: {
 			success: {
 				text: "All clear; your rival makes no moves against you.",
@@ -6597,7 +6600,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span>:",
+		rollPhrase: "roll to [[[Check: Schizophrenia]]] (+0).",
 		results: {
 			success: {
 				text: "You maintain control of your insanity.",
@@ -6638,7 +6641,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span>:",
+		rollPhrase: "roll to [[[Check: Sexual Neurosis]]] (+0).",
 		results: {
 			success: {
 				text: "You can control your urges.",
@@ -6679,7 +6682,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span>:",
+		rollPhrase: "roll to [[[Check: Stalker]]] (+0).",
 		results: {
 			success: {
 				text: "You are safe for now.",
@@ -6720,7 +6723,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span>:",
+		rollPhrase: "roll to [[[Check: Victim of Passion]]] (+0).",
 		results: {
 			success: {
 				text: "You keep your passion in check.",
@@ -6761,7 +6764,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: null,
-		rollPhrase: "<span class='roll-desc'>roll +0</span> to see if you’ve been discovered:",
+		rollPhrase: "roll to [[[Check: Wanted]]] (+0) to see if you’ve been discovered.",
 		results: {
 			success: {
 				text: "You are safe, for now.",
@@ -6802,7 +6805,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "coolness",
-		rollPhrase: "the GM will explain what the consequences for failure are and you <span class='roll-desc'>roll +Coolness</span>:",
+		rollPhrase: "the GM will explain what the consequences for failure are and you roll +Coolness.",
 		results: {
 			success: {
 				text: "You do what you intended.",
@@ -6843,7 +6846,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "reflexes",
-		rollPhrase: "<span class='roll-desc'>roll +Reflexes</span>:",
+		rollPhrase: "roll +Reflexes.",
 		results: {
 			success: {
 				text: "You emerge completely unharmed.",
@@ -6884,7 +6887,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "fortitude",
-		rollPhrase: "<span class='roll-desc'>roll +Fortitude +Armor −Harm</span>:",
+		rollPhrase: "roll +Fortitude +Armor −Harm.",
 		results: {
 			success: {
 				text: "You ride out the pain and keep going.",
@@ -6925,7 +6928,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "violence",
-		rollPhrase: "explain how and <span class='roll-desc'>roll +Violence</span>:",
+		rollPhrase: "explain how and roll +Violence.",
 		results: {
 			success: {
 				text: "You inflict damage to your opponent and avoid counterattacks.",
@@ -6966,7 +6969,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "ask",
-		rollPhrase: "explain how before their roll and <span class='roll-desc'>roll +Attribute</span>, where the Attribute is the same as the other player is rolling:",
+		rollPhrase: "explain how before their roll and roll +Attribute, where the Attribute is the same as the other player is rolling.",
 		results: {
 			success: {
 				text: "You may modify the subsequent roll by +2.",
@@ -7007,7 +7010,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "ask",
-		rollPhrase: "explain how before their roll and <span class='roll-desc'>roll +Attribute</span>, where the Attribute is the same as the other player is rolling:",
+		rollPhrase: "explain how before their roll and roll +Attribute, where the Attribute is the same as the other player is rolling.",
 		results: {
 			success: {
 				text: "You may modify the subsequent roll by −2.",
@@ -7048,7 +7051,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "charisma",
-		rollPhrase: "<span class='roll-desc'>roll +Charisma</span>:",
+		rollPhrase: "roll +Charisma.",
 		results: {
 			success: {
 				text: "She does what you ask",
@@ -7089,7 +7092,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "charisma",
-		rollPhrase: "<span class='roll-desc'>roll +Charisma</span>:",
+		rollPhrase: "roll +Charisma.",
 		results: {
 			success: {
 				text: "Both options below.",
@@ -7130,7 +7133,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "reason",
-		rollPhrase: "<span class='roll-desc'>roll +Reason</span>:",
+		rollPhrase: "roll +Reason.",
 		results: {
 			success: {
 				text: "You uncover all direct leads, and may ask two questions to get additional information.",
@@ -7171,7 +7174,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "willpower",
-		rollPhrase: "<span class='roll-desc'>roll +Willpower</span>:",
+		rollPhrase: "roll +Willpower.",
 		results: {
 			success: {
 				text: "You grit your teeth and stay the course.",
@@ -7212,7 +7215,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "perception",
-		rollPhrase: "<span class='roll-desc'>roll +Perception</span>:",
+		rollPhrase: "roll +Perception.",
 		results: {
 			success: {
 				text: "Ask two questions about the current situation. When you act on these answers, gain +1 to your rolls.",
@@ -7253,7 +7256,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "intuition",
-		rollPhrase: "<span class='roll-desc'>roll +Intuition</span>:",
+		rollPhrase: "roll +Intuition.",
 		results: {
 			success: {
 				text: "You may ask the GM or player two questions about the target any time you are in conversation with them during this scene.",
@@ -7294,7 +7297,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "soul",
-		rollPhrase: "<span class='roll-desc'>roll +Soul</span> to See Through the Illusion:",
+		rollPhrase: "roll +Soul to See Through the Illusion.",
 		results: {
 			success: {
 				text: "You perceive things as they truly are.",
@@ -7376,7 +7379,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "reason",
-		rollPhrase: "<span class='roll-desc'>roll +Reason</span>:",
+		rollPhrase: "roll to [[[Disarm Explosive]]] (+Reason).",
 		results: {
 			success: {
 				text: "The bomb is deactivated.",
@@ -7417,7 +7420,7 @@ const JSONDATA = [
 			"static": null
 		},
 		attributemod: "perception",
-		rollPhrase: "<span class='roll-desc'>roll +Perception</span>:",
+		rollPhrase: "roll to [[[Evade a Shadow]]] (+Perception).",
 		results: {
 			success: {
 				text: "You shake your pursuers and can choose to try to shadow them instead.",
@@ -7442,4 +7445,218 @@ const JSONDATA = [
 	}
 ];
 
-export default JSONDATA;
+// Iterate over Items, adding data for linked move(s)
+JSONDATA.forEach((itemData) => {
+	itemData.moves = itemData.moves ?? [];
+	if (["advantage", "disadvantage"].includes(itemData.itemType) && itemData.trigger) {
+		itemData.moves.push(getMoveData(itemData));
+	} else if (/^[^A-Za-z]/.test(itemData.itemType)) {
+		const parentItem = JSONDATA.find((item) => item.name === itemData.itemType.slice(1));
+		parentItem.moves = parentItem.moves ?? [];
+		parentItem.moves.push(getMoveData(itemData, {
+			"+": "advantage",
+			"-": "disadvantage"
+		}[itemData.itemType.charAt(0)]));
+	}
+});
+
+function getMoveData(itemData, altMoveType = false) {
+	itemData = {...itemData};
+	if (altMoveType) {
+		itemData = {
+			...itemData,
+			linkName: itemData.itemType.slice(1),
+			linkType: altMoveType,
+			name: itemData.moveName ?? itemData.name,
+			itemType: "move"
+		};
+	} else {
+		itemData = {
+			...itemData,
+			linkName: itemData.name,
+			linkType: itemData.itemType,
+			name: itemData.moveName ?? itemData.name,
+			itemType: "move"
+		};
+	}
+	delete itemData.moves;
+	return itemData;
+}
+
+const tagWrap = (tag, lines, classes, delim = "", isResolvingList = false) => {
+	lines = [lines].flat().filter((line) => Boolean(line));
+	if (lines.length) {
+		lines = lines.join(delim);
+		if (/\$(OPTIONS|QUESTIONS)\$/.test(lines)) {
+			const listType = lines.match(/\$(OPTIONS|QUESTIONS)\$/)[1];
+			if (isResolvingList) {
+				const afterLines = lines.match(new RegExp(`\\$${listType}\\$(.*)$`))?.[1]?.trim() ?? "";
+				lines = lines.replace(new RegExp(`\\s*\\$${listType}\\$.*$`), "");
+				return [
+					`<${tag}${classes ? ` class="${classes}"` : ""}>${lines}</${tag}>`,
+					`@@@${listType}@@@`,
+					afterLines.length > 0 ? `<${tag}${classes ? ` class="${classes}"` : ""}>${afterLines}</${tag}>` : ""
+				].join("");
+			}
+			lines = lines.replace(new RegExp(`\\s*\\$${listType}\\$`), "").trim();
+			return `<${tag}${classes ? ` class="${classes}"` : ""}>${lines}</${tag}>$${listType}$`;
+		}
+		return `<${tag}${classes ? ` class="${classes}"` : ""}>${lines}</${tag}>`;
+	}
+	return "";
+};
+
+const tagStrip = (str) => {
+	if (str) {
+		do {
+			str = `${str}`.replace(/<[^>]+>(.*)<\/[^>]+>/g, "$1");
+		} while (/<[^>]+>(.*)<\/[^>]+>/.test(str));
+	}
+	return str;
+};
+
+const getTypeName = (type) => ({
+	advantage: "Advantage",
+	disadvantage: "Disadvantage",
+	weapon: "Weapon",
+	gear: "Gear",
+	darksecret: "Dark Secret",
+	relationship: "Relation"
+}[type]);
+
+const subMoveCheck = (data) => {
+	if (data.linkName) {
+		return `<span class="source-name">${getTypeName(data.linkType)}: ${data.linkName}</span>`;
+	}
+	return "";
+};
+const centerCheck = (resultData) => {
+	if (!resultData || !resultData.text) { return "" }
+	if (!resultData.list && tagStrip(resultData.text).length <= 60) {
+		return `<p class="center-text">${resultData.text}</p>`;
+	}
+	return `<p>${resultData.text}</p>`;
+};
+const listCheck = (listLines) => {
+	listLines = [listLines].flat().filter((line) => Boolean(line));
+	if (listLines.length) {
+		return `<ul>${listLines.map((line) => `<li>${line}</li>`).join("\n")}</ul>`;
+	}
+	return "";
+};
+const suffixCheck = (resultData, suffixData) => {
+	if (/Hold/.test(`${resultData.text}${resultData.list?.join("")}`) && /Hold/.test(suffixData.text)) {
+		return `<p>${suffixData.text}</p>${listCheck(suffixData.list)}`;
+	}
+	return "";
+};
+const imgCheck = async (itemData) => {
+	// return `modules/kult4eoverrides/assets/icons/${itemData.itemType}/${itemData.itemType}-default.svg`;
+	let imgSrc, imgExists;
+	if (itemData.moveName) {
+		imgSrc = `modules/kult4eoverrides/assets/icons/move/${itemData.moveName.replace(/\s/g, "-").replace(/[:]/g, "").toLowerCase()}.svg`;
+		try {
+			imgExists = await srcExists(imgSrc);
+		} catch (errObj) {
+			imgExists = false;
+		}
+	}
+	if (!imgExists) {
+		imgSrc = `modules/kult4eoverrides/assets/icons/${itemData.itemType}/${itemData.name.replace(/\s/g, "-").toLowerCase()}.svg`;
+		try {
+			imgExists = await srcExists(imgSrc);
+		} catch (errObj) {
+			imgExists = false;
+		}
+	}
+	if (!imgExists) {
+		imgSrc = `modules/kult4eoverrides/assets/icons/${itemData.itemType}/${itemData.itemType}-default.svg`;
+	}
+	return imgSrc;
+};
+const descriptionCheck = (itemData) => tagWrap("div", [
+	subMoveCheck(itemData),
+	tagWrap("p", [
+		itemData.description.intro,
+		tagWrap("span", itemData.trigger, "item-trigger"),
+		itemData.description.static,
+		itemData.rollPhrase
+	], null, " ", true),
+	...itemData.hasEdges
+		? [
+				centerCheck({text: `This ${getTypeName(itemData.itemType)} grants <span class="item-keyword">Edges</span>.`}),
+				"Spend <span class=\"item-keyword\">Edges</span> to:",
+				listCheck(itemData.lists.edges)
+			]
+		: [],
+	tagWrap("p", [
+		itemData.suffix.text,
+		listCheck(itemData.suffix.list)
+	], null, "", true)
+], "item-text", "\n")
+	.replace(/@@@OPTIONS@@@/, listCheck(itemData.lists.options))
+	.replace(/@@@QUESTIONS@@@/, listCheck(itemData.lists.questions));
+const resultCheck = (result, data, isCheckingSubMove = true) => {
+	if (!result) { return result }
+	return tagWrap("div", [
+		subMoveCheck(data),
+		tagWrap("p", result.list ? result.text : centerCheck(result)),
+		listCheck(result.list),
+		suffixCheck(result, data.suffix)
+	], "item-text");
+};
+
+// SECOND PASS: Construct item data in accordance with kult4e template.json
+const PARSERS = {
+	move: async (data) => ({
+		...{
+			"name": data.moveName ?? data.name,
+			"type": "move",
+			"img": await imgCheck(data),
+			"data.attributemod": data.attributemod ?? "none",
+			"data.completesuccess": resultCheck(data.results.success, data),
+			"data.partialsuccess": resultCheck(data.results.partial, data),
+			"data.failure": resultCheck(data.results.fail, data),
+			"data.trigger": descriptionCheck(data, true),
+			"data.specialflag": {
+				"keep it together": 1,
+				"see through the illusion": 2,
+				"endure injury": 3
+			}[data.name.toLowerCase()] ?? 0
+		},
+		...data.linkName
+			? {
+					"flags.kult4eoverrides.linkName": data.linkName,
+					"flags.kult4eoverrides.linkType": data.linkType
+				}
+			: {}
+	}),
+	advantage: async (data) => ({
+		"name": data.name,
+		"type": "advantage",
+		"img": await imgCheck(data),
+		"data.attributemod": data.attributemod ?? "none",
+		"data.type": data.type,
+		"data.effect": descriptionCheck(data),
+		"data.tokens": data.hasTokens ? 0 : "",
+		"data.hasTokens": data.hasTokens,
+		"flags.kult4eoverrides.movesJSON": data.moves?.length ? JSON.stringify(data.moves) : null
+	}),
+	disadvantage: async (data) => ({
+		"name": data.name,
+		"type": "disadvantage",
+		"img": await imgCheck(data),
+		"data.attributemod": data.attributemod ?? "none",
+		"data.type": data.type,
+		"data.effect": descriptionCheck(data),
+		"data.tokens": data.hasTokens ? 0 : "",
+		"data.hasTokens": data.hasTokens,
+		"flags.kult4eoverrides.movesJSON": data.moves?.length ? JSON.stringify(data.moves) : null
+	})
+};
+
+export default JSONDATA.filter((itemData) => /^[A-Za-z]/.test(itemData.itemType));
+
+export {
+	PARSERS
+};

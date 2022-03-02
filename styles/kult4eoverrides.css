@@ -42,6 +42,44 @@
   --font-longtext: "Caslon Antique";
 }
 
+.center-text {
+  text-align: center !important;
+}
+
+.item-trigger {
+  font-style: italic;
+  color: var(--gold-bright);
+}
+
+.item-gm-phrase {
+  font-weight: bold;
+  color: var(--red-bright);
+}
+
+.item-roll-desc, .item-keyword {
+  font-weight: bold;
+  color: var(--blue-fg);
+}
+
+.item-move-name {
+  color: var(--blue-fg);
+  font-style: italic;
+  font-weight: normal !important;
+}
+
+.item-move-name * {
+  font-weight: normal !important;
+}
+
+.source-name {
+  font-size: 12px;
+  text-align: right;
+  display: block;
+  font-variant: small-caps;
+  color: var(--gold-bright);
+  font-style: italic;
+}
+
 .item-text {
   text-align: justify;
   -webkit-hyphens: auto;
@@ -60,35 +98,6 @@
   list-style-type: square;
   text-indent: -5px;
   margin-left: 5px;
-}
-
-.item-text .item-trigger {
-  font-style: italic;
-  color: var(--gold-bright);
-}
-
-.item-text .item-gm-phrase {
-  font-weight: bold;
-  color: var(--red-bright);
-}
-
-.item-text .roll-desc, .item-text .item-keyword {
-  font-weight: bold;
-  color: var(--blue-fg);
-}
-
-.item-text .item-move-name {
-  color: var(--blue-fg);
-  font-style: italic;
-}
-
-.item-text .source-name {
-  font-size: 12px;
-  text-align: right;
-  display: block;
-  font-variant: small-caps;
-  color: var(--gold-bright);
-  font-style: italic;
 }
 
 .vtt.game.system-kult4e .chat-message {
