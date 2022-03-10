@@ -46,10 +46,20 @@
         </select>
 			</div>
 			<div class="specs">
-        <div class="spec">
-					<label class="spec-label">XP:</label>
-					<input class="spec-input" name="flags.kult4eoverrides.xp" type="number" value="{{flags.kult4eoverrides.xp}}" placeholder="0">
-        </div>
+				{{#if actor.koFlags.heldEdges}}
+					<div class="spec edge-spec">
+						<div class="edge-count">{{actor.koFlags.heldEdges}}</div>
+						<div class="edge-label">
+							<span class="edge-title">Edge{{#if (gte actor.koFlags.heldEdges 2)}}s{{/if}}</span>
+							<span class="edge-name">{{actor.koFlags.edgeSource}}</span>
+						</div>
+					</div>
+				{{else}}
+					<div class="spec">
+						<label class="spec-label">XP:</label>
+						<input class="spec-input" name="flags.kult4eoverrides.xp" type="number" value="{{flags.kult4eoverrides.xp}}" placeholder="0">
+					</div>
+				{{/if}}
         <div class="spec">
 					<label class="spec-label two-line">Persistent<br/>Modifier:</label>
 					<select class="spec-input" name="data.forward" value="{{data.forward}}">
@@ -316,29 +326,53 @@
       </div>
 			<div class="move-column">
 				<div class="section-label">{{localize "kult4eOverrides.BasicMoves"}}</div>
-				<div class="item-list move-list">
-					{{#each moves as |move id|}}
+				<div class="item-list card-list">
+					{{#each moves.basic as |move id|}}
 					{{#if (eq move.type "move")}}
-					{{> "modules/kult4eoverrides/templates/partials/move-card.hbs" data=move isSheetOpen=../isSheetOpen}}
+					{{> "modules/kult4eoverrides/templates/partials/card.hbs" data=move isSheetOpen=../isSheetOpen moveType="basic" typeDisplay="Move"}}
 					{{/if}}
 					{{/each}}
 				</div>
       </div>
-      <div class="right-middle-column">
-				<div class="section-label" style="display: none;">{{localize "kult4eOverrides.SpecialMoves"}}</div>
-				<div class="item-list move-list special-move-list" style="display: none;">
-
+      <div class="move-column right-middle-column">
+				<div class="section-label">{{localize "kult4eOverrides.SpecialMoves"}}</div>
+				<div class="item-list card-list">
+					{{#each moves.advantage as |move id|}}
+					{{#if (eq move.type "move")}}
+					{{> "modules/kult4eoverrides/templates/partials/card.hbs" data=move isSheetOpen=../isSheetOpen moveType="advantage" typeDisplay="Move" isRolled=flags.kult4eoverrides.isRolled}}
+					{{/if}}
+					{{/each}}
+					{{#each moves.disadvantage as |move id|}}
+					{{#if (eq move.type "move")}}
+					{{> "modules/kult4eoverrides/templates/partials/card.hbs" data=move isSheetOpen=../isSheetOpen moveType="disadvantage" typeDisplay="Move" isRolled=flags.kult4eoverrides.isRolled}}
+					{{/if}}
+					{{/each}}
+					{{#each moves.weapon as |move id|}}
+					{{#if (eq move.type "move")}}
+					{{> "modules/kult4eoverrides/templates/partials/card.hbs" data=move isSheetOpen=../isSheetOpen moveType="weapon" typeDisplay="Move" isRolled=flags.kult4eoverrides.isRolled}}
+					{{/if}}
+					{{/each}}
+					{{#each moves.gear as |move id|}}
+					{{#if (eq move.type "move")}}
+					{{> "modules/kult4eoverrides/templates/partials/card.hbs" data=move isSheetOpen=../isSheetOpen moveType="gear" typeDisplay="Move" isRolled=flags.kult4eoverrides.isRolled}}
+					{{/if}}
+					{{/each}}
+					{{#each moves.relationship as |move id|}}
+					{{#if (eq move.type "move")}}
+					{{> "modules/kult4eoverrides/templates/partials/card.hbs" data=move isSheetOpen=../isSheetOpen moveType="relationship" typeDisplay="Move" isRolled=flags.kult4eoverrides.isRolled}}
+					{{/if}}
+					{{/each}}
 				</div>
 				<div class="section-label">{{localize "kult4e.Advantages"}}</div>
-				<div class="item-list advantage-list" style="padding: 0;">
+				<div class="item-list card-list" style="padding: 0;">
 					{{#each advantages as |advantage id|}}
-					{{> "modules/kult4eoverrides/templates/partials/advantage-card.hbs" data=advantage isSheetOpen=../isSheetOpen}}
+					{{> "modules/kult4eoverrides/templates/partials/card.hbs" data=advantage isSheetOpen=../isSheetOpen typeDisplay="Advantage" isRolled=flags.kult4eoverrides.isRolled}}
 					{{/each}}
 				</div>
 				<div class="section-label">{{localize "kult4e.Disadvantages"}}</div>
-				<div class="item-list disadvantage-list" style="padding: 0;">
+				<div class="item-list card-list" style="padding: 0;">
 					{{#each disadvantages as |disadvantage id|}}
-					{{> "modules/kult4eoverrides/templates/partials/disadvantage-card.hbs" data=disadvantage isSheetOpen=../isSheetOpen}}
+					{{> "modules/kult4eoverrides/templates/partials/card.hbs" data=disadvantage isSheetOpen=../isSheetOpen isGM=../isGM typeDisplay="Disadvantage" isRolled=flags.kult4eoverrides.isRolled}}
 					{{/each}}
 				</div>
         <div class="section-label">{{localize "kult4e.Wounds"}}</div>
@@ -467,7 +501,7 @@
 			<input type="text" class="dramatic-hook" name="flags.kult4eoverrides.dramaticHooks.1" type="text"
 				value="{{flags.kult4eoverrides.dramaticHooks.[1]}}"></input>
 		</div>
-		<div class="two-column" style="display: none;">
+		<div class="two-column">
 			<div class="advancement-column">
 				<div class="section-label">
 					{{localize "kult4eOverrides.Advancements"}}

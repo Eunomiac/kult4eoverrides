@@ -2,11 +2,12 @@
 * {
   --bg: black;
   --gold-fg: #9b8d68;
-  --gold-bright: #fff3b5;
-  --gold-dim: #8d762a;
-  --gold-dark: #262000;
-  --gold-fade: #7a7971;
-  --gold-glow: #ffdd00;
+  --gold-bright: #ffebb5;
+  --gold-bright50: rgba(255, 243, 181, 0.5);
+  --gold-dim: #8d722a;
+  --gold-dark: #261c00;
+  --gold-fade: #7a7871;
+  --gold-glow: #ffb900;
   --red-fg: #9b201f;
   --red-bright: #ff2020;
   --red-dim: #6d1616;
@@ -56,18 +57,23 @@
   color: var(--red-bright);
 }
 
-.item-roll-desc, .item-keyword {
+.item-roll-desc,
+.item-keyword {
   font-weight: bold;
   color: var(--blue-fg);
 }
 
 .item-move-name {
-  color: var(--blue-fg);
-  font-style: italic;
+  color: var(--red-bright);
   font-weight: normal !important;
 }
 
 .item-move-name * {
+  font-weight: normal !important;
+}
+
+.edge-name {
+  color: var(--gold-bright);
   font-weight: normal !important;
 }
 
@@ -80,24 +86,57 @@
   font-style: italic;
 }
 
-.item-text {
+.item-text,
+.message-content {
   text-align: justify;
   -webkit-hyphens: auto;
   -ms-hyphens: auto;
   hyphens: auto;
 }
 
-.item-text p {
-  text-align: justify;
-  -webkit-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto;
+.item-text p,
+.message-content p {
+  text-align: inherit;
+  -webkit-hyphens: inherit;
+  -ms-hyphens: inherit;
+  hyphens: inherit;
 }
 
-.item-text ul li {
+.item-text ul li,
+.message-content ul li {
   list-style-type: square;
   text-indent: -5px;
   margin-left: 5px;
+}
+
+/* Darker text on medium background */
+.dark-on-dark {
+  color: #333;
+  background-color: #666;
+  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5);
+  /* 50% white from bottom */
+}
+
+/* Medium text on lighter background */
+.med-on-light {
+  color: #666;
+  background-color: #aaa;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);
+  /* 50% black coming from the top */
+}
+
+/* Middle-tone colors with 1 shadow */
+.mid-one-shadow {
+  color: #3b5957;
+  background-color: #5d8d89;
+  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5);
+}
+
+/* Middle-tone colors with 2 shadows */
+.mid-two-shadow {
+  color: #3b5957;
+  background-color: #5d8d89;
+  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3), 0px -1px 0px rgba(0, 0, 0, 0.7);
 }
 
 .vtt.game.system-kult4e .chat-message {
@@ -159,32 +198,6 @@
   top: -5px;
   margin-bottom: -20px;
   left: -3px;
-}
-
-.vtt.game.system-kult4e .app.window-app.sheet .window-content a.item-control {
-  margin: 1px;
-  -webkit-transform: scale(1.15);
-  -ms-transform: scale(1.15);
-  transform: scale(1.15);
-  color: var(--grey-fg);
-  padding: 1px;
-  -webkit-filter: blur(0.5px);
-  filter: blur(0.5px);
-  opacity: 0.5;
-}
-
-.vtt.game.system-kult4e .app.window-app.sheet .window-content a.item-control.item-show {
-  margin: 3px 3px 1px 1px;
-  color: var(--grey-brightest);
-  -webkit-filter: none;
-  filter: none;
-}
-
-.vtt.game.system-kult4e .app.window-app.sheet .window-content a.item-control:hover {
-  color: var(--grey-brightest);
-  -webkit-filter: none;
-  filter: none;
-  opacity: 1;
 }
 
 .vtt.game.system-kult4e .app.window-app.sheet .window-content .two-column > *:last-child {
@@ -366,6 +379,51 @@
   text-align: right;
 }
 
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .specs .spec.edge-spec {
+  height: 31px;
+  text-align: center;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .specs .spec.edge-spec .edge-count, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .specs .spec.edge-spec .edge-label {
+  display: inline-block;
+  color: var(--blue-fg);
+  position: relative;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .specs .spec.edge-spec .edge-count {
+  width: 15%;
+  font-size: 29px;
+  font-family: 'Infidel';
+  -webkit-transform-origin: top right;
+  -ms-transform-origin: top right;
+  transform-origin: top right;
+  -webkit-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  transform: scale(1.5);
+  top: -9px;
+  text-align: right;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .specs .spec.edge-spec .edge-name {
+  font-size: 8px;
+  display: block;
+  text-align: right;
+  position: relative;
+  top: -5px;
+  font-style: italic;
+  padding-right: 3px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .specs .spec.edge-spec .edge-title {
+  color: var(--blue-fg);
+  text-transform: uppercase;
+  font-weight: bold;
+  position: relative;
+  top: -3px;
+  display: block;
+  text-align: left;
+}
+
 .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .character-name input {
   margin: 0;
   width: 100%;
@@ -517,37 +575,122 @@
   padding: 5px;
 }
 
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .move-column .move-list {
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list {
   -webkit-columns: 250px;
   -moz-columns: 250px;
   columns: 250px;
   padding: 0;
 }
 
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .move-column .move-list .move-card {
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card {
+  --card-border: var(--grey-fg);
+  --card-fg: var(--grey-brightest);
+  --card-bg: var(--bg);
+  --card-img-filter: none;
+  --card-weight: normal;
+  --card-text-shadow: inherit;
+  --card-border-style: outset;
   padding: 0;
-  color: var(--gold-bright);
-}
-
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .move-column .move-list .move-card .move-info a.move-roll {
-  line-height: 20px;
-  padding: 0;
-  display: inline-block;
+  color: var(--card-fg);
+  background: var(--card-bg);
+  font-weight: var(--card-weight);
+  border-radius: 5px;
+  border: 2px var(--card-border-style) var(--card-border);
   overflow: hidden;
+  text-shadow: var(--card-text-shadow);
+  margin: 0 5px 1px 5px;
 }
 
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .move-column .move-list .move-card .move-info a.move-roll img {
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card.move-advantage {
+  --card-border: var(--gold-fg);
+  --card-bg: linear-gradient(45deg, rgba(141,114,42,1) 0%, rgba(38,28,0,1) 100%);
+  --card-img-filter: invert(1) drop-shadow(0px 1px 0px var(--gold-bright50));
+  --card-fg: var(--bg);
+  --card-weight: bold;
+  --card-text-shadow: 0px 1px 1px var(--gold-bright50);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card.move-disadvantage {
+  --card-border: var(--red-fg);
+  --card-fg: var(--red-fg);
+  --card-img-filter: sepia(1) hue-rotate(288deg) brightness(0.3) saturate(100);
+  --card-weight: bold;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card.move-weapon {
+  --card-border: var(--red-dim);
+  --card-fg: var(--bg);
+  --card-bg: linear-gradient(45deg, rgba(109,22,22,1) 0%, rgba(255,32,32,1) 100%);
+  --card-img-filter: invert(1);
+  --card-weight: bold;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .advantage-column.hold-tally {
+  margin-left: 20px;
+  color: black;
+  text-shadow: 0 0 2px black, 0 0 5px black;
+  font-weight: bold;
+  background: var(--red-bright);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable {
+  padding-right: 5px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a {
+  line-height: 19px;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control {
+  color: var(--grey-fg);
+  -webkit-filter: blur(0.5px);
+  filter: blur(0.5px);
+  opacity: 0.5;
+  margin: 0 1px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control.item-show, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control.item-view {
+  margin: 0 0 0px 6px;
+  color: var(--grey-brightest);
+  -webkit-filter: none;
+  filter: none;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control.item-show.item-show i, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control.item-view.item-show i {
+  line-height: 21px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control.item-show.item-view, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control.item-view.item-view {
+  margin: 0;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control:hover {
+  color: var(--grey-brightest);
+  -webkit-filter: none;
+  filter: none;
+  opacity: 1;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a img {
+  height: 20px;
+  width: 20px;
   vertical-align: text-bottom;
   padding: 0;
   border: 0;
   -webkit-transform-origin: center;
   -ms-transform-origin: center;
   transform-origin: center;
-  -webkit-transform: scale(1.15);
-  -ms-transform: scale(1.15);
-  transform: scale(1.15);
-  -webkit-filter: sepia(1) hue-rotate(20deg) saturate(2);
-  filter: sepia(1) hue-rotate(20deg) saturate(2);
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+  -webkit-filter: var(--card-img-filter);
+  filter: var(--card-img-filter);
+  position: relative;
+  top: 0px;
 }
 
 .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .right-middle-column {

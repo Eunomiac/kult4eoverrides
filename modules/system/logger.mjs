@@ -4,7 +4,13 @@ const kultOverridesDebugger = (type, message, ...content) => {
 			...STYLES.base,
 			...STYLES[type] ?? {}
 		}).map(([prop, val]) => `${prop}: ${val};`).join(" ");
-		console.log(`%c${message}`, styleLine, ...content);
+		if (content.length) {
+			console.group(`%c${message}`, styleLine);
+			content.forEach((line) => console.dir(line));
+			console.groupEnd();
+		} else {
+			console.log(`%c${message}`, styleLine);
+		}
 	}
 };
 

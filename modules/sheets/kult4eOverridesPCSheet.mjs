@@ -14,8 +14,10 @@ export default class kult4eOverridesPCSheet extends kult4ePCsheet {
 
 	getData() {
 		const data = super.getData();
+		data.isGM = game.user.isGM;
 		data.flags = this.actor.data.flags;
 		data.isSheetOpen = data.flags?.kult4eoverrides?.isSheetOpen ?? false;
+
 		/*DEVCODE*/
 		data.advancementLines = [
 			{template: "boxline", type: "aware", index: 0, isActive: true, boxes: [true, false, false, false, false, false], label: "+1 <u>active</u> Attribute <i>(+3 max)</i>"},
@@ -33,10 +35,9 @@ export default class kult4eOverridesPCSheet extends kult4ePCsheet {
 
 		/* Filter for items with moves attached, create data.specialMoves schema
 			 for different categories of move */
-		data.specialMoves = {
-			advantage: data.advantages.filter((advantage) => advantage.type === "advantage")
-		};
+		data.moves = this.actor.moves;
 
+		// KO.log("getData() -> Actor Moves", data.moves);
 		/* koFlags schema for Advancements --> Array, ordered by purchases.
 			[
 				{
@@ -62,8 +63,15 @@ export default class kult4eOverridesPCSheet extends kult4ePCsheet {
 		html.find(".token-add-edge").click((event) => {
 			const li = $(event.currentTarget).parents(".item-name");
 			const item = this.actor.getEmbeddedDocument("Item", li.data("itemId"));
+			if (item.name !== this.actor.koFlags.edgeSource) {
+				if (this.actor.koFlags.edgeSource) {
+					this.actor.items.find((itm) => itm.name === this.actor.koFlags.edgeSource)?.update({"data.tokens": 0});
+				}
+				this.actor.setFlag("kult4eoverrides", "edgeSource", item.name);
+			}
 			const newtokens = Number(item.data.data.tokens) + 1;
 			KO.log("Add Tokens => ", {currentTokens: item.data.data.tokens, newTokens: newtokens});
+			this.actor.setFlag("kult4eoverrides", "heldEdges", newtokens);
 			item.update({"data.tokens": newtokens});
 		});
 
@@ -72,6 +80,10 @@ export default class kult4eOverridesPCSheet extends kult4ePCsheet {
 			const item = this.actor.getEmbeddedDocument("Item", li.data("itemId"));
 			const newtokens = Number(item.data.data.tokens) - 1;
 			item.update({"data.tokens": newtokens});
+			this.actor.setFlag("kult4eoverrides", "heldEdges", newtokens);
+			if (newtokens === 0) {
+				this.actor.setFlag("kult4eoverrides", "edgeSource", null);
+			}
 		});
 
 		html.find(".sheet-lock").click((event) => {

@@ -29,6 +29,7 @@ export const TEMPLATES = {
 	relationshipCard: "modules/kult4eoverrides/templates/partials/relationship-card.hbs",
 	weapon: "modules/kult4eoverrides/templates/sheets/weapon-sheet.hbs",
 	weaponCard: "modules/kult4eoverrides/templates/partials/weapon-card.hbs",
+	card: "modules/kult4eoverrides/templates/partials/card.hbs",
 	advancementBoxes: "modules/kult4eoverrides/templates/partials/advancement-line-boxes.hbs",
 	advancementLabel: "modules/kult4eoverrides/templates/partials/advancement-line-label.hbs",
 	advancementHeader: "modules/kult4eoverrides/templates/partials/advancement-line-header.hbs"

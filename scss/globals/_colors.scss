@@ -1,10 +1,44 @@
+@function rotateToTarget($targetColor, $sourceColor) {
+	$targetHue: hue($targetColor);
+	$sourceHue: hue($sourceColor);
+	$deltaHue: $targetHue - $sourceHue;
+	@return adjust-hue($sourceColor, $deltaHue);
+}
+
+
 // Golds
 $gold: rgb(155, 141, 104); // System
 $gold-darkest: rgb(38, 32, 0);
 $gold-dark: rgb(141, 118, 42); // System
 $gold-grey: rgb(122, 121, 113); // System
 $gold-bright: rgb(255, 243, 181);
+$gold-bright50: rgba(255, 243, 181, 0.5);
 $gold-glow: rgb(255, 221, 0); // System
+
+// @debug "Gold" hue($gold);
+// @debug "G-Darkest" hue($gold-darkest);
+// @debug "G-Dark" hue($gold-dark);
+// @debug "G-Grey" hue($gold-grey);
+// @debug "G-Bright" hue($gold-bright);
+// @debug "G-Glow" hue($gold-glow);
+
+$gold: #9b8d68; // System
+$gold-darkest: #261c00;
+$gold-dark: #8d722a; // System
+$gold-grey: #7a7871; // System
+$gold-bright: #ffebb5;
+$gold-glow: #ffb900; // System
+
+// @debug "Rotate" rotateToTarget($gold, $gold-glow);
+
+
+// $test: #ffb6b5;
+// $gold: #9b8d68; // System
+// $gold-darkest: #262000;
+// $gold-dark: #8d762a; // System
+// $gold-grey: #7a7971; // System
+// $gold-bright: #fff3b5;
+// $gold-glow: #ffdd00; // System
 
 // Reds
 $red: rgb(155, 32, 31); // System
@@ -16,6 +50,7 @@ $red-grey50: rgba(120, 46, 34, 0.5);
 // Other
 $cyan: rgb(151, 223, 244); // System
 $blue: rgb(96, 174, 255);
+$mauve: rgb(130, 96, 255);
 
 // Contrast
 $darkest: rgb(0, 0, 0);
@@ -32,6 +67,7 @@ $brightest: rgb(255, 255, 255);
 
 	--gold-fg: #{$gold};
 	--gold-bright: #{$gold-bright};
+	--gold-bright50: #{$gold-bright50};
 	--gold-dim: #{$gold-dark};
 	--gold-dark: #{$gold-darkest};
 	--gold-fade: #{$gold-grey};

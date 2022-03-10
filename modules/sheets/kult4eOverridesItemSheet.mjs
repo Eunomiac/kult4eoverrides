@@ -9,4 +9,12 @@ export default class kult4eOverridesItemSheet extends kult4eitemsheet {
 		});
 	}
 	get template() { return TEMPLATES[this.item.data.type] }
+	getData() {
+		const data = super.getData();
+		data.isGM = game.user.isGM;
+		data.flags = this.item.koFlags;
+		data.isSheetOpen = data.flags?.isSheetOpen ?? false;
+		console.log("DATA", data);
+		return data;
+	}
 }

@@ -41,26 +41,12 @@
     </div>
     <div class="editor-row">
       <label>{{localize "kult4e.Effect"}}:</label>
-      <div>{{editor content=data.effect target="data.effect" button=true owner=owner editable=editable}}</div>
+      <div>{{editor content=data.description target="data.description" button=true owner=owner editable=editable}}</div>
     </div>
-    <div>
-      <label>{{localize "kult4e.Results"}}:</label>
-      <div class="results-input">
-        <div class="editor-row">
-          <label>15+:</label>
-          <div>{{editor content=data.completesuccess target="data.completesuccess" button=true owner=owner
-            editable=editable}}</div>
-        </div>
-        <div class="editor-row">
-          <label>10-14:</label>
-          <div>{{editor content=data.partialsuccess target="data.partialsuccess" button=true owner=owner
-            editable=editable}}</div>
-        </div>
-        <div class="editor-row">
-          <label>0-9</label>
-          <div>{{editor content=data.failure target="data.failure" button=true owner=owner editable=editable}}</div>
-        </div>
-      </div>
-    </div>
+		<div class="editor-row">
+			<label>Story:</label>
+			<div>{{editor content=flags.kult4eoverrides.storytext target="flags.kult4eoverrides.storytext" button=true owner=owner
+				editable=editable}}</div>
+		</div>
   </div>
 </form>
