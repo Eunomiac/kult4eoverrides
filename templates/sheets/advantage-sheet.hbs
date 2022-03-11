@@ -1,3 +1,4 @@
+{{log "ADVANTAGE-THIS" this}}
 <form class="{{cssClass}}" autocomplete="off">
   <header class="sheet-header">
     <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64" />
@@ -5,6 +6,7 @@
   </header>
   <div class="forms kult-item-sheet">
     <div>
+			{{#if koFlags.isSheetEditable}}
       <label>{{localize "kult4e.Attribute"}}:</label>
       <select name="data.attributemod" value="{{data.attributemod}}">
         {{#select data.attributemod}}
@@ -21,6 +23,9 @@
         <option value="soul">{{localize "kult4e.Soul"}}</option>
         {{/select}}
       </select>
+			{{else}}
+			<p class="item-roll-desc" style="text-align: right">{{data.attributemod}}</p>
+			{{/if}}
     </div>
     <div>
       <label>{{localize "kult4e.Type"}}:</label>
@@ -45,7 +50,7 @@
     </div>
     <div class="editor-row">
       <label>Story:</label>
-      <div>{{editor content=flags.kult4eoverrides.storytext target="flags.kult4eoverrides.storytext" button=true owner=owner editable=editable}}</div>
+      <div>{{editor content=koFlags.storytext target="flags.kult4eoverrides.storytext" button=true owner=owner editable=editable}}</div>
     </div>
   </div>
 </form>

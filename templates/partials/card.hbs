@@ -6,12 +6,12 @@
 
 <div class="card {{data.type}}-card {{~#if (eq data.type "move")}} move-{{moveType}}{{/if}}">
 	<div class="item-draggable {{data.type}}-info item-name" data-item-id="{{data.id}}{{data._id}}">
-		<a class="{{#if data.koFlags.isRolled}}move-roll{{else}}item-show{{/if}}" title="{{#if data.koFlags.isRolled}}Click to Roll Move{{else}}Click to Display {{typeDisplay}} to Chat{{/if}}">
+		<a class="{{#if data.koFlags.isRolled}}move-roll{{else}}item-post{{/if}}" title="{{#if data.koFlags.isRolled}}Click to Roll Move{{else}}Click to Display {{typeDisplay}} to Chat{{/if}}">
 			<img src="{{data.img}}" data-edit="img" title="{{data.name}}" />
 			{{data.name}}
 		</a>
 		{{#if data.koFlags.isRolled}}
-		<a class="item-control item-show" title="Click to Display {{typeDisplay}} to Chat"><i
+		<a class="item-control item-post" title="Click to Display {{typeDisplay}} to Chat"><i
 				class="far fa-comment-alt"></i></a>
 		{{/if}}
 		{{#unless isSheetOpen}}

@@ -35,7 +35,7 @@ export default class kult4eOverridesActor extends kult4eActor {
 	get moves() { return this.data.data.moves }
 
 	async makeroll(moveName, mods, {success, partial, failure}) {
-		moveName = U.capitalize(moveName);
+		moveName = U.tCase(moveName);
 		const rollString = [
 			"2d10",
 			...mods.map((mod) => parseInt(mod))

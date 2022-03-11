@@ -60,6 +60,25 @@ export default class kult4eOverridesPCSheet extends kult4ePCsheet {
 	activateListeners(html) {
 		super.activateListeners(html);
 
+		html.find(".item-post").click((event) => {
+			const li = $(event.currentTarget).parents(".item-name");
+			const item = this.actor.items.get(li.data("itemId"));
+			let effect;
+			if (item.data.type === "disadvantage" || item.data.type === "advantage") {
+				effect = item.data.data.effect;
+			} else if (item.data.type === "move") {
+				effect = item.data.data.trigger;
+			} else if (item.data.type === "weapon") {
+				effect = item.data.data.special;
+			} else if (item.data.type === "gear" || item.data.type === "darksecret") {
+				effect = item.data.data.description;
+			}
+			ChatMessage.create({
+				content: `<div class='move-name'>${item.name}</div><div>${effect}</div>`,
+				speaker: ChatMessage.getSpeaker({alias: this.name})
+			});
+		});
+
 		html.find(".token-add-edge").click((event) => {
 			const li = $(event.currentTarget).parents(".item-name");
 			const item = this.actor.getEmbeddedDocument("Item", li.data("itemId"));

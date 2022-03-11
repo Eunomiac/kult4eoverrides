@@ -369,12 +369,12 @@
 										opacity: 0.5;
 										margin: 0 1px;
 
-										&.item-show, &.item-view {
+										&.item-post, &.item-view {
 											margin: 0 0 0px 6px;
 											color: var(--grey-brightest);
 											filter: none;
 
-											&.item-show i {
+											&.item-post i {
 												line-height: 21px;
 											}
 

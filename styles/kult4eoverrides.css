@@ -653,18 +653,18 @@
   margin: 0 1px;
 }
 
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control.item-show, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control.item-view {
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control.item-post, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control.item-view {
   margin: 0 0 0px 6px;
   color: var(--grey-brightest);
   -webkit-filter: none;
   filter: none;
 }
 
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control.item-show.item-show i, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control.item-view.item-show i {
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control.item-post.item-post i, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control.item-view.item-post i {
   line-height: 21px;
 }
 
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control.item-show.item-view, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control.item-view.item-view {
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control.item-post.item-view, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control.item-view.item-view {
   margin: 0;
 }
 

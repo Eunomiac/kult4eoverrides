@@ -11,7 +11,7 @@ import kult4eOverridesItemSheet from "./modules/sheets/kult4eOverridesItemSheet.
 import registerDebugger from "./modules/system/logger.mjs";
 import registerSystemSettings, {TEMPLATES} from "./modules/system/settings.mjs";
 /*DEVCODE*/
-import U from "./scripts/utilities.mjs";
+import U, {HELPERS} from "./scripts/utilities.mjs";
 import BUILD_ITEM_DATA, {PARSERS} from "./scripts/jsonImport.mjs";
 /*!DEVCODE*/
 // #endregion ▒▒▒▒[IMPORTS]▒▒▒▒
@@ -45,12 +45,8 @@ Hooks.once("init", async () => {
 		makeDefault: true
 	});
 
-	Handlebars.registerHelper("select", function handlebarSelect(value, options) {
-		const $el = $("<select />").html(options.fn(this));
-		$el.find(`[value="${value}"]`).attr({selected: "selected"});
-		return $el.html();
-	});
 	await loadTemplates(Object.values(TEMPLATES));
+	Handlebars.registerHelper(HELPERS);
 
 	/*DEVCODE*/
 	const ITEMDATA = await BUILD_ITEM_DATA();
