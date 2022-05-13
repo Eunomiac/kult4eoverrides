@@ -51,7 +51,11 @@ Hooks.once("init", async () => {
 	/*DEVCODE*/
 	const ITEMDATA = await BUILD_ITEM_DATA();
 	KO.log("BUILT ITEM DATA", ITEMDATA);
-	window.createItems = async () => {
+	window.resetItems = async () => {
+		// Clear items from Items Sidebar and from all Actors
+		await Promise.allSettled()
+		await Item.deleteDocuments(Array.from(game.items.values())
+			.map((item) => item.id));
 		const itemFolders = {
 			move: [],
 			advantage: [],
@@ -76,13 +80,6 @@ Hooks.once("init", async () => {
 		// for (const [folder, items] of Object.entries(itemFolders)) {
 
 		// }
-	};
-	window.clearItems = async () => Item.deleteDocuments(Array.from(game.items.values())
-		// .filter((item) => !item.isEmbedded)
-		.map((item) => item.id));
-	window.resetItems = async () => {
-		await window.clearItems();
-		window.createItems();
 	};
 	/*!DEVCODE*/
 

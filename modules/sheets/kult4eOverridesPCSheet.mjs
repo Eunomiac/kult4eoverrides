@@ -18,24 +18,51 @@ export default class kult4eOverridesPCSheet extends kult4ePCsheet {
 		data.flags = this.actor.data.flags;
 		data.isSheetOpen = data.flags?.kult4eoverrides?.isSheetOpen ?? false;
 
-		/*DEVCODE*/
-		data.advancementLines = [
-			{template: "boxline", type: "aware", index: 0, isActive: true, boxes: [true, false, false, false, false, false], label: "+1 <u>active</u> Attribute <i>(+3 max)</i>"},
-			{template: "boxline", type: "aware", index: 1, isActive: true, boxes: [false, false], label: "+1 <u>passive</u> Attribute <i>(+3 max)</i>"},
-			{template: "boxline", type: "aware", index: 2, isActive: true, boxes: [true], label: "+1 <u>active</u> Attribute <i>(+4 max)</i>"},
-			{template: "boxline", type: "aware", index: 3, isActive: true, boxes: [true, false, false], label: "Gain an Archetype Advantage"},
-			{template: "header", isActive: true, label: "After <u>TWO</u> more Advancements ..."},
-			{template: "boxline", type: "invalid", index: 4, boxes: [false, false], label: "+1 <u>any</u> Attribute <i>(+4 max)</i>"},
-			{template: "boxline", type: "invalid", index: 5, boxes: [false, false], label: "Gain <u>any</u> Aware Advantage"},
-			{template: "boxline", type: "invalid", index: 6, boxes: [false], label: "End your Arc"},
-			{template: "boxline", type: "invalid", index: 7, boxes: [false], label: "Change your Archetype"},
-			{template: "header", isActive: true, label: "After <u>SEVEN</u> more Advancements ..."},
-			{template: "boxline", type: "invalid", index: 8, boxes: [false], label: "Advance to an Enlightened Archetype"}
-		];
+		const advancementsToSpend = U.pInt(Math.max(Math.floor(this.actor.koFlags.xp / 5) - this.actor.numPurchasedAdvantages, 0));
+		data.advancementIntro = `You have <span class="adv-number">${advancementsToSpend}</span> Advancement${advancementsToSpend !== 1 ? "s" : ""} to spend.`;
+		data.advancementSubIntro = `(${5 - ((this.actor.koFlags.xp ?? 0) % 5)} XP needed for another Advancement)`;
+
+		[data.advancementLines, data.purchaseLines] = this.actor.getAdvancementLines();
+		KO.display("██████ Advancement Lines ██████");
+		KO.display(data.advancementLines);
 
 		/* Filter for items with moves attached, create data.specialMoves schema
 			 for different categories of move */
 		data.moves = this.actor.moves;
+		data.moves.weapon = data.moves.weapon?.map((move) => {
+			move.shortName = move.name.replace(/^.*:\s*/, "");
+			return move;
+		});
+
+		/* Set up wound data */
+
+		data.wounds = [];
+
+		for (const [woundKey, woundText] of Object.entries(this.actor.data.data.woundtext)) {
+			const thisWound = {};
+			if (!woundText) {
+				Object.assign(thisWound, {
+					key: woundKey,
+					type: /major/.test(woundKey) ? "major" : "critical",
+					text: "",
+					isUsed: false
+				});
+			} else {
+				Object.assign(thisWound, {
+					key: woundKey,
+					type: /major/.test(woundKey) ? "major" : "critical",
+					text: woundText,
+					isStable: this.actor.data.data.woundstabilized[woundKey] === "true"
+				});
+			}
+			if (thisWound.type === "critical") {
+				data.wounds.unshift(thisWound);
+			} else {
+				data.wounds.push(thisWound);
+			}
+		}
+		data.wounds.push(data.wounds.shift());
+
 
 		// KO.log("getData() -> Actor Moves", data.moves);
 		/* koFlags schema for Advancements --> Array, ordered by purchases.
@@ -121,7 +148,15 @@ export default class kult4eOverridesPCSheet extends kult4ePCsheet {
 
 		/*DEVCODE*/
 		html.find(".advancement-box").click((event) => {
-
+			const {dataset} = event.currentTarget;
+			if (dataset.type === "invalid") { return }
+			if (this.actor.numPurchasedAdvantages >= Math.floor(this.actor.koFlags.xp / 5)) { return }
+			const [index, box] = [dataset.row, dataset.box].map((val) => U.pInt(val));
+			const num = Object.values(this.actor.koFlags?.purchases ?? {}).length + 1;
+			this.actor.setFlag("kult4eoverrides", "purchases", {
+				...(this.actor.koFlags?.purchases ?? {}),
+				[num]: {index, box}
+			});
 		});
 		/*!DEVCODE*/
 

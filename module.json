@@ -4,12 +4,45 @@
   "description": "A custom set of tweaks to the existing adaptation of the Kult 4th Edition RPG to Foundry by Tom LaPorta.",
   "version": "0.1",
   "minimumCoreVersion": "0.8.1",
-  "compatibleCoreVersion": "0.8.9",
+  "compatibleCoreVersion": "0.9",
   "author": "Eunomiac",
   "esmodules": ["kult4eoverrides.mjs"],
   "styles": ["styles/kult4eoverrides.css"],
   "scripts": [],
-  "packs": [],
+  "packs": [
+    {
+      "name": "moves",
+      "label": "Kult Moves",
+			"system": "kult4e",
+      "module": "kult4eoverrides",
+      "path": "packs/moves.db",
+      "type": "Item"
+    },
+    {
+      "name": "advantages",
+      "label": "Kult Advantages",
+			"system": "kult4e",
+      "module": "kult4eoverrides",
+      "path": "packs/advantages.db",
+      "type": "Item"
+    },
+    {
+      "name": "disadvantages",
+      "label": "Kult Disadvantages",
+			"system": "kult4e",
+      "module": "kult4eoverrides",
+      "path": "packs/disadvantages.db",
+      "type": "Item"
+    },
+    {
+      "name": "weapons",
+      "label": "Kult Weapons",
+      "system": "kult4e",
+			"module": "kult4eoverrides",
+      "path": "packs/weapons.db",
+      "type": "Item"
+    }
+	],
 	"languages": [
 		{
 			"lang": "en",

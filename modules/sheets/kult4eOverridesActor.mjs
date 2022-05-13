@@ -18,10 +18,123 @@ export default class kult4eOverridesActor extends kult4eActor {
 				this.data.data.moves[move.koFlags.linkType ?? "basic"].push(move);
 			});
 		if (this.koFlags.archetype) {
-			const curAdvantages = this.items.filter((item) => item.type === "advantage").map((item) => item.name);
-			this.data.data.archetypeAdvantages = C.archetypeAdvantages[this.koFlags.archetype].filter((adv) => !curAdvantages.includes(adv));
-			KO.log("Archetype Advantages", this.data.data.archetypeAdvantages);
+			this.data.data.archetypeAdvantages = this.getAvailableAdvantages();
 		}
+	}
+
+	get numPurchasedAdvantages() { return Object.values(this.koFlags?.purchases ?? {}).length }
+
+	getAvailableAdvantages({isGettingAll = false} = {}) {
+		if (!this.koFlags?.archetype) { return [] }
+		const curAdvantages = this.items.filter((item) => item.type === "advantage").map((item) => item.name);
+		const advPool = isGettingAll
+			? U.unique(Object.values(C.archetypeAdvantages).flat()).sort()
+			: C.archetypeAdvantages[this.koFlags.archetype];
+		return advPool; // .filter((adv) => !curAdvantages.includes(adv));
+	}
+
+	getAdvancementLines() {
+		if (!this.koFlags?.archetype) { return [] }
+		const availableAdvantages = this.getAvailableAdvantages();
+		const allAvailableAdvantages = this.getAvailableAdvantages({isGettingAll: true});
+		const advancementLines = [
+			{
+				template: "boxline",
+				type: "aware",
+				index: 0,
+				isActive: true,
+				boxes: [false, false, false, false, false, false],
+				label: "+1 <u>active</u> Attribute (+3 max)",
+				options: C.attributes.active.filter((attribute) => U.pInt(this.data.data.attributes[U.lCase(attribute)]) <= 3)
+			},
+			{
+				template: "boxline",
+				type: "aware",
+				index: 1,
+				isActive: true,
+				boxes: [false, false],
+				label: "+1 <u>passive</u> Attribute (+3 max)",
+				options: C.attributes.passive.filter((attribute) => U.pInt(this.data.data.attributes[U.lCase(attribute)]) <= 3)
+			},
+			{
+				template: "boxline",
+				type: "aware",
+				index: 2,
+				isActive: true,
+				boxes: [false],
+				label: "+1 <u>active</u> Attribute (+4 max)",
+				options: C.attributes.active.filter((attribute) => U.pInt(this.data.data.attributes[U.lCase(attribute)]) <= 4)
+			},
+			{
+				template: "boxline",
+				type: "aware",
+				index: 3,
+				isActive: true,
+				boxes: [false, false, false],
+				label: "Gain an Archetype Advantage",
+				options: this.getAvailableAdvantages()
+			},
+			this.numPurchasedAdvantages < 5 ? {template: "header", type: "invalid", isActive: true, label: `After <u>${U.uCase(U.verbalizeNum(5 - this.numPurchasedAdvantages))}</u> more Advancement${5 - this.numPurchasedAdvantages !== 1 ? "s" : ""} ...`} : null,
+			{
+				template: "boxline",
+				type: this.numPurchasedAdvantages >= 5 ? "aware" : "invalid",
+				isActive: this.numPurchasedAdvantages >= 5,
+				index: 4,
+				boxes: [false, false],
+				label: "+1 <u>any</u> Attribute (+4 max)",
+				options: [...C.attributes.active, ...C.attributes.passive].filter((attribute) => U.pInt(this.data.data.attributes[U.lCase(attribute)]) <= 4)
+			},
+			{
+				template: "boxline",
+				type: this.numPurchasedAdvantages >= 5 ? "aware" : "invalid",
+				isActive: this.numPurchasedAdvantages >= 5,
+				index: 5,
+				boxes: [false, false],
+				label: "Gain <u>any</u> Aware Advantage",
+				options: this.getAvailableAdvantages({isGettingAll: true})
+			},
+			{
+				template: "boxline",
+				type: this.numPurchasedAdvantages >= 5 ? "aware" : "invalid",
+				isActive: this.numPurchasedAdvantages >= 5,
+				index: 6,
+				boxes: [false],
+				label: "End your Arc"
+			},
+			{
+				template: "boxline",
+				type: this.numPurchasedAdvantages >= 5 ? "aware" : "invalid",
+				isActive: this.numPurchasedAdvantages >= 5,
+				index: 7,
+				boxes: [false],
+				label: "Change your Archetype",
+				options: C.awareArchetypes
+			},
+			this.numPurchasedAdvantages < 10 ? {template: "header", type: "invalid", isActive: true, label: `After <u>${U.uCase(U.verbalizeNum(10 - this.numPurchasedAdvantages))}</u> more Advancement${10 - this.numPurchasedAdvantages !== 1 ? "s" : ""} ...`} : null,
+			{
+				template: "boxline",
+				type: this.numPurchasedAdvantages >= 10 ? "aware" : "invalid",
+				isActive: this.numPurchasedAdvantages >= 10,
+				index: 8,
+				boxes: [false],
+				label: "Advance to an Enlightened Archetype",
+				options: C.enlightenedArchetypes
+			}
+		].filter(Boolean);
+		const purchaseLines = [];
+		const advantages = advancementLines.filter((line) => line.template === "boxline");
+		Object.entries(this.koFlags?.purchases ?? {}).forEach(([i, purchase]) => {
+			const {index, box, selection, postscript} = purchase;
+			advantages[index].boxes[box] = true;
+			purchaseLines.push({
+				num: U.pInt(i) + 1,
+				label: advantages[index].label,
+				options: advantages[index].options,
+				selection,
+				postscript
+			});
+		});
+		return [advancementLines.filter(Boolean), purchaseLines];
 	}
 
 	async _onCreate(data, options, user) {

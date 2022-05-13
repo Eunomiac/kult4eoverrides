@@ -1,14 +1,14 @@
-{{log "CARD" this}}
+{{!-- {{log "CARD" this}}
 {{log data}}
 {{log data.id}}
 {{log data._id}}
-{{log _id}}
+{{log _id}} --}}
 
 <div class="card {{data.type}}-card {{~#if (eq data.type "move")}} move-{{moveType}}{{/if}}">
 	<div class="item-draggable {{data.type}}-info item-name" data-item-id="{{data.id}}{{data._id}}">
 		<a class="{{#if data.koFlags.isRolled}}move-roll{{else}}item-post{{/if}}" title="{{#if data.koFlags.isRolled}}Click to Roll Move{{else}}Click to Display {{typeDisplay}} to Chat{{/if}}">
 			<img src="{{data.img}}" data-edit="img" title="{{data.name}}" />
-			{{data.name}}
+			{{#if data.shortName}}{{data.shortName}}{{else}}{{data.name}}{{/if}}
 		</a>
 		{{#if data.koFlags.isRolled}}
 		<a class="item-control item-post" title="Click to Display {{typeDisplay}} to Chat"><i

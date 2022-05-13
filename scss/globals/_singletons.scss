@@ -15,6 +15,9 @@
   font-weight: bold;
   color: var(--blue-fg);
 }
+.item-roll-desc {
+	text-transform: capitalize;
+}
 .item-move-name {
   color: var(--red-bright);
   // font-style: italic;
@@ -55,6 +58,8 @@
     }
   }
 }
+
+
 
 /* Darker text on medium background */
 .dark-on-dark {

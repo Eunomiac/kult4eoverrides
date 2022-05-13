@@ -1,0 +1,13 @@
+<div class="purchase-line">
+	<label class="purchase-label"><span class="purchase-counter">{{math num "-" 1}}.</span>{{{label}}}: </label>
+	<select class="attribute-select" name="flags.kult4eoverrides.purchases.{{math num "-" 1}}.selection"
+		value="{{selection}}">
+		{{#select selection}}
+		<option value="" selected disabled></option>
+		{{#each options as |option|}}
+		<option value="{{case "lower" option}}">{{option}}</option>
+		{{/each}}
+		{{/select}}
+	</select>
+	<label class="purchase-summary">{{postscript}}</label>
+</div>

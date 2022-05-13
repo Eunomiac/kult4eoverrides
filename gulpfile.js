@@ -29,7 +29,8 @@ const BUILDFILES = {
 	assets: {
 		"./dist/kult4eoverrides/assets": ["assets/**/*.*"],
 		"./dist/kult4eoverrides": ["module.json", "LICENSE.txt", "package.json"],
-		"./dist/kult4eoverrides/lang": ["lang/**/*.*"]
+		"./dist/kult4eoverrides/lang": ["lang/**/*.*"],
+		"./dist/kult4eoverrides/packs": ["packs/**/*.*"]
 	}
 };
 const REGEXPPATTERNS = {

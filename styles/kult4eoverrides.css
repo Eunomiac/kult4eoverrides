@@ -63,6 +63,10 @@
   color: var(--blue-fg);
 }
 
+.item-roll-desc {
+  text-transform: capitalize;
+}
+
 .item-move-name {
   color: var(--red-bright);
   font-weight: normal !important;
@@ -180,6 +184,33 @@
   -webkit-hyphens: auto;
   -ms-hyphens: auto;
   hyphens: auto;
+  color: var(--gold-fg);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet .editor-content h1 {
+  font-family: 'Infidel';
+  color: white;
+  margin: 0 0 10px 0;
+  line-height: 1em;
+  height: 0.9em;
+  text-shadow: 0px 0px 5px red;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet .editor-content h2, .vtt.game.system-kult4e .app.window-app.sheet .editor-content h3 {
+  color: var(--gold-bright);
+  font-variant: small-caps;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet .editor-content h2 {
+  height: 24px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet .editor-content p {
+  font-size: 12px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet .editor-content h3 {
+  height: 16px;
 }
 
 .vtt.game.system-kult4e .app.window-app.sheet .window-header {
@@ -194,6 +225,7 @@
 .vtt.game.system-kult4e .app.window-app.sheet .window-content .sheet-lock-button {
   position: relative;
   height: 20px;
+  width: 20px;
   color: var(--gold-fg);
   top: -5px;
   margin-bottom: -20px;
@@ -291,39 +323,6 @@
   -ms-transform: scaleY(1.5);
   transform: scaleY(1.5);
   padding-top: 16px;
-}
-
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .title .character-archetype {
-  display: block;
-  margin: -20px 0 0 0;
-  padding: 0;
-  border: 0;
-  height: 40px;
-  font-size: 22px;
-  text-align: right;
-  padding-right: 10px;
-  position: relative;
-  text-shadow: 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg);
-}
-
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .title .character-archetype option {
-  font-size: 14px;
-  text-align: center;
-}
-
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .title .character-archetype option.enlightened {
-  color: var(--grey-fg);
-}
-
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .title .character-archetype option.aware-header, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .title .character-archetype option.enlightened-header {
-  background: var(--bg);
-  color: var(--gold-dim);
-  font-weight: bold;
-  font-size: 24px;
-}
-
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .title .character-archetype option.enlightened-header {
-  color: var(--grey-fg);
 }
 
 .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .sheet-header .header-container .specs {
@@ -462,7 +461,195 @@
   padding: 5px 5px 0px;
 }
 
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section > div {
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list {
+  -webkit-columns: 250px;
+  -moz-columns: 250px;
+  columns: 250px;
+  padding: 0;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card {
+  --card-border: var(--grey-fg);
+  --card-fg: var(--grey-brightest);
+  --card-bg: var(--bg);
+  --card-img-filter: none;
+  --card-weight: normal;
+  --card-text-shadow: inherit;
+  --card-border-style: outset;
+  padding: 0;
+  color: var(--card-fg);
+  background: var(--card-bg);
+  font-weight: var(--card-weight);
+  border-radius: 5px;
+  border: 2px var(--card-border-style) var(--card-border);
+  overflow: hidden;
+  text-shadow: var(--card-text-shadow);
+  margin: 0 5px 1px 5px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card.move-advantage, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card.gear-card, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card.move-advantage, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card.gear-card, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card.move-advantage, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card.gear-card {
+  --card-border: var(--gold-fg);
+  --card-bg: linear-gradient(45deg, rgba(141,114,42,1) 0%, rgba(38,28,0,1) 100%);
+  --card-img-filter: invert(1) drop-shadow(0px 1px 0px var(--gold-bright50));
+  --card-fg: var(--bg);
+  --card-weight: bold;
+  --card-text-shadow: 0px 1px 1px var(--gold-bright50);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card.move-disadvantage, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card.move-disadvantage, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card.move-disadvantage {
+  --card-border: var(--red-fg);
+  --card-fg: var(--red-fg);
+  --card-img-filter: sepia(1) hue-rotate(288deg) brightness(0.3) saturate(100);
+  --card-weight: bold;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card.move-weapon, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card.weapon-card, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card.move-weapon, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card.weapon-card, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card.move-weapon, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card.weapon-card {
+  --card-border: var(--red-dim);
+  --card-fg: var(--bg);
+  --card-bg: linear-gradient(45deg, rgba(109,22,22,1) 0%, rgba(255,32,32,1) 100%);
+  --card-img-filter: invert(1);
+  --card-weight: bold;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card.weapon-card, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card.weapon-card, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card.weapon-card {
+  font-size: 14px;
+  margin-left: 0;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card.weapon-card > div, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card.weapon-card > div, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card.weapon-card > div {
+  display: grid;
+  grid-template-columns: 40% 25% 20% 16%;
+  grid-gap: 0;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card.weapon-card > div .weapon-name, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card.weapon-card > div .weapon-name, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card.weapon-card > div .weapon-name {
+  color: var(--red-bright);
+  text-indent: 5px;
+  text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black, 0 0 2px black, 0 0 2px black, 0 0 2px black,0 0 3px black, 0 0 3px black, 0 0 3px black;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card.weapon-card > div .weapon-ammo, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card.weapon-card > div .weapon-harm, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card.weapon-card > div .weapon-ammo, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card.weapon-card > div .weapon-harm, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card.weapon-card > div .weapon-ammo, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card.weapon-card > div .weapon-harm {
+  text-align: right;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card.weapon-card > div .item-control, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card.weapon-card > div .item-control, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card.weapon-card > div .item-control {
+  font-weight: bold;
+  text-align: right;
+  padding-right: 5px;
+  text-shadow: 0 0 2px white, 0 0 2px black, 0 0 2px black, 0 0 2px black;
+  margin: 0;
+  color: #CCC;
+  opacity: 0.8;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card.weapon-card > div .item-control.item-view, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card.weapon-card > div .item-control.item-view, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card.weapon-card > div .item-control.item-view {
+  line-height: 10px;
+  text-align: right;
+  padding: 2px;
+  margin: -1px 1px -4px 1px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card.gear-card, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card.gear-card, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card.gear-card {
+  -webkit-filter: brightness(1.5);
+  filter: brightness(1.5);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card.gear-card .item-control-container, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card.gear-card .item-control-container, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card.gear-card .item-control-container {
+  margin-left: auto;
+  margin-right: 0;
+  display: inline-block;
+  text-align: right;
+  width: 80px;
+  font-weight: bold;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card .advantage-column.hold-tally, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card .advantage-column.hold-tally, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card .advantage-column.hold-tally {
+  margin-left: 20px;
+  color: black;
+  text-shadow: 0 0 2px black, 0 0 5px black;
+  font-weight: bold;
+  background: var(--red-bright);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card .item-draggable, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card .item-draggable, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card .item-draggable {
+  padding-right: 5px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card .item-draggable a, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card .item-draggable a, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card .item-draggable a {
+  line-height: 19px;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card .item-draggable a.item-control, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card .item-draggable a.item-control, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card .item-draggable a.item-control {
+  color: var(--grey-fg);
+  -webkit-filter: blur(0.5px);
+  filter: blur(0.5px);
+  opacity: 0.5;
+  margin: 0 1px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card .item-draggable a.item-control.item-post, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card .item-draggable a.item-control.item-view, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card .item-draggable a.item-control.item-post, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card .item-draggable a.item-control.item-view, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card .item-draggable a.item-control.item-post, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card .item-draggable a.item-control.item-view {
+  margin: 0 0 0px 6px;
+  color: var(--grey-brightest);
+  -webkit-filter: none;
+  filter: none;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card .item-draggable a.item-control.item-post.item-post i, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card .item-draggable a.item-control.item-view.item-post i, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card .item-draggable a.item-control.item-post.item-post i, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card .item-draggable a.item-control.item-view.item-post i, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card .item-draggable a.item-control.item-post.item-post i, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card .item-draggable a.item-control.item-view.item-post i {
+  line-height: 21px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card .item-draggable a.item-control.item-post.item-view, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card .item-draggable a.item-control.item-view.item-view, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card .item-draggable a.item-control.item-post.item-view, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card .item-draggable a.item-control.item-view.item-view, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card .item-draggable a.item-control.item-post.item-view, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card .item-draggable a.item-control.item-view.item-view {
+  margin: 0;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card .item-draggable a.item-control:hover, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card .item-draggable a.item-control:hover, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card .item-draggable a.item-control:hover {
+  color: var(--grey-brightest);
+  -webkit-filter: none;
+  filter: none;
+  opacity: 1;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card .item-draggable a img, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card .item-draggable a img, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card .item-draggable a img {
+  height: 20px;
+  width: 20px;
+  vertical-align: text-bottom;
+  padding: 0;
+  border: 0;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+  -webkit-filter: var(--card-img-filter);
+  filter: var(--card-img-filter);
+  position: relative;
+  top: 0px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card img, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card img, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card img {
+  height: 20px;
+  width: 20px;
+  vertical-align: text-bottom;
+  padding: 0;
+  border: 0;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+  -webkit-filter: var(--card-img-filter);
+  filter: var(--card-img-filter);
+  position: relative;
+  top: 0px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .card-list .card > div, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .item-list .card > div, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section .weapon-list .card > div {
   margin: 0;
   padding: 0;
 }
@@ -575,122 +762,22 @@
   padding: 5px;
 }
 
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list {
-  -webkit-columns: 250px;
-  -moz-columns: 250px;
-  columns: 250px;
-  padding: 0;
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .section-label {
+  margin-top: 10px;
 }
 
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card {
-  --card-border: var(--grey-fg);
-  --card-fg: var(--grey-brightest);
-  --card-bg: var(--bg);
-  --card-img-filter: none;
-  --card-weight: normal;
-  --card-text-shadow: inherit;
-  --card-border-style: outset;
-  padding: 0;
-  color: var(--card-fg);
-  background: var(--card-bg);
-  font-weight: var(--card-weight);
-  border-radius: 5px;
-  border: 2px var(--card-border-style) var(--card-border);
-  overflow: hidden;
-  text-shadow: var(--card-text-shadow);
-  margin: 0 5px 1px 5px;
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .wound-entries .wound-section div {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card.move-advantage {
-  --card-border: var(--gold-fg);
-  --card-bg: linear-gradient(45deg, rgba(141,114,42,1) 0%, rgba(38,28,0,1) 100%);
-  --card-img-filter: invert(1) drop-shadow(0px 1px 0px var(--gold-bright50));
-  --card-fg: var(--bg);
-  --card-weight: bold;
-  --card-text-shadow: 0px 1px 1px var(--gold-bright50);
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .wound-entries .wound-section div.wound-name input[type="text"] {
+  color: var(--red-bright);
 }
 
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card.move-disadvantage {
-  --card-border: var(--red-fg);
-  --card-fg: var(--red-fg);
-  --card-img-filter: sepia(1) hue-rotate(288deg) brightness(0.3) saturate(100);
-  --card-weight: bold;
-}
-
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card.move-weapon {
-  --card-border: var(--red-dim);
-  --card-fg: var(--bg);
-  --card-bg: linear-gradient(45deg, rgba(109,22,22,1) 0%, rgba(255,32,32,1) 100%);
-  --card-img-filter: invert(1);
-  --card-weight: bold;
-}
-
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .advantage-column.hold-tally {
-  margin-left: 20px;
-  color: black;
-  text-shadow: 0 0 2px black, 0 0 5px black;
-  font-weight: bold;
-  background: var(--red-bright);
-}
-
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable {
-  padding-right: 5px;
-}
-
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a {
-  line-height: 19px;
-  padding: 0;
-  margin: 0;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control {
-  color: var(--grey-fg);
-  -webkit-filter: blur(0.5px);
-  filter: blur(0.5px);
-  opacity: 0.5;
-  margin: 0 1px;
-}
-
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control.item-post, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control.item-view {
-  margin: 0 0 0px 6px;
-  color: var(--grey-brightest);
-  -webkit-filter: none;
-  filter: none;
-}
-
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control.item-post.item-post i, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control.item-view.item-post i {
-  line-height: 21px;
-}
-
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control.item-post.item-view, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control.item-view.item-view {
-  margin: 0;
-}
-
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a.item-control:hover {
-  color: var(--grey-brightest);
-  -webkit-filter: none;
-  filter: none;
-  opacity: 1;
-}
-
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .card-list .card .item-draggable a img {
-  height: 20px;
-  width: 20px;
-  vertical-align: text-bottom;
-  padding: 0;
-  border: 0;
-  -webkit-transform-origin: center;
-  -ms-transform-origin: center;
-  transform-origin: center;
-  -webkit-transform: scale(1.05);
-  -ms-transform: scale(1.05);
-  transform: scale(1.05);
-  -webkit-filter: var(--card-img-filter);
-  filter: var(--card-img-filter);
-  position: relative;
-  top: 0px;
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .wound-entries .wound-section.faded {
+  display: none;
 }
 
 .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .right-middle-column {
@@ -698,18 +785,24 @@
   overflow: visible;
 }
 
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .right-middle-column .wound-entries div {
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.bio-section .section-label {
+  margin: 15px 0 5px 0;
 }
 
-.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.stats-section .middle-section .right-middle-column .wound-entries div.wound-name input[type="text"] {
-  color: var(--red-bright);
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.assets-section .section-label {
+  margin: 15px 0 5px 0;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.assets-section .weapon-list .gear-card .move-info > div {
+  display: inline;
 }
 
 .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section {
   padding: 5px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .section-label {
+  margin-top: 10px;
 }
 
 .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .dramatic-hook {
@@ -732,6 +825,15 @@
 .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .advancement-total {
   color: var(--grey-brightest);
   text-align: center;
+  margin: 0;
+  height: 36px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .advancement-total .adv-number {
+  font-size: 30px;
+  vertical-align: middle;
+  display: inline-block;
+  margin: 5px 4px 5px 0px;
 }
 
 .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .experience-total {
@@ -776,33 +878,88 @@
   color: var(--grey-dim);
 }
 
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .purchases-column {
+  width: 55%;
+}
+
 .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .purchases-column .purchase-line {
-  margin: 3px 0;
+  margin: 3px 0 3px -20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .purchases-column .purchase-line .purchase-label {
+  white-space: nowrap;
 }
 
 .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .purchases-column .purchase-line .purchase-counter {
   font-family: Infidel;
-  font-size: 20px;
+  font-size: 24px;
   display: inline-block;
-  vertical-align: bottom;
+  vertical-align: middle;
   text-align: center;
   width: 15px;
-  color: var(--grey-bright);
+  color: var(--grey-brightest);
   text-shadow: 0 0 5px var(--red-bright);
-  margin-right: 5px;
+  margin-right: 10px;
+  padding-top: 5px;
 }
 
 .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .purchases-column .purchase-line select {
-  margin-left: 10px;
   margin-right: 0px;
-  color: var(--grey-bright);
+  color: var(--grey-brightest);
   text-shadow: 0 0 5px var(--red-bright);
+  -webkit-box-flex: 5;
+  -ms-flex-positive: 5;
+  flex-grow: 5;
+  text-align: right;
+  border: none;
 }
 
 .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet .tab-section.advancement-section .purchases-column .purchase-line .purchase-summary {
   font-weight: bold;
   color: var(--grey-bright);
   text-shadow: 0 0 5px var(--red-bright);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet select.character-archetype {
+  display: block;
+  margin: -20px 0 0 0;
+  padding: 0;
+  border: 0;
+  height: 40px;
+  font-size: 22px;
+  text-align: right;
+  padding-right: 10px;
+  position: relative;
+  text-shadow: 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg), 0 0 3px var(--bg);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet select.character-archetype option {
+  font-size: 14px;
+  text-align: center;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet select.character-archetype option.enlightened {
+  color: var(--grey-fg);
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet select.character-archetype option.aware-header, .vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet select.character-archetype option.enlightened-header {
+  background: var(--bg);
+  color: var(--gold-dim);
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.actor .window-content form.kult-overrides-sheet select.character-archetype option.enlightened-header {
+  color: var(--grey-fg);
 }
 
 .vtt.game.system-kult4e .app.window-app.sheet.actor.minimized {

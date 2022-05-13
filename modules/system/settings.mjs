@@ -32,6 +32,7 @@ export const TEMPLATES = {
 	card: "modules/kult4eoverrides/templates/partials/card.hbs",
 	advancementBoxes: "modules/kult4eoverrides/templates/partials/advancement-line-boxes.hbs",
 	advancementLabel: "modules/kult4eoverrides/templates/partials/advancement-line-label.hbs",
-	advancementHeader: "modules/kult4eoverrides/templates/partials/advancement-line-header.hbs"
+	advancementHeader: "modules/kult4eoverrides/templates/partials/advancement-line-header.hbs",
+	advancementPurchase: "modules/kult4eoverrides/templates/partials/advancement-purchase.hbs",
 
 };

@@ -333,6 +333,19 @@
 					{{/if}}
 					{{/each}}
 				</div>
+								<div class="section-label">{{localize "kult4e.Wounds"}}</div>
+								<div class="wound-entries">
+									{{log "WOUND DATA"}}
+									{{log this}}
+									{{#each wounds as |wound|}}
+									{{log "WOUND IN LOOP" wound}}
+									<div class="wound-section {{~#unless wound.isUsed}} faded{{/unless}}">
+										<span class="wound-indicator">{{#if (eq wound.type "critical")}}💥{{else}}💔{{/if}}</span>
+										<input type="checkbox" value="data.woundstabilized.{{wound.key}}" name="data.woundstabilized.{{wound.key}}">
+										<input type="text" name="data.woundtext.{{wound.key}}" value="{{wound.text}}">
+									</div>
+									{{/each}}
+								</div>
       </div>
       <div class="move-column right-middle-column">
 				<div class="section-label">{{localize "kult4eOverrides.SpecialMoves"}}</div>
@@ -363,49 +376,6 @@
 					{{/if}}
 					{{/each}}
 				</div>
-				<div class="section-label">{{localize "kult4e.Advantages"}}</div>
-				<div class="item-list card-list" style="padding: 0;">
-					{{#each advantages as |advantage id|}}
-					{{> "modules/kult4eoverrides/templates/partials/card.hbs" data=advantage isSheetOpen=../isSheetOpen typeDisplay="Advantage" isRolled=flags.kult4eoverrides.isRolled}}
-					{{/each}}
-				</div>
-				<div class="section-label">{{localize "kult4e.Disadvantages"}}</div>
-				<div class="item-list card-list" style="padding: 0;">
-					{{#each disadvantages as |disadvantage id|}}
-					{{> "modules/kult4eoverrides/templates/partials/card.hbs" data=disadvantage isSheetOpen=../isSheetOpen isGM=../isGM typeDisplay="Disadvantage" isRolled=flags.kult4eoverrides.isRolled}}
-					{{/each}}
-				</div>
-        <div class="section-label">{{localize "kult4e.Wounds"}}</div>
-        <div class="wound-entries">
-          {{#each wounds}}
-          <div class="wound-section">
-            <label>{{localize "kult4e.MajorWound"}}</label>
-            <select class="stabilized" name="data.attributes.woundstabilized.{{this}}"
-            value="{{lookup ../data.attributes.woundstabilized this}}">
-            {{#select (lookup ../data.attributes.woundstabilized this)}}
-              <option value="true">{{localize "kult4e.Stabilized"}}</option>
-              <option value="false">{{localize "kult4e.NotStabilized"}}</option>
-            {{/select}}
-            </select>
-          </div>
-          <div class="wound-name">
-            <input type="text" name="data.attributes.woundtext.{{this}}" value="{{lookup ../data.attributes.woundtext this}}">
-          </div>
-          {{/each}}
-          <div class="wound-section">
-            <label>{{localize "kult4e.CriticalWound"}}</label>
-            <select class="stabilized" name="data.attributes.criticalwoundstabilized"
-              value="{{data.attributes.criticalwoundstabilized}}">
-              {{#select data.attributes.criticalwoundstabilized}}
-                <option value="true">{{localize "kult4e.Stabilized"}}</option>
-                <option value="false">{{localize "kult4e.NotStabilized"}}</option>
-              {{/select}}
-            </select>
-          </div>
-          <div class="wound-name">
-            <input type="text" name="data.attributes.criticalwound" value="{{data.attributes.criticalwound}}">
-          </div>
-        </div>
         <div class="flex-column stability-section">
           <div class="section-label">{{localize "kult4e.Stability"}}</div>
           <div>
@@ -442,6 +412,20 @@
 				<div class=" item-list darksecret-list" style="padding-right: 0;">
 					{{#each darksecrets as |darksecret id|}}
 					{{> "modules/kult4eoverrides/templates/partials/darksecret-card.hbs" data=darksecret isSheetOpen=../isSheetOpen}}
+					{{/each}}
+				</div>
+				<div class="section-label">{{localize "kult4e.Advantages"}}</div>
+				<div class="item-list card-list" style="padding: 0;">
+					{{#each advantages as |advantage id|}}
+					{{> "modules/kult4eoverrides/templates/partials/card.hbs" data=advantage isSheetOpen=../isSheetOpen
+					typeDisplay="Advantage" isRolled=flags.kult4eoverrides.isRolled}}
+					{{/each}}
+				</div>
+				<div class="section-label">{{localize "kult4e.Disadvantages"}}</div>
+				<div class="item-list card-list" style="padding: 0;">
+					{{#each disadvantages as |disadvantage id|}}
+					{{> "modules/kult4eoverrides/templates/partials/card.hbs" data=disadvantage isSheetOpen=../isSheetOpen isGM=../isGM
+					typeDisplay="Disadvantage" isRolled=flags.kult4eoverrides.isRolled}}
 					{{/each}}
 				</div>
 			</div>
@@ -489,6 +473,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div id="Advancement" class="advancement-section {{actor.id}}-tab tab-section">
 		<div class="section-label">{{localize "kult4eOverrides.DramaticHooks"}}</div>
 		<div class="dramatic-hook">
@@ -506,8 +491,8 @@
 				<div class="section-label">
 					{{localize "kult4eOverrides.Advancements"}}
 				</div>
-				<div class="advancement-total">You have <b>0</b> Advancements to spend.</div>
-				<div class="experience-total">(1 XP needed for next Advancement)</div>
+				<div class="advancement-total">{{{advancementIntro}}}</div>
+				<div class="experience-total">{{{advancementSubIntro}}}</div>
 				<div class="two-column">
 					<div class="advancement-boxes">
 						{{#each advancementLines}}
@@ -525,7 +510,13 @@
 				<div class="section-label">
 					Purchases
 				</div>
-				<div class="purchase-line">
+				{{#each purchaseLines}}
+				{{> "modules/kult4eoverrides/templates/partials/advancement-purchase.hbs" }}
+				{{/each}}
+				{{!-- <div class="purchase-line">
+
+
+
 					<label class="purchase-label"><span class="purchase-counter">1.</span>+1 <u>active</u> Attribute (max +4): </label>
 					<select class="attribute-select" name="flags.kult4eoverrides.purchases.0.label" value="{{flags.kult4eoverrides.purchases.[0].label}}">
 					{{#select flags.kult4eoverrides.purchases.[0].label}}
@@ -564,7 +555,7 @@
 						<option value="influentialFriends" selected>Influential Friends</option>
 						{{/select}}
 					</select>
-				</div>
+				</div> --}}
 			</div>
 		</div>
 	</div>
