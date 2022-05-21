@@ -53,7 +53,7 @@ Hooks.once("init", async () => {
 	KO.log("BUILT ITEM DATA", ITEMDATA);
 	window.resetItems = async () => {
 		// Clear items from Items Sidebar and from all Actors
-		await Promise.allSettled()
+		// await Promise.allSettled()
 		await Item.deleteDocuments(Array.from(game.items.values())
 			.map((item) => item.id));
 		const itemFolders = {

@@ -152,6 +152,14 @@ export default class kult4eOverridesPCSheet extends kult4ePCsheet {
 			if (dataset.type === "invalid") { return }
 			if (this.actor.numPurchasedAdvantages >= Math.floor(this.actor.koFlags.xp / 5)) { return }
 			const [index, box] = [dataset.row, dataset.box].map((val) => U.pInt(val));
+			// debugger;
+			if (Object.values(this.actor.koFlags?.purchases ?? {}).find((purch) => purch.index === index && purch.box === box)) {
+				const curPurchases = {...this.actor.koFlags.purchases};
+				const purchKey = Object.entries(curPurchases).find(([ind, pData]) => pData.index === ind && pData.box === box);
+				delete curPurchases[purchKey];
+				this.actor.setFlag("kult4eoverrides", "purchases", curPurchases);
+				return;
+			}
 			const num = Object.values(this.actor.koFlags?.purchases ?? {}).length + 1;
 			this.actor.setFlag("kult4eoverrides", "purchases", {
 				...(this.actor.koFlags?.purchases ?? {}),

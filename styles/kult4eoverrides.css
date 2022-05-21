@@ -969,6 +969,18 @@
   --minimizedBorderColor: var(--gold-bright);
 }
 
+.vtt.game.system-kult4e .app.window-app.sheet.item header.sheet-header img {
+  background: transparent;
+  border: none;
+  position: absolute;
+  -webkit-filter: drop-shadow(0px 0px 2px var(--gold-bright));
+  filter: drop-shadow(0px 0px 2px var(--gold-bright));
+}
+
+.vtt.game.system-kult4e .app.window-app.sheet.item header.sheet-header h1 {
+  margin-left: 64px;
+}
+
 .vtt.game.system-kult4e .app.window-app.sheet.item.minimized {
   --minimizedTextColor: var(--grey-bright);
   --minimizedFontWeight: bold;

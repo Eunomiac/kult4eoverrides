@@ -125,14 +125,16 @@ export default class kult4eOverridesActor extends kult4eActor {
 		const advantages = advancementLines.filter((line) => line.template === "boxline");
 		Object.entries(this.koFlags?.purchases ?? {}).forEach(([i, purchase]) => {
 			const {index, box, selection, postscript} = purchase;
-			advantages[index].boxes[box] = true;
-			purchaseLines.push({
-				num: U.pInt(i) + 1,
-				label: advantages[index].label,
-				options: advantages[index].options,
-				selection,
-				postscript
-			});
+			if (advantages[index]) {
+				advantages[index].boxes[box] = true;
+				purchaseLines.push({
+					num: U.pInt(i) + 1,
+					label: advantages[index].label,
+					options: advantages[index].options,
+					selection,
+					postscript
+				});
+		 	}
 		});
 		return [advancementLines.filter(Boolean), purchaseLines];
 	}

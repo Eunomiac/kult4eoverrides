@@ -1,48 +1,5 @@
 import U from "./utilities.mjs";
 
-// Initial import of JSONDATA after Google Sheet .csv conversion at http://...
-const NEWDATA_JSON = [
-	{
-		name: "Explosives Expert",
-		itemType: "advantage",
-		type: "active",
-		moveName: "Build Explosive",
-		notes: null,
-		clock: null,
-		attributemod: "reason",
-		effect: {
-			intro: "You can build and disarm bombs. If you have enough time and resources, you can build any kind of bomb you like without a roll.",
-			trigger: "Whenever you’re building an improvised bomb under time pressure,",
-			effect: "roll to [[[]]] (+Reason)."
-		},
-		lists: {
-			questions: null,
-			options: null,
-			edges: null
-		},
-		results: {
-			success: {
-				text: "You construct a functional bomb.",
-				list: null
-			},
-			partial: {
-				text: "The bomb’s blast potential is lower than usual (decrease Harm dealt by −1).",
-				list: null
-			},
-			fail: {
-				text: "The bomb is unpredictable. Maybe it doesn’t detonate, detonates prematurely, or it is more powerful and volatile than expected. The GM makes a Move.",
-				list: null
-			}
-		},
-		suffix: {
-			text: null,
-			list: null
-		},
-		hasEdges: false,
-		hasHolds: false,
-		hasTokens: false
-	}
-];
 const K4EOTEMPLATES = {
 	MOVE: {
 		name: "moveName ?? name",
@@ -135,6 +92,8 @@ const K4EOTEMPLATES = {
 		}
 	}
 };
+
+// Initial import of JSONDATA after Google Sheet .csv conversion at http://...
 const DATA_JSON = [
 	{
 		name: "Academic Network",
@@ -370,7 +329,7 @@ const DATA_JSON = [
 		effect: {
 			intro: null,
 			trigger: "Whenever you venture into alternate planes of existence or meet entities from other dimensions,",
-			effect: "you may declare that you have read about this dimension or creature before Ask the GM what you learned from your past studies"
+			effect: "you may declare that you have read about this dimension or creature before. Ask the GM what you learned from your past studies."
 		},
 		lists: {
 			questions: null,
@@ -9480,7 +9439,7 @@ export default async function BUILD_ITEM_DATA() {
 					["(?:[Tt]he)?\\s+GM(?:\\s+\\w+){1,3}\\s+(?:Hold|Moves?)", "gm-phrase"],
 					["Hold|Move", "gm-phrase"],
 					["Avoid Harm", "move-name"],
-					["[\\s()+−\\d]*(?:Stability|Rage|Power|Edges?|Harm|Wounds?|Time|Relations?|ongoing)[\\s()+−\\d]*", "keyword"],
+					["[\\s()+−\\d]*\\b(?:Stability|Rage|Power|Edges?|Harm|Wounds?|Time|Relations?|ongoing)\\b[\\s()+−\\d]*", "keyword"],
 					["Endure Injury", "move-name"],
 					["Keep [Ii]t Together", "move-name"],
 					["Act Under Pressure", "move-name"],
@@ -9704,32 +9663,6 @@ function listCheck(listLines) {
 	return "";
 }
 function imgCheck(itemData) { return itemData.iconPath }
-// 	let imgSrc, imgExists;
-// 	if (itemData.iconPath) {
-// 		imgSrc = itemData.iconPath;
-// 		try {
-// 			imgExists = /* await fetchWithTimeout(imgSrc);  */ await srcExists(imgSrc);
-// 		} catch (err) {
-// 			console.warn(`Unable to resolve iconPath '${itemData.iconPath}'`);
-// 		}
-// 	}
-// 	if (imgExists) { return imgSrc }
-// 	console.warn(`Failure to resolve iconPath '${imgSrc}'.`);
-// 	if (itemData.moveName) {
-// 		imgSrc = `modules/kult4eoverrides/assets/icons/move/${itemData.moveName.replace(/\s/g, "-").replace(/[:]/g, "").toLowerCase()}.svg`;
-// 		imgExists = await fetchWithTimeout(imgSrc); // await srcExists(imgSrc);
-// 	}
-// 	if (imgExists) { return imgSrc }
-// 	if (itemData.linkName) {
-// 		imgSrc = `modules/kult4eoverrides/assets/icons/${itemData.linkType}/${itemData.linkName.replace(/\s/g, "-").replace(/[:]/g, "").toLowerCase()}.svg`;
-// 		imgExists = await fetchWithTimeout(imgSrc); // await srcExists(imgSrc);
-// 	}
-// 	if (imgExists) { return imgSrc }
-// 	imgSrc = `modules/kult4eoverrides/assets/icons/${itemData.itemType}/${itemData.name.replace(/\s/g, "-").toLowerCase()}.svg`;
-// 	imgExists = await fetchWithTimeout(imgSrc); // await srcExists(imgSrc);
-// 	if (imgExists) { return imgSrc }
-// 	return `modules/kult4eoverrides/assets/icons/${itemData.itemType}/${itemData.itemType}-default.svg`;
-// }
 function descriptionCheck(itemData) {
 	const descBlockLines = [
 		centerCheck(itemData?.effect?.intro)
