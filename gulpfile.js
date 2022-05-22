@@ -127,7 +127,6 @@ const replacer = require("gulp-replace");
 const clean = require("del");
 
 const minifyJS = require("gulp-terser");
-const optimizeJS = require("gulp-optimize-js");
 
 const bundleCSS = require("gulp-postcss");
 const prefix = require("gulp-autoprefixer");
