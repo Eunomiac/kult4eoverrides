@@ -52,34 +52,35 @@ Hooks.once("init", async () => {
 	const ITEMDATA = await BUILD_ITEM_DATA();
 	KO.log("BUILT ITEM DATA", ITEMDATA);
 	window.resetItems = async () => {
-		// Clear items from Items Sidebar and from all Actors
-		// await Promise.allSettled()
-		await Item.deleteDocuments(Array.from(game.items.values())
-			.map((item) => item.id));
-		const itemFolders = {
-			move: [],
-			advantage: [],
-			disadvantage: [],
-			darksecret: [],
-			relationship: [],
-			weapon: [],
-			gear: []
+		await Item.deleteDocuments(Array.from(game.items.values()).map((item) => item.id));
+		await Folder.deleteDocuments(Array.from(game.folders.values()).map((folder) => folder.id));
+		const folderMap = {
+			advantage: "Advantages",
+			disadvantage: "Disadvantages",
+			move: "Moves",
+			weapon: "Weapons",
+			darksecret: "Dark Secrets"
 		};
-		const folders = Object.keys(itemFolders).map((folderName) => {
-			const folder = new Folder(mergeObject({
-				name: folderName,
-				type: "Item",
-				sorting: "a"
-			}));
-			return folder;
-		});
+		const itemFolders = {
+			"Advantages": "#4d4023",
+			"Disadvantages": "#520000",
+			"Moves": "#000000",
+			"Weapons": "#FF0000",
+			"Dark Secrets": "#6d00a8"
+		};
+		const FOLDERDATA = Object.entries(itemFolders).map(([folderName, folderColor]) => ({
+			name: folderName,
+			type: "Item",
+			sorting: "a",
+			color: folderColor
+		}));
+		const folders = await Folder.createDocuments(FOLDERDATA);
 		KO.log("FOLDERS", folders);
 
 		const items = await Item.createDocuments(ITEMDATA);
-		items.forEach((item) => itemFolders[item.type].push(item));
-		// for (const [folder, items] of Object.entries(itemFolders)) {
-
-		// }
+		items.forEach((item) => {
+			item.update({folder: game.folders.getName(folderMap[item.type]).id});
+		});
 	};
 	/*!DEVCODE*/
 
