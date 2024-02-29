@@ -7,13 +7,13 @@
 
 
 // Golds
-$gold: rgb(155, 141, 104); // System
-$gold-darkest: rgb(38, 32, 0);
-$gold-dark: rgb(141, 118, 42); // System
-$gold-grey: rgb(122, 121, 113); // System
-$gold-bright: rgb(255, 243, 181);
-$gold-bright50: rgba(255, 243, 181, 0.5);
-$gold-glow: rgb(255, 221, 0); // System
+$gold: #9b8d68; // System
+$gold-darkest: #262000;
+$gold-dark: #8d762a; // System
+$gold-grey: #7a7971; // System
+$gold-bright: #fff3b5;
+$gold-bright50: rgba(255, 242, 179, 0.5);
+$gold-glow: #ffdd00; // System
 
 // @debug "Gold" hue($gold);
 // @debug "G-Darkest" hue($gold-darkest);
@@ -41,10 +41,10 @@ $gold-glow: #ffb900; // System
 // $gold-glow: #ffdd00; // System
 
 // Reds
-$red: rgb(155, 32, 31); // System
-$red-dark: rgb(109, 22, 22); // System
-$red-bright: rgb(255, 32, 32);
-$red-grey: rgb(120, 46, 34); // System
+$red: #9b201f; // System
+$red-dark: #6d1616; // System
+$red-bright: #ff2020;
+$red-grey: #782e22; // System
 $red-grey50: rgba(120, 46, 34, 0.5);
 
 // Other
